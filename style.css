@@ -1,0 +1,328 @@
+/* Add flames.jpg as the background */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #fff; /* White text for contrast against the video */
+}
+
+/* Keyframes for subtle animation (optional) */
+@keyframes flamesAnimation {
+    0% {
+        filter: brightness(1);
+    }
+    50% {
+        filter: brightness(1.2);
+    }
+    100% {
+        filter: brightness(1);
+    }
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    body {
+        background-size: cover; /* Ensure the image still covers the viewport */
+        animation: flamesAnimation 8s ease infinite; /* Slower animation for smaller screens */
+    }
+}
+
+/* Ensure the video covers the entire website as a background */
+#background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; /* Make the video span the full width */
+    height: 100%; /* Make the video span the full height */
+    object-fit: cover; /* Ensure the video covers the viewport while maintaining aspect ratio */
+    z-index: -1; /* Place the video behind all content */
+    background-color: black; /* Fallback background color in case the video doesn't load */
+}
+
+/* Disable fullscreen mode */
+#background-video::-webkit-media-controls-fullscreen-button {
+    display: none; /* Hide the fullscreen button */
+}
+
+#background-video::-webkit-media-controls {
+    position: absolute;
+    top: 10px; /* Position controls slightly below the top */
+    left: 10px; /* Align controls to the left */
+    z-index: 10; /* Ensure controls are above other elements */
+}
+
+/* Remove custom styles for video controls */
+#background-video::-webkit-media-controls,
+#background-video::-webkit-media-controls-panel {
+    all: unset; /* Reset any custom styles */
+}
+
+/* Style for the mute button */
+#mute-button {
+    position: absolute;
+    top: 20px; /* Position the button slightly below the top */
+    left: 20px; /* Align the button to the left */
+    z-index: 10; /* Ensure it appears above other elements */
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#mute-button:hover {
+    background-color: rgba(255, 0, 0, 0.8); /* Change color on hover */
+}
+
+/* Tooltip styling (optional) */
+#mute-button::after {
+    content: "Toggle sound";
+    position: absolute;
+    bottom: -30px; /* Position the tooltip below the button */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    border-radius: 3px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+#mute-button:hover::after {
+    opacity: 1; /* Show the tooltip on hover */
+}
+
+/* Ensure the button and other elements are above the video */
+button, header, .container, footer {
+    position: relative;
+    z-index: 2; /* Place content above the video */
+}
+
+header {
+    text-align: center;
+    padding: 2rem 0;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for readability */
+    color: #fff;
+}
+
+/* Style for the header container */
+.header-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Style for the main heading (Simos Michail) */
+.header-container h1 {
+    font-size: 3rem; /* Make the text larger */
+    color: #fff; /* White text */
+    text-shadow: 
+        0 0 10px #ff0000, /* Red glow */
+        0 0 20px #ff0000, 
+        0 0 30px #ff0000, 
+        0 0 40px #0000ff, /* Blue glow */
+        0 0 50px #0000ff, 
+        0 0 60px #0000ff;
+    transform: perspective(500px) rotateX(10deg); /* Add a 3D tilt effect */
+    margin-bottom: 10px;
+}
+
+/* Style for the subheading (Web Developer || Software Developer) */
+.header-container p {
+    font-size: 1.5rem; /* Slightly smaller than the main heading */
+    color: #fff; /* White text */
+    text-shadow: 
+        0 0 10px #ff0000, /* Red glow */
+        0 0 20px #ff0000, 
+        0 0 30px #0000ff, /* Blue glow */
+        0 0 40px #0000ff;
+    transform: perspective(500px) rotateX(5deg); /* Add a subtle 3D tilt effect */
+}
+
+.header-container h1 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.header-container p {
+    font-size: 1.2rem;
+    margin: 0.5rem 0 0;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for readability */
+    border-radius: 10px;
+}
+
+h2 {
+    color: #ff0000; /* Red for visibility */
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.about p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.projects .project-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Neon effect for the Projects section title */
+.projects h2 {
+    font-size: 2.5rem; /* Larger font size */
+    font-weight: bold; /* Bold text */
+    color: #ff0000; /* Red color */
+    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000;
+    text-align: center;
+    margin-bottom: 2rem;
+    text-transform: uppercase; /* Make the text uppercase for emphasis */
+    letter-spacing: 2px; /* Add spacing between letters for a modern look */
+}
+
+/* Neon effect for project cards */
+.project {
+    background: #111; /* Dark background for contrast */
+    border: 1px solid #0ff; /* Neon border */
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px #0ff, 0 0 25px #0ff, 0 0 35px #0ff;
+}
+
+/* Neon effect for project titles */
+.project h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.2rem;
+    color: #0ff; /* Neon cyan */
+    text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff;
+}
+
+.project h3 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.project p {
+    font-size: 0.95rem;
+    color: #aaa; /* Light gray for readability */
+}
+
+/* Style for the photo container */
+.photo-container {
+    text-align: center; /* Center the photo */
+    margin-top: 20px; /* Add some space above the photo */
+    perspective: 1000px; /* Add perspective for the 3D effect */
+}
+
+/* Style for the profile photo */
+.profile-photo {
+    width: 250px; /* Increase the size of the photo */
+    height: 250px; /* Increase the size of the photo */
+    border-radius: 50%; /* Make the photo circular */
+    border: 5px solid #fff; /* Add a white border */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Add a shadow for depth */
+    transform: rotateY(15deg) rotateX(10deg); /* Apply a 3D rotation */
+    transition: transform 0.5s ease, box-shadow 0.5s ease; /* Smooth transition for hover effects */
+}
+
+/* Add hover effect for the 3D photo */
+.profile-photo:hover {
+    transform: rotateY(0deg) rotateX(0deg) scale(1.1); /* Reset rotation and slightly enlarge on hover */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7); /* Increase shadow on hover */
+}
+
+.contact p {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+}
+
+.contact a {
+    color: #2575fc;
+    text-decoration: none;
+}
+
+/* Resume section styling */
+.resume {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
+    color: #fff;
+}
+
+.resume h2 {
+    font-size: 2rem;
+    color: #ff0000; /* Red for visibility */
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; /* Neon effect */
+}
+
+.resume p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.resume-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background: #2575fc; /* Blue button */
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.resume-button:hover {
+    background: #0056b3; /* Darker blue on hover */
+    transform: translateY(-3px); /* Slight lift on hover */
+}
+
+/* Glowing 3D text styling */
+.glowing-text {
+    font-size: 1.5rem; /* Adjust font size */
+    font-weight: bold;
+    color: #fff; /* Base color */
+    text-align: center;
+    text-shadow: 
+        0 0 10px #ff0000, /* Red glow */
+        0 0 20px #ff0000, 
+        0 0 30px #00ff00, /* Green glow */
+        0 0 40px #00ff00, 
+        0 0 50px #00ff00, 
+        0 0 60px #00ff00;
+    transform: perspective(500px) rotateX(10deg); /* Add 3D tilt effect */
+    margin-top: 20px;
+    line-height: 1.8; /* Adjust line height for readability */
+}
+
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    color: #fff;
+    margin-top: 2rem;
+}

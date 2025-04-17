@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Video Background -->
+    <video autoplay loop muted controls id="background-video">
+        <source src="videos/Fire-Ice-Red-Blue.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Mute/Unmute Button -->
+    <button id="mute-button">Mute</button>
+
+    <header>
+        <div class="header-container">
+            <h1>Simos Michail</h1>
+            <p>Web Developer || Software Developer</p>
+        </div>
+    </header>
+    <main class="container">
+        <section class="about">
+            <h2>About Me</h2>
+            <p class="glowing-text">
+                Hi! I'm <strong>Simos Michail</strong>, a passionate web developer with experience in building modern and responsive websites. I love coding and creating beautiful, user-friendly interfaces. I have a strong foundation in HTML, CSS, and JavaScript, and I'm always eager to learn new technologies and improve my skills.
+            </p>
+<!-- Add your photo -->
+            <div class="photo-container">
+                <img src="images/your-photo.jpg" alt="Simos Michail" class="profile-photo">
+            </div>
+        </section>
+        <section class="projects">
+            <h2>Projects</h2>
+            <div class="project-list">
+                <div class="project">
+                    <h3><a href="realestate/index.html" target="_blank">Real Estate Website</a></h3>
+                    <p>A modern real estate website with listings, gallery, about, and contact pages.</p>
+                </div>
+                <div class="project">
+                    <h3><a href="project-two/index.html" target="_blank">Watch Store</a></h3>
+                    <p>An elegant watch store that sell high quality watches for every occassion and for a wonderful experience to about elegance and beauty.</p>
+                </div>
+                <div class="project">
+                    <h3><a href="project-three/index.html" target="_blank">Card Game</a></h3>
+                    <p>A fun memory card game to keep you busy on those moments you need to let go some steam or pass your time casually having fun over a coffee.
+                        Futuristic card memory game with lots of features and a  great design.</p>
+                </div>
+                <div class="project">
+                    <h3><a href="project-four/index.html" target="_blank">Todo list</a></h3>
+                    <p>An Incredible To Do List so you will never forget your tasks or appointmens and always be on top of your daily busy life.
+                    </p>
+</div>
+            </div>
+        </section>
+<section class="resume">
+            <h2>Download My Resume</h2>
+            <p>
+                Interested in learning more about my skills and experience? Download my resume to get all the details!
+            </p>
+            <a href="resume/Simos_Michail_Resume.pdf" target="_blank" class="resume-button">Download Resume</a>
+        </section>
+        <section class="contact">
+            <h2>Contact</h2>
+            <p>Email: <a href="mailto:your.email@example.com">simosmichail176@gmail.com</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/simosmichail176/" target="_blank">SimosMichail</a></p>
+            <p>GitHub: <a href="https://github.com/SimosData" target="_blank">SimosData</a></p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; This was created By Simos Michail Aspiring Software Developer.</p>
+    </footer>
+
+    <script>
+        // JavaScript to toggle mute/unmute
+        const video = document.getElementById('background-video');
+        const muteButton = document.getElementById('mute-button');
+
+        muteButton.addEventListener('click', () => {
+            if (video.muted) {
+                video.muted = false;
+                muteButton.textContent = 'Mute'; // Update button text
+            } else {
+                video.muted = true;
+                muteButton.textContent = 'Unmute'; // Update button text
+            }
+        });
+    </script>
+</body>
+</html>

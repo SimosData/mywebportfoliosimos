@@ -1,0 +1,73 @@
+/* General body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background: linear-gradient(135deg, #1e1e2f, #3a3a5f); /* Gradient background */
+    color: #fff;
+    text-align: center;
+}
+
+/* Header styling */
+header {
+    background: #222;
+    color: #fff;
+    padding: 1.5rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Subtle text shadow */
+}
+
+/* Main content styling */
+main {
+    padding: 2rem;
+}
+
+section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
+}
+
+/* Button styling */
+.play-now-button {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(135deg, #ff5722, #e91e63); /* Gradient button */
+    text-decoration: none;
+    border-radius: 50px; /* Rounded button */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.play-now-button:hover {
+    transform: translateY(-5px); /* Lift the button on hover */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5); /* Enhance shadow on hover */
+    background: linear-gradient(135deg, #e91e63, #ff5722); /* Reverse gradient on hover */
+}
+
+/* Footer styling */
+footer {
+    background: #222;
+    color: #fff;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+    border-top: 2px solid #444;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
+}
+
+footer p {
+    margin: 0;
+}
