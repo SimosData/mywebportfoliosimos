@@ -380,3 +380,53 @@ footer {
     color: #fff;
     margin-top: 2rem;
 }
+
+/* Glowing Banner */
+.glowing-banner {
+    position: absolute; /* Position it relative to the parent container */
+    top: 10px; /* Move it to the top */
+    left: 10px; /* Move it to the left */
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ccff, 0 0 30px #00ffcc; /* Glowing effect */
+    display: inline-block;
+    animation: glow-pulse 2s infinite;
+    z-index: 10; /* Ensure it appears above other elements */
+}
+
+/* Pointing Hand */
+.pointing-hand {
+    font-size: 1.5rem;
+    margin-right: 10px;
+    animation: hand-bounce 1.5s infinite;
+}
+
+/* Glow Pulse Animation */
+@keyframes glow-pulse {
+    0%, 100% {
+        box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ccff, 0 0 30px #00ffcc;
+    }
+    50% {
+        box-shadow: 0 0 20px #00ffcc, 0 0 30px #00ccff, 0 0 40px #00ffcc;
+    }
+}
+
+/* Hand Bounce Animation */
+@keyframes hand-bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* About Section Styling (Optional) */
+.about {
+    position: relative; /* Ensure the banner is positioned relative to this section */
+    padding: 20px;
+}
