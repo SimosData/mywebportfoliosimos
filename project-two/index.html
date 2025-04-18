@@ -3,9 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Watch Store</title>
+    <title>Watch Store - Home</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto+Slab:wght@400&display=swap" rel="stylesheet">
+    <style>
+        /* Scroll to Top Button Styles */
+        #scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none; /* Hidden by default */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        #scroll-to-top:hover {
+            background-color: #555;
+            transform: scale(1.1);
+        }
+    </style>
 </head>
 <body>
     <header class="medieval-header">
@@ -90,5 +114,27 @@
         <p>&copy; 2024 Watch Store</p>
     </footer>
     <button id="scroll-to-top" title="Go to top">↑</button>
+
+    <script>
+        // Get the button
+        const scrollToTopButton = document.getElementById('scroll-to-top');
+
+        // Show the button when the user scrolls down
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTopButton.style.display = 'block';
+            } else {
+                scrollToTopButton.style.display = 'none';
+            }
+        });
+
+        // Scroll to the top when the button is clicked
+        scrollToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Smooth scrolling effect
+            });
+        });
+    </script>
 </body>
 </html>
