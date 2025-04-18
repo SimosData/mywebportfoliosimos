@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Watch Store</title> <!-- Updated title -->
+    <title>Watch Store</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto+Slab:wght@400&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Welcome to Watch Store</h1>
+    <header class="medieval-header">
+        <h1>Welcome to the Watch Store</h1>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -17,18 +18,42 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
+        <!-- Social Media Links -->
+        <div class="social-media">
+            <a href="https://www.instagram.com" target="_blank" class="social-icon">
+                <img src="assets/icons/instagram.png" alt="Instagram">
+            </a>
+            <a href="https://www.facebook.com" target="_blank" class="social-icon">
+                <img src="assets/icons/facebook.png" alt="Facebook">
+            </a>
+            <a href="https://www.twitter.com" target="_blank" class="social-icon">
+                <img src="assets/icons/twitter.png" alt="Twitter">
+            </a>
+            <a href="https://www.whatsapp.com" target="_blank" class="social-icon">
+                <img src="assets/icons/whatsapp.png" alt="WhatsApp">
+            </a>
+            <a href="https://www.viber.com" target="_blank" class="social-icon">
+                <img src="assets/icons/viber.png" alt="Viber">
+            </a>
+            <a href="https://telegram.org" target="_blank" class="social-icon">
+                <img src="assets/icons/telegram.png" alt="Telegram">
+            </a>
+            <a href="https://www.tiktok.com" target="_blank" class="social-icon">
+                <img src="assets/icons/tiktok.png" alt="TikTok">
+            </a>
+        </div>
     </header>
     <main>
-        <section>
+        <section class="about-store">
             <h2>About Our Store</h2>
-            <p>Discover the finest collection of watches for every occasion. Quality and style guaranteed.</p>
+            <p class="highlighted-text">Discover the finest collection of watches for every occasion. <span>Quality and style guaranteed.</span></p>
         </section>
-        <section>
+        <section class="featured-products">
             <h2>Featured Products</h2>
             <div class="product-grid">
                 <!-- Existing Products -->
                 <div class="product">
-                    <img src="assets/images/watch1.jpg" alt="Watch 1">
+                    <img src="assets/images/watch1.jpg" alt="Watch 1" loading="lazy">
                     <h3>Classic Watch</h3>
                     <p>$199.99</p>
                 </div>
@@ -64,5 +89,6 @@
     <footer>
         <p>&copy; 2024 Watch Store</p>
     </footer>
+    <button id="scroll-to-top" title="Go to top">↑</button>
 </body>
 </html>

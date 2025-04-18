@@ -1,32 +1,52 @@
+/* General Styles */
+html {
+    scroll-behavior: smooth;
+}
+
+/* General body styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto Slab', serif; /* Sophisticated serif font */
     margin: 0;
     padding: 0;
-    line-height: 1.6;
-    background-color: #f4f4f4;
+    line-height: 1.8;
+    background: #f4f1ea; /* Light parchment-like background */
     color: #333;
 }
 
-header {
-    background: #333;
+/* Header styling */
+.medieval-header {
+    background: #4a2c2a; /* Rich, dark brown */
     color: #fff;
-    padding: 1rem 0;
+    padding: 2rem 0;
     text-align: center;
+    border-bottom: 5px solid #d4af37; /* Gold border */
 }
 
-header ul {
+.medieval-header h1 {
+    font-family: 'Playfair Display', serif; /* Elegant serif font */
+    font-size: 3rem;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.medieval-header nav ul {
     list-style: none;
     padding: 0;
+    margin: 1rem 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
 }
 
-header ul li {
-    display: inline;
-    margin: 0 10px;
-}
-
-header ul li a {
-    color: #fff;
+.medieval-header nav ul li a {
     text-decoration: none;
+    color: #d4af37; /* Gold color */
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.medieval-header nav ul li a:hover {
+    color: #fff;
 }
 
 h1 {
@@ -63,47 +83,306 @@ section {
     margin: 0 0 10px;
 }
 
-footer {
+/* About Section */
+.about-section {
+    padding: 2rem;
     text-align: center;
-    padding: 10px 0;
-    background: #333;
-    color: #fff;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+    background: #fff;
+    border: 2px solid #d4af37; /* Gold border */
+    margin: 2rem auto;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Style for the product grid */
+.about-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #4a2c2a;
+    margin-bottom: 1rem;
+}
+
+.about-section p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+/* Products Intro Section */
+.products-intro {
+    text-align: center;
+    padding: 2rem;
+    background: #fff;
+    border: 2px solid #d4af37; /* Gold border */
+    margin: 2rem auto;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.products-intro h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #4a2c2a;
+    margin-bottom: 1rem;
+}
+
+.products-intro p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+/* Featured Products Section */
+.featured-products {
+    padding: 2rem;
+    text-align: center;
+}
+
+.featured-products h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #4a2c2a;
+    margin-bottom: 2rem;
+}
+
+/* Product Grid */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    padding: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
 }
 
-/* Style for individual products */
 .product {
     background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    text-align: center;
+    border: 2px solid #d4af37; /* Gold border */
+    border-radius: 10px;
     padding: 1rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Style for product images */
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
 .product img {
-    width: 100%; /* Make the image span the full width of its container */
-    height: 200px; /* Set a fixed height for consistency */
-    object-fit: cover; /* Ensure the image covers the container without distortion */
-    border-radius: 5px; /* Optional: Add rounded corners to match the product card */
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 1rem;
 }
 
 .product h3 {
-    margin: 0.5rem 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #4a2c2a;
+    margin-bottom: 0.5rem;
 }
 
 .product p {
-    color: #007bff;
+    font-size: 1.2rem;
+    color: #555;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background: #4a2c2a;
+    color: #fff;
+    font-size: 1rem;
+    border-top: 5px solid #d4af37; /* Gold border */
+}
+
+/* Style for the registration form */
+.registration-form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.registration-form label {
+    display: block;
+    margin-bottom: 8px;
     font-weight: bold;
+    color: #4a2c2a;
+}
+
+.registration-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    background: #f9f9f9;
+    color: #333;
+}
+
+.registration-form button {
+    width: 100%;
+    padding: 10px;
+    background: #d4af37; /* Gold */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.registration-form button:hover {
+    background: #4a2c2a; /* Dark brown */
+    transform: scale(1.05);
+}
+
+/* Contact Info Section */
+.contact-info {
+    text-align: center;
+    padding: 2rem;
+    background: #fff;
+    border: 2px solid #d4af37; /* Gold border */
+    margin: 2rem auto;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.contact-info h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #4a2c2a;
+    margin-bottom: 1rem;
+}
+
+.contact-info p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+/* Form Section */
+.form-section {
+    padding: 2rem;
+    background: #fff;
+    border: 2px solid #d4af37; /* Gold border */
+    margin: 2rem auto;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.form-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #4a2c2a;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Scroll-to-top button */
+#scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #d4af37; /* Gold */
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#scroll-to-top:hover {
+    background: #4a2c2a; /* Dark brown */
+    transform: scale(1.1);
+}
+
+/* Social Media Links */
+.social-media {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.social-icon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.social-icon img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* About Store Section */
+.about-store {
+    text-align: center;
+    padding: 2rem;
+    background: #fff;
+    border: 2px solid #d4af37; /* Gold border */
+    margin: 2rem auto;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.about-store h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #4a2c2a;
+    margin-bottom: 1rem;
+}
+
+.highlighted-text {
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.5rem;
+    color: #333;
+    line-height: 1.8;
+    margin: 0 auto;
+    max-width: 700px;
+}
+
+.highlighted-text span {
+    font-weight: bold;
+    color: #d4af37; /* Gold color for emphasis */
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+    }
 }

@@ -1,71 +1,79 @@
 /* General body styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Fun and casual font */
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    background: linear-gradient(135deg, #f4f4f4, #eaeaea);
+    background: linear-gradient(135deg, #ffefba, #ffb3ba); /* Tropical gradient */
     color: #333;
     text-align: center;
 }
 
 /* Header styling */
 header {
-    background: #007bff;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b); /* Sunset gradient */
     color: #fff;
-    padding: 1.5rem 0;
+    padding: 2rem 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
 }
 
 header h1 {
     margin: 0;
-    font-size: 2.5rem;
+    font-size: 3rem;
+    font-family: 'Pacifico', cursive; /* Tropical, handwritten font */
 }
 
 header p {
     margin: 0.5rem 0 0;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 /* To-Do container styling */
 .todo-container {
     margin: 2rem auto;
-    padding: 1.5rem;
+    padding: 2rem;
     max-width: 600px;
     background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid #ff7e5f; /* Add a tropical border */
 }
 
 .todo-container h2 {
     margin-bottom: 1rem;
-    color: #007bff;
+    color: #ff7e5f;
+    font-family: 'Pacifico', cursive;
 }
 
+/* Input and button styling */
 #task-input {
     width: 70%;
     padding: 10px;
     font-size: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    border: 2px solid #feb47b;
+    border-radius: 10px;
     margin-right: 10px;
+    background: #fff8e1; /* Light tropical background */
 }
 
 #add-task-button {
     padding: 10px 20px;
     font-size: 1rem;
     color: #fff;
-    background: #007bff;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 #add-task-button:hover {
-    background: #0056b3;
+    background: #ff6f61;
+    transform: scale(1.1); /* Slightly enlarge on hover */
 }
 
+/* Task list styling */
 #task-list {
     list-style: none;
     padding: 0;
@@ -75,28 +83,53 @@ header p {
 #task-list li {
     padding: 10px;
     margin-bottom: 10px;
-    background: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    background: #fff8e1;
+    border: 2px solid #feb47b;
+    border-radius: 10px;
     text-align: left;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Style for the huge red button */
 .red-button {
     display: inline-block;
-    margin-top: 10px;
+    margin-top: 20px;
     padding: 15px 30px;
     font-size: 1.5rem;
     font-weight: bold;
     color: #fff;
-    background-color: #ff0000; /* Bright red background */
+    background-color: #ff4500; /* Bright tropical red */
     text-decoration: none;
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .red-button:hover {
-    background-color: #cc0000; /* Darker red on hover */
+    background-color: #e63900; /* Darker red on hover */
     transform: scale(1.1); /* Slightly enlarge the button on hover */
+}
+
+/* Add tropical footer styling */
+footer {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    color: #fff;
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Netlify link section styling */
+.netlify-link {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.netlify-link h2 {
+    font-size: 1.8rem;
+    color: #ff7e5f;
+    font-family: 'Pacifico', cursive;
+    margin-bottom: 1rem;
 }

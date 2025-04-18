@@ -8,7 +8,8 @@
 </head>
 <body>
     <!-- Video Background -->
-    <video autoplay loop muted controls id="background-video">
+    <video autoplay loop muted playsinline controls id="background-video">
+<source src="videos/Fire-Ice-Red-Blue-mobile.mp4" type="video/mp4" media="(max-width: 768px)">
         <source src="videos/Fire-Ice-Red-Blue.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
@@ -30,7 +31,7 @@
             </p>
 <!-- Add your photo -->
             <div class="photo-container">
-                <img src="images/your-photo.jpg" alt="Simos Michail" class="profile-photo">
+                <img src="images/your-photo.jpg" alt="Simos Michail" class="profile-photo" loading="lazy">
             </div>
         </section>
         <section class="projects">
@@ -42,18 +43,21 @@
                 </div>
                 <div class="project">
                     <h3><a href="project-two/index.html" target="_blank">Watch Store</a></h3>
-                    <p>An elegant watch store that sell high quality watches for every occassion and for a wonderful experience to about elegance and beauty.</p>
+                    <p>An elegant watch store that sells high-quality watches for every occasion and provides a wonderful experience of elegance and beauty.</p>
                 </div>
                 <div class="project">
                     <h3><a href="project-three/index.html" target="_blank">Card Game</a></h3>
-                    <p>A fun memory card game to keep you busy on those moments you need to let go some steam or pass your time casually having fun over a coffee.
-                        Futuristic card memory game with lots of features and a  great design.</p>
+                    <p>A fun memory card game to keep you busy during moments of relaxation or casual fun. A futuristic card memory game with lots of features and a great design.</p>
                 </div>
                 <div class="project">
-                    <h3><a href="project-four/index.html" target="_blank">Todo list</a></h3>
-                    <p>An Incredible To Do List so you will never forget your tasks or appointmens and always be on top of your daily busy life.
-                    </p>
-</div>
+                    <h3><a href="project-four/index.html" target="_blank">Todo List</a></h3>
+                    <p>An incredible To-Do List to help you stay organized, never forget your tasks or appointments, and always be on top of your busy daily life.</p>
+                </div>
+                <!-- New Project 5 Placeholder -->
+                <div class="project">
+                    <h3><a href="project-five/index.html" target="_blank">Project 5</a></h3>
+                    <p>A placeholder for the fifth project. This project will showcase another amazing creation with a focus on innovation and design.</p>
+                </div>
             </div>
         </section>
 <section class="resume">
@@ -79,15 +83,76 @@
         const video = document.getElementById('background-video');
         const muteButton = document.getElementById('mute-button');
 
+let debounceTimeout;
         muteButton.addEventListener('click', () => {
-            if (video.muted) {
-                video.muted = false;
-                muteButton.textContent = 'Mute'; // Update button text
-            } else {
-                video.muted = true;
-                muteButton.textContent = 'Unmute'; // Update button text
-            }
+    const isMuted = video.muted;
+    video.muted = !isMuted;
+    muteButton.textContent = isMuted ? 'Mute' : 'Unmute';
+});
+
+let resizeTimeout;
+
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        // Handle resize logic here
+        console.log('Resized!');
+    }, 100);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('background-video');
+    const source = video.querySelector('source');
+
+    if (window.innerWidth <= 768) {
+        source.src = 'videos/Fire-Ice-Red-Blue-mobile.mp4';
+    } else {
+        source.src = 'videos/Fire-Ice-Red-Blue.mp4';
+    }
+
+    video.load();
+});
+
+let lastFrameTime = 0;
+
+function animate(time) {
+    if (time - lastFrameTime > 1000 / 120) { // 120 FPS
+        // Perform animation logic here
+        lastFrameTime = time;
+    }
+    requestAnimationFrame(animate);
+}
+
+requestAnimationFrame(animate);
+
+window.onload = () => {
+    const performanceData = performance.getEntriesByType('navigation')[0];
+    console.log('Page Load Time:', performanceData.loadEventEnd - performanceData.startTime);
+};
+
+let ticking = false;
+
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(() => {
+            // Perform scroll-related logic here
+            ticking = false;
         });
+    }
+});
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            if (video.paused) video.play();
+        } else {
+            if (!video.paused) video.pause();
+        }
+    });
+}, { threshold: 0.5 }); // Adjust threshold for better performance
+
+observer.observe(video);
     </script>
 </body>
 </html>

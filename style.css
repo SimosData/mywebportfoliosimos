@@ -26,6 +26,44 @@ body {
         background-size: cover; /* Ensure the image still covers the viewport */
         animation: flamesAnimation 8s ease infinite; /* Slower animation for smaller screens */
     }
+
+    #background-video {
+        object-fit: cover; /* Ensure video scales properly */
+    }
+
+    .header-container h1 {
+        font-size: 2rem;
+    }
+
+    .header-container p {
+        font-size: 1rem;
+    }
+
+    .project-list {
+        grid-template-columns: 1fr;
+    }
+
+    .glowing-text {
+        animation: none; /* Disable animation on mobile */
+        text-shadow: none; /* Remove glow effect */
+    }
+
+    .profile-photo {
+        transform: none; /* Disable 3D rotation */
+    }
+
+    .profile-photo:hover {
+        transform: none; /* Disable hover effect */
+    }
+
+    .glowing-text {
+        animation: none; /* Disable glow animation */
+        text-shadow: none;
+    }
+
+    .profile-photo {
+        transform: none; /* Disable zoom effect */
+    }
 }
 
 /* Ensure the video covers the entire website as a background */
@@ -38,6 +76,8 @@ body {
     object-fit: cover; /* Ensure the video covers the viewport while maintaining aspect ratio */
     z-index: -1; /* Place the video behind all content */
     background-color: black; /* Fallback background color in case the video doesn't load */
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0); /* Force GPU acceleration */
 }
 
 /* Disable fullscreen mode */
@@ -241,7 +281,8 @@ h2 {
     border: 5px solid #fff; /* Add a white border */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Add a shadow for depth */
     transform: rotateY(15deg) rotateX(10deg); /* Apply a 3D rotation */
-    transition: transform 0.5s ease, box-shadow 0.5s ease; /* Smooth transition for hover effects */
+    transition: transform 0.3s ease; /* Removed box-shadow from transition */
+    will-change: transform; /* Hint for GPU acceleration */
 }
 
 /* Add hover effect for the 3D photo */
@@ -317,6 +358,19 @@ h2 {
     transform: perspective(500px) rotateX(10deg); /* Add 3D tilt effect */
     margin-top: 20px;
     line-height: 1.8; /* Adjust line height for readability */
+    animation: glow 1.5s infinite;
+    will-change: text-shadow; /* Hint for GPU acceleration */
+}
+
+#background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('images/flames.jpg') no-repeat center center;
+    background-size: cover;
+    z-index: -1; /* Ensure it stays behind all content */
 }
 
 footer {

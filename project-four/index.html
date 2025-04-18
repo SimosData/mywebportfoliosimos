@@ -3,21 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List</title>
-    <link rel="stylesheet" href="assets/css/style.css"> <!-- Link to your CSS file -->
+    <title>Hawaiian To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <h1>To-Do List</h1>
-        <p>Organize your tasks and boost your productivity!</p>
+        <h1>Aloha To-Do List</h1>
+        <p>Stay organized, Hawaiian style!</p>
     </header>
-    <main>
-        <div class="project">
-            <a href="https://todolist-style.netlify.app/" target="_blank" class="red-button">Go to Website</a>
-        </div>
-    </main>
+    <div class="todo-container">
+        <h2>Your Tasks</h2>
+        <input type="text" id="task-input" placeholder="Add a new task...">
+        <button id="add-task-button">Add Task</button>
+        <ul id="task-list">
+            <li>Buy sunscreen</li>
+            <li>Plan a beach party</li>
+        </ul>
+        <a href="#" class="red-button">Clear All Tasks</a>
+    </div>
+    <div class="netlify-link">
+        <h2>Want to try another version?</h2>
+        <a href="https://todolist-style.netlify.app/" class="red-button">Go to this To-Do List</a>
+    </div>
     <footer>
-        <p>&copy; 2024 To-Do List App. All rights reserved.</p>
+        <p>Mahalo for staying organized!</p>
     </footer>
 </body>
 </html>
