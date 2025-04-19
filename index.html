@@ -5,8 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Name - Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .equalizer-controls label {
+            color: #cd00fb;
+            font-size: 1rem;
+            margin-right: 8px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .equalizer-controls select,
+        .equalizer-controls input[type="range"] {
+            margin-right: 16px;
+            vertical-align: middle;
+        }
+        
+    </style>
 </head>
 <body>
+    <div id="custom-cursor"></div>
     <!-- Video Background -->
     <video autoplay controls id="background-video">
         <source src="videos/Fire-Ice-Red-Blue.mp4" type="video/mp4">
@@ -84,7 +100,7 @@
                     <li data-src="videos/Fire-Ice-Red-Blue.mp4" tabindex="0">Fire-Ice-Red-Blue</li>
                     <li data-src="videos/Neon-Car.mp4" tabindex="0">Neon-Car</li>
                     <li data-src="videos/Cyberpunk.mp4" tabindex="0">Cyberpunk</li>
-                    <li data-src="videos/Cyberpunk2.mp4" tabindex="0">Cyberpunk2</li>
+                    <li data-src="videos/Cyber.mp4" tabindex="0">Cyber</li>
                     <li data-src="videos/HardRockSpeed.mp4" tabindex="0">HardRockSpeed</li>
                 </ul>
             </div>
@@ -123,7 +139,7 @@
                     <p>Technologies Used</p> <p> HTML CSS JavaScript Three Js</p>
                 </div>
                 <div class="project">
-                    <h3><a href="project-six/Youtube/index.html" target="_blank">YouTubePlayer</a></h3>
+                    <h3><a href="project-six/Youtube/index.html" target="_blank">VideoPlayer</a></h3>
                     <p>VideoPlayer with a futuristic style and video playback.</p>
                     <p>Technologies Used</p>
                     <p>HTML CSS JavaScript</p>
@@ -587,7 +603,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { src: 'videos/Fire-Ice-Red-Blue.mp4', type: 'video/mp4' },
         { src: 'videos/Neon-Car.mp4', type: 'video/mp4' },
         { src: 'videos/Cyberpunk.mp4', type: 'video/mp4' },
-        { src: 'videos/Cyberpunk2.mp4', type: 'video/mp4' }, // Missing comma fixed here
+        { src: 'videos/Cyberpunk2.mp4', type: 'video/mp4' },
         { src: 'videos/HardRockSpeed.mp4', type: 'video/mp4' }
     ];
 

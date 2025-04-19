@@ -732,6 +732,8 @@ footer {
     font-size: 1rem;
     border-radius: 5px;
     border: 1px solid #ccc;
+    background: #222;
+    color: #00ff00; /* Make dropdown text green */
     margin: 0 10px;
     cursor: pointer;
 }
@@ -912,4 +914,58 @@ footer {
 #next-song-button:hover {
     background-color: #555;
     transform: scale(1.1);
+}
+
+/* Custom Dracula Castle Cursor with Flames */
+#custom-cursor {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 60px;
+    height: 80px;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    background: none;
+}
+#custom-cursor::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 20px;
+    width: 40px;
+    height: 40px;
+    background: url('images/dracula-castle-cursor.png') no-repeat center center;
+    background-size: contain;
+    z-index: 2;
+}
+#custom-cursor::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50px;
+    width: 60px;
+    height: 40px;
+    background: radial-gradient(circle at 50% 20%, #fffa00 0%, #ff6600 60%, transparent 100%);
+    opacity: 0.7;
+    filter: blur(6px);
+    animation: flames-burst 0.7s infinite alternate;
+    z-index: 1;
+}
+@keyframes flames-burst {
+    0% {
+        opacity: 0.7;
+        transform: scaleY(1) scaleX(1);
+        filter: blur(6px);
+    }
+    50% {
+        opacity: 1;
+        transform: scaleY(1.3) scaleX(1.1);
+        filter: blur(10px);
+    }
+    100% {
+        opacity: 0.7;
+        transform: scaleY(1) scaleX(1);
+        filter: blur(6px);
+    }
 }
