@@ -1,0 +1,4 @@
+nmp install serve 
+serve 
+
+open terminal on the root folder and execute these commands for localhost server

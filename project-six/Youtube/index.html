@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube clone</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</head>
+<body>
+    <!-- Video Background -->
+    <video id="background-video" autoplay loop>
+        <source src="videos/futuristicVideo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Particle Effect -->
+    <div id="particles-js"></div>
+
+    <!-- Header -->
+    <header>
+        <h1>YouTube Clone</h1>
+        <div id="user-auth">
+            <form id="login-form">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <div id="user-info" style="display: none;">
+                <p>Welcome, <span id="user-name"></span>!</p>
+                <button id="logout-button">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section id="upload-section">
+            <h2>Upload Video</h2>
+            <form id="upload-form">
+                <input type="file" id="video-file" name="video" accept="video/*" required>
+                <input type="text" id="video-title" placeholder="Enter video title" required>
+                <button type="submit">Upload</button>
+            </form>
+            <div id="drag-drop-area">
+                Drag and drop your video here or click to upload.
+            </div>
+        </section>
+        <section id="video-list">
+            <h2>Available Videos</h2>
+            <input type="text" id="search-bar" placeholder="Search videos...">
+            <select id="category-filter">
+                <option value="all">All</option>
+                <option value="music">Music</option>
+                <option value="education">Education</option>
+                <option value="gaming">Gaming</option>
+            </select>
+            <select id="sort-options">
+                <option value="title">Sort by Title</option>
+                <option value="date">Sort by Date</option>
+            </select>
+            <ul id="videos">
+                <li>
+                    <img src="thumbnail.jpg" alt="Video Thumbnail" class="video-thumbnail">
+                    <h3>Video Title</h3>
+                    <video controls>
+                        <source src="video.mp4" type="video/mp4">
+                    </video>
+                    <div class="playback-speed">
+                        <button data-speed="0.5">0.5x</button>
+                        <button data-speed="1">1x</button>
+                        <button data-speed="1.5">1.5x</button>
+                        <button data-speed="2">2x</button>
+                    </div>
+                    <div class="comments-section">
+                        <h3>Comments</h3>
+                        <textarea id="comment-input" placeholder="Add a comment..."></textarea>
+                        <button id="submit-comment">Submit</button>
+                        <ul id="comments-list"></ul>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>

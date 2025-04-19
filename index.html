@@ -8,8 +8,7 @@
 </head>
 <body>
     <!-- Video Background -->
-    <video autoplay loop muted playsinline controls id="background-video">
-<source src="videos/Fire-Ice-Red-Blue-mobile.mp4" type="video/mp4" media="(max-width: 768px)">
+    <video autoplay controls id="background-video">
         <source src="videos/Fire-Ice-Red-Blue.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
@@ -27,17 +26,70 @@
         <section class="about">
             <h2>About Me</h2>
             <p class="glowing-text">
-                Hi! I'm <strong>Simos</strong>, a passionate frontend developer with experience in building modern and responsive websites. I love coding and creating beautiful, user-friendly interfaces. I have a strong foundation in HTML, CSS, and JavaScript, and I'm always eager to learn new technologies and improve my skills.
+                Hi! I'm <strong>Simos</strong>, a passionate Frontend Developer with experience in building modern and responsive websites. I love coding and creating beautiful, user-friendly interfaces. I have a strong foundation in HTML, CSS, and JavaScript, and I'm always eager to learn new technologies and improve my skills.
             </p>
             <!-- Add your photo -->
             <div class="photo-container">
                 <img src="images/your-photo.jpg" alt="Simos Michail" class="profile-photo" loading="lazy">
             </div>
 
-            <!-- Glowing Banner -->
-            <div class="glowing-banner">
-                <span class="pointing-hand">👉</span> Click the Mute button to hear sound!
+            
+
+            <!-- Video Controls -->
+            <div class="video-controls">
+                <div class="progress-container">
+                    <input type="range" id="progress-bar" min="0" max="100" value="0">
+                    <div id="progress-tooltip" class="tooltip">00:00 / 00:00</div>
+                </div>
+                <div class="play-controls">
+                    <button id="rewind-button">⏪ Rewind</button>
+                    <button id="play-pause-button">Pause</button>
+                    <button id="fast-forward-button">⏩ Fast Forward</button>
+                    <button id="previous-song-button">⏮ Previous Song</button>
+                    <button id="next-song-button">⏭ Next Song</button>
+                </div>
+                <div class="speed-controls">
+                    <button id="speed-decrease-button">- Speed</button>
+                    <button id="speed-increase-button">+ Speed</button>
+                </div>
+                <div class="volume-controls">
+                    <button id="mute-unmute-button">Mute</button>
+                    <label for="volume-slider">Volume:</label>
+                    <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="1">
+                </div>
+                <div class="equalizer-controls">
+                    <label for="volume-boost">Volume Boost:</label>
+                    <input type="range" id="volume-boost" min="1" max="3" step="0.1" value="1">
+
+                    <label for="equalizer-preset">Equalizer Preset:</label>
+                    <select id="equalizer-preset">
+                        <option value="flat">Flat</option>
+                        <option value="bass-boost">Bass Boost</option>
+                        <option value="treble-boost">Treble Boost</option>
+                        <option value="vocal-boost">Vocal Boost</option>
+                    </select>
+                </div>
+                <span class="mute-instruction">
+                    👉 Click the Pause/Play  button to hear sound!
+                <p>Right click with your mouse on the video playlist to download the video/music of your selected choice</p>
+                </span>
+                <a href="videos/Fire-Ice-Red-Blue.mp4" download="Fire-Ice-Red-Blue.mp4" class="download-button">Download Video</a>
             </div>
+            <div class="video-controls">
+                <button id="change-video-button">Change Video</button>
+            </div>
+            <div class="playlist-container">
+                <h3>Playlist</h3>
+                <ul id="playlist">
+                    <li data-src="videos/Fire-Ice-Red-Blue.mp4" tabindex="0">Fire-Ice-Red-Blue</li>
+                    <li data-src="videos/Neon-Car.mp4" tabindex="0">Neon-Car</li>
+                    <li data-src="videos/Cyberpunk.mp4" tabindex="0">Cyberpunk</li>
+                    <li data-src="videos/Cyberpunk2.mp4" tabindex="0">Cyberpunk2</li>
+                    <li data-src="videos/HardRockSpeed.mp4" tabindex="0">HardRockSpeed</li>
+                </ul>
+            </div>
+            <a id="download-button" href="videos/Fire-Ice-Red-Blue.mp4" download="Fire-Ice-Red-Blue.mp4" class="download-button">Download Video</a>
+            <p id="speed-display">Current Speed: 1x</p>
         </section>
         <section class="projects">
             <h2>Projects</h2>
@@ -70,6 +122,25 @@
                     <p>Come and Enjoy a 3d experience with the 3D solar system in a nice interactive way to get the feel of space!</p>
                     <p>Technologies Used</p> <p> HTML CSS JavaScript Three Js</p>
                 </div>
+                <div class="project">
+                    <h3><a href="project-six/Youtube/index.html" target="_blank">Project Six</a></h3>
+                    <p>VideoPlayer with a futuristic style and video playback.</p>
+                    <p>Technologies Used</p>
+                    <p>HTML CSS JavaScript</p>
+                </div>
+                <div class="project">
+                    <h3><a href="project-seven/index.html" target="_blank">Project Seven</a></h3>
+                    <p>A futuristic project showcasing advanced features and interactivity.</p>
+                    <p>Technologies Used</p>
+                    <p>HTML CSS JavaScript</p>
+                </div>
+                <div class="project">
+    <h3><a href="project-eight/index.html" target="_blank">Project Eight</a></h3>
+    <p>An innovative project showcasing cutting-edge technologies and futuristic design.</p>
+    <p>Technologies Used</p>
+    <p>HTML CSS JavaScript</p>
+</div>
+            
             </div>
         </section>
 <section class="resume">
@@ -120,15 +191,209 @@ window.addEventListener('resize', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     const video = document.getElementById('background-video');
-    const source = video.querySelector('source');
+    const muteButton = document.getElementById('mute-button');
 
+    // Ensure the video is not muted on page load
+    video.muted = false;
+
+    // Update the button text based on the initial state
+    muteButton.textContent = video.muted ? 'Unmute' : 'Mute';
+
+    // Toggle mute/unmute when the button is clicked
+    muteButton.addEventListener('click', () => {
+        const isMuted = video.muted;
+        video.muted = !isMuted;
+        muteButton.textContent = isMuted ? 'Mute' : 'Unmute';
+    });
+
+    // Adjust video source based on screen size
+    const source = video.querySelector('source');
     if (window.innerWidth <= 768) {
         source.src = 'videos/Fire-Ice-Red-Blue-mobile.mp4';
     } else {
         source.src = 'videos/Fire-Ice-Red-Blue.mp4';
     }
-
     video.load();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('background-video');
+    const progressBar = document.getElementById('progress-bar');
+    const playPauseButton = document.getElementById('play-pause-button');
+    const rewindButton = document.getElementById('rewind-button');
+    const fastForwardButton = document.getElementById('fast-forward-button');
+    const speedDecreaseButton = document.getElementById('speed-decrease-button');
+    const speedIncreaseButton = document.getElementById('speed-increase-button');
+    const muteUnmuteButton = document.getElementById('mute-unmute-button');
+    const volumeSlider = document.getElementById('volume-slider');
+    const speedDisplay = document.getElementById('speed-display');
+
+    // Update progress bar as the video plays
+    video.addEventListener('timeupdate', () => {
+        const progress = (video.currentTime / video.duration) * 100;
+        progressBar.value = progress;
+
+        // Change progress bar background to red
+        progressBar.style.background = `linear-gradient(to right, red ${progress}%, #333 ${progress}%)`;
+    });
+
+    // Seek video when progress bar is dragged
+    progressBar.addEventListener('input', (event) => {
+        const seekTime = (event.target.value / 100) * video.duration;
+        video.currentTime = seekTime;
+    });
+
+    // Play/Pause Button Logic
+    playPauseButton.addEventListener('click', () => {
+        if (video.paused) {
+            video.play();
+            playPauseButton.textContent = 'Pause';
+        } else {
+            video.pause();
+            playPauseButton.textContent = 'Play';
+        }
+    });
+
+    // Rewind Button Logic
+    rewindButton.addEventListener('click', () => {
+        video.currentTime = Math.max(0, video.currentTime - 5); // Rewind 5 seconds
+    });
+
+    // Fast Forward Button Logic
+    fastForwardButton.addEventListener('click', () => {
+        video.currentTime = Math.min(video.duration, video.currentTime + 5); // Fast forward 5 seconds
+    });
+
+    // Speed Control Buttons Logic
+    speedDecreaseButton.addEventListener('click', () => {
+        video.playbackRate = Math.max(0.5, video.playbackRate - 0.25); // Decrease speed, minimum 0.5x
+        speedDisplay.textContent = `Current Speed: ${video.playbackRate.toFixed(2)}x`;
+    });
+
+    speedIncreaseButton.addEventListener('click', () => {
+        video.playbackRate = Math.min(2, video.playbackRate + 0.25); // Increase speed, maximum 2x
+        speedDisplay.textContent = `Current Speed: ${video.playbackRate.toFixed(2)}x`;
+    });
+
+    // Mute/Unmute Button Logic
+    muteUnmuteButton.addEventListener('click', () => {
+        video.muted = !video.muted;
+        muteUnmuteButton.textContent = video.muted ? 'Unmute' : 'Mute';
+    });
+
+    // Volume Slider Logic
+    volumeSlider.addEventListener('input', (event) => {
+        video.volume = event.target.value;
+    });
+
+    // Initialize Controls
+    video.volume = volumeSlider.value; // Set initial volume
+    speedDisplay.textContent = `Current Speed: ${video.playbackRate.toFixed(2)}x`; // Initialize speed display
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('background-video');
+    const progressBar = document.getElementById('progress-bar');
+    const progressTooltip = document.getElementById('progress-tooltip');
+
+    // Format time in MM:SS
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    // Update progress bar as the video plays
+    video.addEventListener('timeupdate', () => {
+        const progress = (video.currentTime / video.duration) * 100;
+        progressBar.value = progress;
+
+        // Change progress bar background to red
+        progressBar.style.background = `linear-gradient(to right, red ${progress}%, #333 ${progress}%)`;
+    });
+
+    // Seek video when progress bar is dragged
+    progressBar.addEventListener('input', (event) => {
+        const seekTime = (event.target.value / 100) * video.duration;
+        video.currentTime = seekTime;
+    });
+
+    // Show tooltip on hover
+    progressBar.addEventListener('mousemove', (event) => {
+        const rect = progressBar.getBoundingClientRect();
+        const offsetX = event.clientX - rect.left;
+        const progress = offsetX / rect.width;
+        const currentTime = progress * video.duration;
+        const timeRemaining = video.duration - currentTime;
+
+        // Update tooltip content
+        progressTooltip.textContent = `${formatTime(currentTime)} / ${formatTime(video.duration)} (Remaining: ${formatTime(timeRemaining)})`;
+
+        // Position tooltip
+        progressTooltip.style.left = `${offsetX}px`;
+        progressTooltip.style.display = 'block';
+    });
+
+    // Hide tooltip when not hovering
+    progressBar.addEventListener('mouseleave', () => {
+        progressTooltip.style.display = 'none';
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('background-video');
+    const progressBar = document.getElementById('progress-bar');
+    const progressTooltip = document.getElementById('progress-tooltip');
+
+    // Format time in MM:SS format
+    const formatTime = (time) => {
+        const minutes = Math.floor(time / 60);
+        const seconds = Math.floor(time % 60);
+        return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    };
+
+    // Update the progress bar and tooltip in real-time
+    video.addEventListener('timeupdate', () => {
+        const currentTime = video.currentTime;
+        const duration = video.duration;
+
+        if (!isNaN(duration)) {
+            // Update progress bar value
+            progressBar.value = (currentTime / duration) * 100;
+
+            // Update tooltip with current time and remaining time
+            const remainingTime = duration - currentTime;
+            progressTooltip.textContent = `${formatTime(currentTime)} / ${formatTime(duration)} (Remaining: ${formatTime(remainingTime)})`;
+        }
+    });
+
+    // Seek video when the progress bar is clicked or dragged
+    progressBar.addEventListener('input', (event) => {
+        const duration = video.duration;
+        if (!isNaN(duration)) {
+            const seekTime = (event.target.value / 100) * duration;
+            video.currentTime = seekTime;
+        }
+    });
+
+    // Show tooltip when hovering over the progress bar
+    progressBar.addEventListener('mousemove', (event) => {
+        const duration = video.duration;
+        if (!isNaN(duration)) {
+            const rect = progressBar.getBoundingClientRect();
+            const offsetX = event.clientX - rect.left;
+            const hoverTime = (offsetX / rect.width) * duration;
+
+            progressTooltip.style.left = `${offsetX}px`;
+            progressTooltip.textContent = `Go to: ${formatTime(hoverTime)}`;
+            progressTooltip.style.display = 'block';
+        }
+    });
+
+    // Hide tooltip when not hovering over the progress bar
+    progressBar.addEventListener('mouseleave', () => {
+        progressTooltip.style.display = 'none';
+    });
 });
 
 let lastFrameTime = 0;
@@ -171,6 +436,477 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 }); // Adjust threshold for better performance
 
 observer.observe(video);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('background-video');
+
+    // Ensure the video continues playing during zoom events
+    let isPlaying = !video.paused; // Check if the video is initially playing
+
+    const handleZoom = () => {
+        if (isPlaying && video.paused) {
+            video.play(); // Resume video if it was playing
+        }
+    };
+
+    // Use a passive event listener for resize to avoid blocking rendering
+    window.addEventListener(
+        'resize',
+        () => {
+            handleZoom();
+        },
+        { passive: true }
+    );
+
+    // Ensure the video starts playing on page load
+    video.play();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('background-video');
+
+    // Ensure the video continues playing during zoom events
+    let isPlaying = false;
+
+    const checkVideoState = () => {
+        isPlaying = !video.paused; // Check if the video is playing
+    };
+
+    const resumeVideo = () => {
+        if (isPlaying) {
+            video.play(); // Resume video if it was playing
+        }
+    };
+
+    // Listen for zoom events (resize as a proxy for zoom)
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        checkVideoState(); // Check the video state
+        clearTimeout(resizeTimeout); // Clear any previous timeout
+        resizeTimeout = setTimeout(() => {
+            resumeVideo(); // Resume video after zoom
+        }, 5); // Minimal delay for smooth zoom handling
+    });
+
+    // Ensure the video starts playing on page load
+    video.play();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('background-video');
+
+    // Ensure the video continues playing during zoom events
+    const handleZoom = () => {
+        if (video.paused) {
+            video.play(); // Resume video if it was paused
+        }
+    };
+
+    // Use a lightweight resize event listener
+    window.addEventListener('resize', handleZoom, { passive: true });
+
+    // Ensure the video starts playing on page load
+    video.play();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('background-video');
+    const volumeBoostSlider = document.getElementById('volume-boost');
+    const equalizerPresetSelect = document.getElementById('equalizer-preset');
+
+    // Create an AudioContext
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const source = audioContext.createMediaElementSource(video);
+
+    // Create a GainNode for volume boosting
+    const gainNode = audioContext.createGain();
+    gainNode.gain.value = 1; // Default volume boost
+
+    // Create Equalizer Filters
+    const bassFilter = audioContext.createBiquadFilter();
+    bassFilter.type = 'lowshelf';
+    bassFilter.frequency.value = 200; // Boost frequencies below 200Hz
+    bassFilter.gain.value = 0;
+
+    const trebleFilter = audioContext.createBiquadFilter();
+    trebleFilter.type = 'highshelf';
+    trebleFilter.frequency.value = 3000; // Boost frequencies above 3000Hz
+    trebleFilter.gain.value = 0;
+
+    const vocalFilter = audioContext.createBiquadFilter();
+    vocalFilter.type = 'peaking';
+    vocalFilter.frequency.value = 1000; // Boost frequencies around 1000Hz
+    vocalFilter.gain.value = 0;
+
+    // Connect the audio nodes
+    source.connect(bassFilter);
+    bassFilter.connect(trebleFilter);
+    trebleFilter.connect(vocalFilter);
+    vocalFilter.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+
+    // Volume Boost Logic
+    volumeBoostSlider.addEventListener('input', (event) => {
+        const boostValue = parseFloat(event.target.value);
+        gainNode.gain.value = boostValue;
+    });
+
+    // Equalizer Preset Logic
+    equalizerPresetSelect.addEventListener('change', (event) => {
+        const preset = event.target.value;
+
+        // Reset all filters
+        bassFilter.gain.value = 0;
+        trebleFilter.gain.value = 0;
+        vocalFilter.gain.value = 0;
+
+        // Apply preset
+        if (preset === 'bass-boost') {
+            bassFilter.gain.value = 10; // Boost bass
+        } else if (preset === 'treble-boost') {
+            trebleFilter.gain.value = 10; // Boost treble
+        } else if (preset === 'vocal-boost') {
+            vocalFilter.gain.value = 10; // Boost vocals
+        }
+    });
+
+    // Ensure the audio context is resumed on user interaction
+    document.body.addEventListener('click', () => {
+        if (audioContext.state === 'suspended') {
+            audioContext.resume();
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('background-video');
+    const changeVideoButton = document.getElementById('change-video-button');
+
+    // List of video sources
+    const videoSources = [
+        { src: 'videos/Fire-Ice-Red-Blue.mp4', type: 'video/mp4' },
+        { src: 'videos/Neon-Car.mp4', type: 'video/mp4' },
+        { src: 'videos/Cyberpunk.mp4', type: 'video/mp4' },
+        { src: 'videos/Cyberpunk2.mp4', type: 'video/mp4' }, // Missing comma fixed here
+        { src: 'videos/HardRockSpeed.mp4', type: 'video/mp4' }
+    ];
+
+    let currentVideoIndex = 0;
+    let errorCount = 0; // Track consecutive errors to prevent infinite loops
+
+    // Function to change to the next video
+    const changeToNextVideo = () => {
+        if (errorCount >= videoSources.length) {
+            console.error('All videos failed to load. Stopping playback.');
+            alert('All videos failed to load. Please check the video files.');
+            return; // Stop trying to load videos if all have failed
+        }
+
+        currentVideoIndex = (currentVideoIndex + 1) % videoSources.length; // Cycle through the videos
+        const newSource = videoSources[currentVideoIndex];
+
+        // Update the video source
+        video.pause();
+        video.src = newSource.src;
+        video.type = newSource.type;
+        video.load();
+        video.play().then(() => {
+            errorCount = 0; // Reset error count on successful playback
+        }).catch((error) => {
+            console.error(`Error playing video: ${newSource.src}`, error);
+            errorCount++;
+            setTimeout(changeToNextVideo, 100); // Skip to the next video after a short delay
+        });
+    };
+
+    // Change video source when the button is clicked
+    changeVideoButton.addEventListener('click', changeToNextVideo);
+
+    // Automatically play the next video when the current one ends
+    video.addEventListener('ended', changeToNextVideo);
+
+    // Handle video loading errors
+    video.addEventListener('error', () => {
+        console.error(`Error loading video: ${video.src}`);
+        errorCount++;
+        setTimeout(changeToNextVideo, 100); // Skip to the next video after a short delay
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('background-video');
+    const muteButton = document.getElementById('mute-button');
+    const playPauseButton = document.getElementById('play-pause-button');
+    const progressBar = document.getElementById('progress-bar');
+    const volumeSlider = document.getElementById('volume-slider');
+
+    // Ensure the video starts muted by default
+    video.muted = true;
+
+    // Update the mute button text based on the mute state
+    const updateMuteButtonText = () => {
+        muteButton.textContent = video.muted ? 'Unmute' : 'Mute';
+    };
+
+    // Update the play/pause button text based on the play state
+    const updatePlayPauseButtonText = () => {
+        playPauseButton.textContent = video.paused ? 'Play' : 'Pause';
+    };
+
+    // Toggle mute/unmute when the mute button is clicked
+    muteButton.addEventListener('click', () => {
+        video.muted = !video.muted;
+        updateMuteButtonText();
+    });
+
+    // Toggle play/pause when the play/pause button is clicked
+    playPauseButton.addEventListener('click', () => {
+        if (video.paused) {
+            video.play();
+        } else {
+            video.pause();
+        }
+        updatePlayPauseButtonText();
+    });
+
+    // Update progress bar as the video plays
+    video.addEventListener('timeupdate', () => {
+        const progress = (video.currentTime / video.duration) * 100;
+        progressBar.value = progress;
+        progressBar.style.background = `linear-gradient(to right, red ${progress}%, #333 ${progress}%)`;
+    });
+
+    // Seek video when progress bar is dragged
+    progressBar.addEventListener('input', (event) => {
+        const seekTime = (event.target.value / 100) * video.duration;
+        video.currentTime = seekTime;
+    });
+
+    // Adjust volume when the volume slider is changed
+    volumeSlider.addEventListener('input', (event) => {
+        video.volume = event.target.value;
+    });
+
+    // Attempt to play the video on page load
+    video.play().catch((error) => {
+        console.warn('Autoplay was blocked. Waiting for user interaction to play the video.');
+    });
+
+    // Unmute and play the video when the user interacts with the page
+    document.body.addEventListener('click', () => {
+        if (video.muted) {
+            video.muted = false;
+            updateMuteButtonText();
+            video.play().catch((error) => {
+                console.error('Error playing video:', error);
+            });
+        }
+    });
+
+    // Initialize controls
+    updateMuteButtonText();
+    updatePlayPauseButtonText();
+    volumeSlider.value = video.volume;
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('background-video');
+    const playPauseButton = document.getElementById('play-pause-button');
+
+    // Update the play/pause button text based on the play state
+    const updatePlayPauseButtonText = () => {
+        playPauseButton.textContent = video.paused ? 'Play' : 'Pause';
+    };
+
+    // Toggle play/pause when the button is clicked
+    playPauseButton.addEventListener('click', () => {
+        if (video.paused) {
+            video.play().catch((error) => {
+                console.error('Error playing video:', error);
+            });
+        } else {
+            video.pause();
+        }
+        updatePlayPauseButtonText();
+    });
+
+    // Initialize the button text on page load
+    updatePlayPauseButtonText();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('background-video');
+    const muteUnmuteButton = document.getElementById('mute-unmute-button');
+    const volumeSlider = document.getElementById('volume-slider');
+
+    // Update the mute/unmute button text based on the mute state
+    const updateMuteUnmuteButtonText = () => {
+        muteUnmuteButton.textContent = video.muted ? 'Unmute' : 'Mute';
+    };
+
+    // Toggle mute/unmute when the mute/unmute button is clicked
+    muteUnmuteButton.addEventListener('click', () => {
+        video.muted = !video.muted; // Toggle the muted state
+        updateMuteUnmuteButtonText(); // Update button text
+    });
+
+    // Adjust volume when the volume slider is changed
+    volumeSlider.addEventListener('input', (event) => {
+        video.volume = event.target.value; // Set the video volume
+        if (video.volume > 0) {
+            video.muted = false; // Unmute if the volume is greater than 0
+        } else {
+            video.muted = true; // Mute if the volume is 0
+        }
+        updateMuteUnmuteButtonText(); // Update button text
+    });
+
+    // Initialize the button text and volume slider on page load
+    updateMuteUnmuteButtonText();
+    volumeSlider.value = video.volume; // Set the slider to match the current volume
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('background-video');
+    const playlist = document.getElementById('playlist');
+    const downloadButton = document.getElementById('download-button');
+
+    // Highlight the currently playing video in the playlist
+    const updatePlaylistHighlight = (src) => {
+        const items = playlist.querySelectorAll('li');
+        items.forEach((item) => {
+            item.classList.toggle('active', item.dataset.src === src);
+        });
+    };
+
+    // Play video from the playlist when clicked
+    playlist.addEventListener('click', (event) => {
+        if (event.target.tagName === 'LI') {
+            const selectedSrc = event.target.dataset.src;
+            video.src = selectedSrc;
+            video.load();
+            video.play();
+            updatePlaylistHighlight(selectedSrc);
+
+            // Update the download button for the selected video
+            downloadButton.href = selectedSrc;
+            downloadButton.download = selectedSrc.split('/').pop();
+        }
+    });
+
+    // Add right-click functionality for downloading videos
+    playlist.addEventListener('contextmenu', (event) => {
+        event.preventDefault(); // Prevent the default context menu
+        if (event.target.tagName === 'LI') {
+            const selectedSrc = event.target.dataset.src;
+
+            // Create a temporary download link
+            const tempLink = document.createElement('a');
+            tempLink.href = selectedSrc;
+            tempLink.download = selectedSrc.split('/').pop();
+            tempLink.click();
+        }
+    });
+
+    // Initialize the playlist with the first video highlighted
+    updatePlaylistHighlight(video.src);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const playlist = document.getElementById('playlist');
+    const playlistItems = playlist.querySelectorAll('li');
+    const video = document.getElementById('background-video');
+
+    // Highlight the currently focused playlist item
+    const updatePlaylistFocus = (focusedItem) => {
+        playlistItems.forEach((item) => {
+            item.classList.remove('active');
+        });
+        focusedItem.classList.add('active');
+        focusedItem.focus();
+    };
+
+    // Play the selected video
+    const playVideo = (item) => {
+        const selectedSrc = item.dataset.src;
+        video.src = selectedSrc;
+        video.load();
+        video.play();
+    };
+
+    // Handle keyboard navigation
+    playlist.addEventListener('keydown', (event) => {
+        const focusedElement = document.activeElement;
+
+        if (focusedElement.tagName === 'LI') {
+            let newFocusedElement;
+
+            switch (event.key) {
+                case 'ArrowUp': // Navigate up
+                    newFocusedElement = focusedElement.previousElementSibling || playlistItems[playlistItems.length - 1];
+                    break;
+                case 'ArrowDown': // Navigate down
+                    newFocusedElement = focusedElement.nextElementSibling || playlistItems[0];
+                    break;
+                case 'Enter': // Play video on Enter
+                case ' ':
+                    playVideo(focusedElement);
+                    break;
+                default:
+                    return; // Exit if the key is not handled
+            }
+
+            if (newFocusedElement) {
+                event.preventDefault(); // Prevent default scrolling behavior
+                updatePlaylistFocus(newFocusedElement);
+            }
+        }
+    });
+
+    // Initialize focus on the first playlist item
+    updatePlaylistFocus(playlistItems[0]);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('background-video');
+    const playlist = document.getElementById('playlist');
+    const playlistItems = playlist.querySelectorAll('li');
+    const previousSongButton = document.getElementById('previous-song-button');
+    const nextSongButton = document.getElementById('next-song-button');
+    let currentSongIndex = 0;
+
+    // Highlight the currently playing song
+    const updatePlaylistHighlight = () => {
+        playlistItems.forEach((item, index) => {
+            item.classList.toggle('active', index === currentSongIndex);
+        });
+    };
+
+    // Play the current song
+    const playCurrentSong = () => {
+        const currentSong = playlistItems[currentSongIndex];
+        video.src = currentSong.dataset.src;
+        video.load();
+        video.play();
+        updatePlaylistHighlight();
+    };
+
+    // Play the previous song
+    previousSongButton.addEventListener('click', () => {
+        currentSongIndex = (currentSongIndex - 1 + playlistItems.length) % playlistItems.length;
+        playCurrentSong();
+    });
+
+    // Play the next song
+    nextSongButton.addEventListener('click', () => {
+        currentSongIndex = (currentSongIndex + 1) % playlistItems.length;
+        playCurrentSong();
+    });
+
+    // Initialize the playlist
+    updatePlaylistHighlight();
+    playCurrentSong();
+});
     </script>
 </body>
 </html>

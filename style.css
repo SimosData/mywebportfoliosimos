@@ -1,10 +1,229 @@
-/* Add flames.jpg as the background */
+/* General Styles */
 body {
-    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    line-height: 1.6;
-    color: #fff; /* White text for contrast against the video */
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+}
+
+/* Video Background */
+#background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the video covers the screen */
+    z-index: -1; /* Places the video behind all content */
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Projects Section */
+.projects {
+    width: 100%;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.project {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    text-align: center;
+}
+
+.project h3 a {
+    color: #00ffff;
+    text-decoration: none;
+}
+
+.project h3 a:hover {
+    text-decoration: underline;
+}
+
+/* Playlist Section */
+.playlist-container {
+    perspective: 1000px; /* Add perspective for 3D effect */
+    margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+}
+
+#playlist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transform: rotateX(15deg); /* Tilt the playlist for a 3D effect */
+    transition: transform 0.3s ease;
+}
+
+#playlist li {
+    padding: 15px 20px;
+    background: rgba(255, 255, 0, 0.1); /* Yellowish background */
+    border: 2px solid rgba(255, 255, 0, 0.5); /* Yellow border */
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00; /* Neon yellow glow */
+    box-shadow: 0 10px 20px rgba(255, 255, 0, 0.3); /* Subtle shadow */
+    transform: rotateY(10deg); /* Add a slight 3D rotation */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Hover Effect for Playlist Items */
+#playlist li:hover {
+    transform: rotateY(0deg) scale(1.1); /* Reset rotation and enlarge */
+    box-shadow: 0 0 20px #ffff00, 0 0 40px #ffff00, 0 0 60px #ffff00; /* Intense glow */
+}
+
+/* Lightning Effect */
+#playlist li::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    width: 2px;
+    height: 200%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+    transform: translateX(-50%) scaleY(0);
+    animation: lightning 2s infinite ease-in-out;
+    z-index: -1;
+}
+
+@keyframes lightning {
+    0%, 90% {
+        transform: translateX(-50%) scaleY(0);
+        opacity: 0;
+    }
+    95% {
+        transform: translateX(-50%) scaleY(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) scaleY(0);
+        opacity: 0;
+    }
+}
+
+/* Yellow Smoke Effect */
+#playlist li::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    width: 150%;
+    height: 50px;
+    background: radial-gradient(circle, rgba(255, 255, 0, 0.3), rgba(255, 255, 0, 0));
+    transform: translateX(-50%) scale(1);
+    filter: blur(15px);
+    animation: smoke 3s infinite ease-in-out;
+    z-index: -1;
+}
+
+@keyframes smoke {
+    0% {
+        transform: translateX(-50%) scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translateX(-50%) scale(1.2);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateX(-50%) scale(1);
+        opacity: 0.5;
+    }
+}
+
+/* Video Controls */
+.video-controls {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.video-controls button,
+.video-controls input,
+.video-controls select {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    cursor: pointer;
+}
+
+.video-controls button:hover {
+    background: rgba(0, 255, 255, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        font-size: 1.2rem;
+    }
+
+    .projects {
+        grid-template-columns: 1fr; /* Single column for smaller screens */
+    }
+
+    .video-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #playlist li {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        font-size: 1rem;
+    }
+
+    .project {
+        padding: 10px;
+    }
+
+    .video-controls button,
+    .video-controls input,
+    .video-controls select {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
 }
 
 /* Keyframes for subtle animation (optional) */
@@ -66,20 +285,6 @@ body {
     }
 }
 
-/* Ensure the video covers the entire website as a background */
-#background-video {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%; /* Make the video span the full width */
-    height: 100%; /* Make the video span the full height */
-    object-fit: cover; /* Ensure the video covers the viewport while maintaining aspect ratio */
-    z-index: -1; /* Place the video behind all content */
-    background-color: black; /* Fallback background color in case the video doesn't load */
-    backface-visibility: hidden;
-    transform: translate3d(0, 0, 0); /* Force GPU acceleration */
-}
-
 /* Disable fullscreen mode */
 #background-video::-webkit-media-controls-fullscreen-button {
     display: none; /* Hide the fullscreen button */
@@ -100,18 +305,7 @@ body {
 
 /* Style for the mute button */
 #mute-button {
-    position: absolute;
-    top: 20px; /* Position the button slightly below the top */
-    left: 20px; /* Align the button to the left */
-    z-index: 10; /* Ensure it appears above other elements */
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    display: none;
 }
 
 #mute-button:hover {
@@ -144,13 +338,6 @@ body {
 button, header, .container, footer {
     position: relative;
     z-index: 2; /* Place content above the video */
-}
-
-header {
-    text-align: center;
-    padding: 2rem 0;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for readability */
-    color: #fff;
 }
 
 /* Style for the header container */
@@ -275,20 +462,59 @@ h2 {
 
 /* Style for the profile photo */
 .profile-photo {
-    width: 250px; /* Increase the size of the photo */
-    height: 250px; /* Increase the size of the photo */
-    border-radius: 50%; /* Make the photo circular */
-    border: 5px solid #fff; /* Add a white border */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Add a shadow for depth */
-    transform: rotateY(15deg) rotateX(10deg); /* Apply a 3D rotation */
-    transition: transform 0.3s ease; /* Removed box-shadow from transition */
-    will-change: transform; /* Hint for GPU acceleration */
+    width: 250px; /* Size of the photo */
+    height: 250px;
+    border-radius: 50%; /* Circular shape */
+    border: 5px solid #fff; /* White border */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    position: relative; /* For positioning the flames */
+    z-index: 1; /* Ensure the photo is above the flames */
 }
 
-/* Add hover effect for the 3D photo */
+/* Flames container */
+.profile-photo::after {
+    content: '';
+    position: absolute;
+    top: 100%; /* Position flames below the photo */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120%;
+    height: 50px;
+    background: linear-gradient(45deg, rgba(255, 0, 0, 0.8), rgba(255, 165, 0, 0.8), rgba(255, 255, 0, 0.8));
+    border-radius: 50%;
+    filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1; /* Ensure flames are behind the photo */
+}
+
+/* Hover effect for the profile photo */
 .profile-photo:hover {
-    transform: rotateY(0deg) rotateX(0deg) scale(1.1); /* Reset rotation and slightly enlarge on hover */
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7); /* Increase shadow on hover */
+    transform: scale(1.1); /* Enlarge the photo */
+    box-shadow: 0 0 15px #ff4500, 0 0 30px #ff6347, 0 0 45px #ffa500; /* Glowing effect */
+}
+
+/* Flames animation on hover */
+.profile-photo:hover::after {
+    opacity: 1;
+    animation: flames 1s infinite;
+}
+
+/* Keyframes for flames animation */
+@keyframes flames {
+    0% {
+        transform: translateX(-50%) translateY(0) scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateX(-50%) translateY(-10px) scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) translateY(0) scale(1);
+        opacity: 0.8;
+    }
 }
 
 .contact p {
@@ -460,4 +686,230 @@ footer {
 .about {
     position: relative; /* Ensure the banner is positioned relative to this section */
     padding: 20px;
+}
+
+/* Video Controls */
+.video-controls {
+    display: flex;
+    flex-direction: column; /* Stack controls vertically */
+    align-items: center;
+    gap: 10px;
+}
+
+.play-controls,
+.speed-controls,
+.volume-controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.video-controls button {
+    padding: 5px 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 5px #00ffcc, 0 0 10px #00ccff;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.video-controls button:hover {
+    background-color: #555;
+    transform: scale(1.1);
+}
+
+.video-controls input[type="range"] {
+    width: 150px;
+    cursor: pointer;
+}
+
+.video-controls select {
+    padding: 5px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.video-controls label {
+    font-size: 1rem;
+    color: #fff;
+    margin-right: 5px;
+}
+
+.mute-instruction {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ccff;
+    margin-top: 10px;
+}
+
+#speed-display {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    margin-top: 10px;
+    text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ccff;
+    display: none;
+}
+
+/* Progress Bar Container */
+.progress-container {
+    position: relative;
+    width: 50%; /* Reduce the width to 80% of the parent container */
+    margin: 0 auto 10px; /* Center the progress bar and add spacing below */
+}
+
+/* Progress Bar */
+#progress-bar {
+    width: 100%; /* Keep the progress bar width relative to the container */
+    height: 7px; /* Reduced height for a smaller appearance */
+    appearance: none;
+    background: #333; /* Default background */
+    border-radius: 3px; /* Smaller border radius */
+    outline: none;
+    cursor: pointer;
+    transition: background 0.3s ease; /* Smooth transition for background color */
+}
+
+#progress-bar::-webkit-slider-thumb {
+    appearance: none;
+    width: 8px; /* Smaller thumb size */
+    height: 8px; /* Smaller thumb size */
+    background: #00ffcc;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#progress-bar::-moz-range-thumb {
+    width: 8px; /* Smaller thumb size */
+    height: 8px; /* Smaller thumb size */
+    background: #00ffcc;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Tooltip */
+.tooltip {
+    position: absolute;
+    bottom: 20px; /* Position above the progress bar */
+    left: 0;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    display: none; /* Hidden by default */
+    pointer-events: none;
+    white-space: nowrap;
+    text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ccff;
+    z-index: 10;
+}
+
+.download-button {
+    display: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 0 5px #00ffcc, 0 0 10px #00ccff;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.download-button:hover {
+    background-color: #555;
+    transform: scale(1.1);
+}
+
+#download-button,
+#change-video-button {
+    display: none;
+}
+
+.equalizer-controls {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1rem;
+    color: #fff;
+}
+
+.equalizer-controls label {
+    margin-right: 10px;
+}
+
+.equalizer-controls input[type="range"] {
+    width: 200px;
+    margin: 0 10px;
+}
+
+.equalizer-controls select {
+    padding: 5px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#change-video-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 5px #00ffcc, 0 0 10px #00ccff;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#change-video-button:hover {
+    background-color: #555;
+    transform: scale(1.1);
+}
+
+#mute-unmute-button {
+    display: none;
+}
+
+#rewind-button,
+#fast-forward-button {
+    display: none;
+}
+
+#speed-decrease-button,
+#speed-increase-button {
+    display: none;
+}
+
+#previous-song-button,
+#next-song-button {
+    padding: 5px 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 5px #00ffcc, 0 0 10px #00ccff;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#previous-song-button:hover,
+#next-song-button:hover {
+    background-color: #555;
+    transform: scale(1.1);
 }
