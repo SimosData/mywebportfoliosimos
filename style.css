@@ -969,3 +969,10 @@ footer {
         filter: blur(6px);
     }
 }
+#playlist li.active {
+    background: linear-gradient(90deg, #dfff00 0%, #39ff14 100%);
+    color: #222;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0 0 20px #dfff00, 0 0 40px #39ff14;
+}

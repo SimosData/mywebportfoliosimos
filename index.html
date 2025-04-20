@@ -919,6 +919,20 @@ document.addEventListener('DOMContentLoaded', () => {
         playCurrentSong();
     });
 
+    // Highlight and play when clicking a playlist item
+    playlist.addEventListener('click', (event) => {
+        if (event.target.tagName === 'LI') {
+            currentSongIndex = Array.from(playlistItems).indexOf(event.target);
+            playCurrentSong();
+        }
+    });
+
+    // Highlight when video ends and auto-advance
+    video.addEventListener('ended', () => {
+        currentSongIndex = (currentSongIndex + 1) % playlistItems.length;
+        playCurrentSong();
+    });
+
     // Initialize the playlist
     updatePlaylistHighlight();
     playCurrentSong();
