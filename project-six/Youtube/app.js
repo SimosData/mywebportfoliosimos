@@ -111,7 +111,7 @@ const displayVideos = (videos) => {
         const li = document.createElement('li');
         li.innerHTML = `
             <img src="${video.thumbnail}" alt="Video Thumbnail" class="video-thumbnail">
-            <h3>${video.title}</h3>
+            <h3 data-title="${video.title}">${video.title}</h3>
             <video controls>
                 <source src="${video.videoData}" type="video/mp4">
                 Your browser does not support the video tag.
@@ -286,3 +286,143 @@ logoutButton.addEventListener('click', () => {
 
 // Check login status on page load
 checkLoginStatus();
+
+// --- INTERACTIVITY ENHANCEMENTS ---
+
+// 1. Make video list items clickable to play/pause the video
+document.addEventListener('click', function (e) {
+    const videoItem = e.target.closest('#videos li');
+    if (videoItem && !e.target.closest('button') && !e.target.closest('textarea')) {
+        const video = videoItem.querySelector('video');
+        if (video) {
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+    }
+});
+
+// 2. Add smooth hover/click effects to video thumbnails and list items
+document.addEventListener('mouseover', function (e) {
+    const videoItem = e.target.closest('#videos li');
+    if (videoItem) {
+        videoItem.style.boxShadow = '0 0 30px #39ff14, 0 0 60px #dfff00';
+        videoItem.style.transform = 'scale(1.03)';
+        videoItem.style.transition = 'all 0.2s cubic-bezier(.4,2,.6,1)';
+    }
+});
+document.addEventListener('mouseout', function (e) {
+    const videoItem = e.target.closest('#videos li');
+    if (videoItem) {
+        videoItem.style.boxShadow = '';
+        videoItem.style.transform = '';
+    }
+});
+
+// 3. Click-to-copy video title
+document.addEventListener('click', function (e) {
+    if (e.target.tagName === 'H3' && e.target.parentElement.parentElement.id === 'videos') {
+        navigator.clipboard.writeText(e.target.textContent);
+        e.target.textContent = "Copied!";
+        setTimeout(() => {
+            e.target.textContent = e.target.getAttribute('data-title') || "Video Title";
+        }, 1000);
+    }
+});
+
+// 4. Visual feedback for drag-and-drop
+dragDropArea.addEventListener('dragover', (event) => {
+    event.preventDefault();
+    dragDropArea.classList.add('drag-over');
+    dragDropArea.style.background = 'rgba(57,255,20,0.2)';
+});
+dragDropArea.addEventListener('dragleave', () => {
+    dragDropArea.classList.remove('drag-over');
+    dragDropArea.style.background = '';
+});
+dragDropArea.addEventListener('drop', (event) => {
+    event.preventDefault();
+    dragDropArea.classList.remove('drag-over');
+    dragDropArea.style.background = '';
+    const file = event.dataTransfer.files[0];
+    // Handle file upload
+});
+
+// 5. Smooth transitions for showing/hiding forms and user info
+const fadeIn = (el) => {
+    el.style.opacity = 0;
+    el.style.display = 'flex';
+    let last = +new Date();
+    const tick = function () {
+        el.style.opacity = +el.style.opacity + (new Date() - last) / 200;
+        last = +new Date();
+        if (+el.style.opacity < 1) {
+            (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+        }
+    };
+    tick();
+};
+const fadeOut = (el) => {
+    el.style.opacity = 1;
+    const tick = function () {
+        el.style.opacity = +el.style.opacity - 0.05;
+        if (+el.style.opacity > 0) {
+            (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+        } else {
+            el.style.display = 'none';
+        }
+    };
+    tick();
+};
+
+// Override show/hide for login/user info
+const showLoginForm = () => {
+    fadeIn(loginForm);
+    fadeOut(userInfo);
+};
+const showUserInfo = (username) => {
+    fadeOut(loginForm);
+    fadeIn(userInfo);
+    userNameDisplay.textContent = username;
+};
+
+// 6. Modal popup for video preview on thumbnail click
+function createModal(src) {
+    let modal = document.createElement('div');
+    modal.style.position = 'fixed';
+    modal.style.top = 0;
+    modal.style.left = 0;
+    modal.style.width = '100vw';
+    modal.style.height = '100vh';
+    modal.style.background = 'rgba(0,0,0,0.85)';
+    modal.style.display = 'flex';
+    modal.style.alignItems = 'center';
+    modal.style.justifyContent = 'center';
+    modal.style.zIndex = 9999;
+    modal.innerHTML = `
+        <video src="${src}" controls autoplay style="max-width:80vw;max-height:80vh;box-shadow:0 0 60px #dfff00,0 0 120px #39ff14;border-radius:16px;"></video>
+        <span style="position:absolute;top:40px;right:60px;font-size:3rem;color:#dfff00;cursor:pointer;font-family:sans-serif;">&times;</span>
+    `;
+    modal.querySelector('span').onclick = () => document.body.removeChild(modal);
+    modal.onclick = (e) => { if (e.target === modal) document.body.removeChild(modal); };
+    document.body.appendChild(modal);
+}
+document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('video-thumbnail')) {
+        const video = e.target.parentElement.querySelector('video source');
+        if (video) createModal(video.src);
+    }
+});
+
+// 7. Smooth scroll to sections (if you add navigation links with href="#section-id")
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});

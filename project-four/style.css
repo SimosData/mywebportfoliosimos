@@ -133,3 +133,63 @@ footer {
     font-family: 'Pacifico', cursive;
     margin-bottom: 1rem;
 }
+
+/* Calendar container styling */
+.calendar-container {
+    margin: 2rem auto;
+    padding: 2rem 1rem;
+    max-width: 400px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(255, 126, 95, 0.15), 0 2px 8px rgba(0,0,0,0.08);
+    border: 2px solid #feb47b;
+    text-align: center;
+}
+
+.calendar-container h2 {
+    color: #ff7e5f;
+    font-family: 'Pacifico', cursive;
+    margin-bottom: 1.2rem;
+}
+
+/* Custom styled date input */
+#daily-calendar {
+    padding: 12px 18px;
+    font-size: 1.1rem;
+    border: 2px solid #ff7e5f;
+    border-radius: 10px;
+    background: #fff8e1;
+    color: #333;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 6px rgba(255, 126, 95, 0.07);
+    margin-bottom: 0.5rem;
+}
+
+#daily-calendar:focus {
+    border-color: #ff4500;
+    box-shadow: 0 0 0 2px #ffb3ba55;
+}
+
+/* Style the calendar icon for Chrome */
+#daily-calendar::-webkit-calendar-picker-indicator {
+    filter: invert(54%) sepia(80%) saturate(500%) hue-rotate(320deg) brightness(1.1);
+    cursor: pointer;
+    transition: filter 0.3s;
+}
+
+#daily-calendar:hover::-webkit-calendar-picker-indicator {
+    filter: invert(40%) sepia(100%) saturate(800%) hue-rotate(350deg) brightness(1.2);
+}
+
+/* Responsive for mobile */
+@media (max-width: 600px) {
+    .calendar-container {
+        padding: 1rem 0.5rem;
+        max-width: 95vw;
+    }
+    #daily-calendar {
+        width: 100%;
+        font-size: 1rem;
+    }
+}

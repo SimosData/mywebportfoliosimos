@@ -9,80 +9,207 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body>
-    <!-- Video Background -->
-    <video id="background-video" autoplay loop>
-        <source src="videos/futuristicVideo.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+    <div id="website-3d-content">
+        <!-- Video Background -->
+        <video id="background-video" autoplay loop muted playsinline>
+            <source src="videos/futuristicVideo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
 
-    <!-- Particle Effect -->
-    <div id="particles-js"></div>
+        <!-- Particle Effect -->
+        <div id="particles-js"></div>
 
-    <!-- Header -->
-    <header>
-        <h1>YouTube Clone</h1>
-        <div id="user-auth">
-            <form id="login-form">
-                <input type="text" id="username" placeholder="Username" required>
-                <input type="password" id="password" placeholder="Password" required>
-                <button type="submit">Login</button>
-            </form>
-            <div id="user-info" style="display: none;">
-                <p>Welcome, <span id="user-name"></span>!</p>
-                <button id="logout-button">Logout</button>
+        <!-- Header -->
+        <header>
+            <h1>YouTube Clone</h1>
+            <div id="user-auth">
+                <form id="login-form">
+                    <input type="text" id="username" placeholder="Username" required>
+                    <input type="password" id="password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                </form>
+                <div id="user-info" style="display: none;">
+                    <p>Welcome, <span id="user-name"></span>!</p>
+                    <button id="logout-button">Logout</button>
+                </div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <!-- Main Content -->
-    <main>
-        <section id="upload-section">
-            <h2>Upload Video</h2>
-            <form id="upload-form">
-                <input type="file" id="video-file" name="video" accept="video/*" required>
-                <input type="text" id="video-title" placeholder="Enter video title" required>
-                <button type="submit">Upload</button>
-            </form>
-            <div id="drag-drop-area">
-                Drag and drop your video here or click to upload.
-            </div>
-        </section>
-        <section id="video-list">
-            <h2>Available Videos</h2>
-            <input type="text" id="search-bar" placeholder="Search videos...">
-            <select id="category-filter">
-                <option value="all">All</option>
-                <option value="music">Music</option>
-                <option value="education">Education</option>
-                <option value="gaming">Gaming</option>
-            </select>
-            <select id="sort-options">
-                <option value="title">Sort by Title</option>
-                <option value="date">Sort by Date</option>
-            </select>
-            <ul id="videos">
-                <li>
-                    <img src="thumbnail.jpg" alt="Video Thumbnail" class="video-thumbnail">
-                    <h3>Video Title</h3>
-                    <video controls>
-                        <source src="video.mp4" type="video/mp4">
-                    </video>
-                    <div class="playback-speed">
-                        <button data-speed="0.5">0.5x</button>
-                        <button data-speed="1">1x</button>
-                        <button data-speed="1.5">1.5x</button>
-                        <button data-speed="2">2x</button>
-                    </div>
-                    <div class="comments-section">
-                        <h3>Comments</h3>
-                        <textarea id="comment-input" placeholder="Add a comment..."></textarea>
-                        <button id="submit-comment">Submit</button>
-                        <ul id="comments-list"></ul>
-                    </div>
-                </li>
-            </ul>
-        </section>
-    </main>
+        <!-- Main Content -->
+        <main>
+            <section id="upload-section">
+                <h2>Upload Video</h2>
+                <form id="upload-form">
+                    <input type="file" id="video-file" name="video" accept="video/*" required>
+                    <input type="text" id="video-title" placeholder="Enter video title" required>
+                    <button type="submit">Upload</button>
+                </form>
+                <div id="drag-drop-area">
+                    Drag and drop your video here or click to upload.
+                </div>
+            </section>
+            <section id="video-list">
+                <h2>Available Videos</h2>
+                <input type="text" id="search-bar" placeholder="Search videos...">
+                <select id="category-filter">
+                    <option value="all">All</option>
+                    <option value="music">Music</option>
+                    <option value="education">Education</option>
+                    <option value="gaming">Gaming</option>
+                </select>
+                <select id="sort-options">
+                    <option value="title">Sort by Title</option>
+                    <option value="date">Sort by Date</option>
+                </select>
+                <ul id="videos">
+                    <li>
+                        <img src="thumbnail.jpg" alt="Video Thumbnail" class="video-thumbnail">
+                        <h3>Video Title</h3>
+                        <video controls>
+                            <source src="video.mp4" type="video/mp4">
+                        </video>
+                        <div class="playback-speed">
+                            <button data-speed="0.5">0.5x</button>
+                            <button data-speed="1">1x</button>
+                            <button data-speed="1.5">1.5x</button>
+                            <button data-speed="2">2x</button>
+                        </div>
+                        <div class="comments-section">
+                            <h3>Comments</h3>
+                            <textarea id="comment-input" placeholder="Add a comment..."></textarea>
+                            <button id="submit-comment">Submit</button>
+                            <ul id="comments-list"></ul>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </main>
+    </div>
+    <div id="website-3d-container" style="width:1200px; height:700px; margin:2rem auto 0 auto;"></div>
+    <style>
+        #website-3d-container {
+            box-shadow: 0 0 60px 20px #dfff00, 0 0 120px 40px #39ff14;
+            border-radius: 24px;
+            border: 4px solid #dfff00;
+            background: rgba(0,0,0,0.3);
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+    <script src="https://unpkg.com/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script>
+        function create3DWebsitePlane() {
+            const content = document.getElementById('website-3d-content');
+            const container = document.getElementById('website-3d-container');
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+
+            container.style.display = 'none';
+            html2canvas(content, {backgroundColor: null}).then(canvas => {
+                container.style.display = '';
+
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
+                const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+                renderer.setSize(width, height);
+                container.appendChild(renderer.domElement);
+
+                // Neon glow effect: add a slightly larger plane behind with neon material
+                const texture = new THREE.CanvasTexture(canvas);
+                const geometry = new THREE.PlaneGeometry(16, 9);
+                const material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide, transparent: true });
+                const plane = new THREE.Mesh(geometry, material);
+
+                // Neon glow mesh (slightly larger, emissive neon color, transparent)
+                const glowGeometry = new THREE.PlaneGeometry(16.5, 9.5);
+                const glowMaterial = new THREE.MeshBasicMaterial({
+                    color: 0xdfff00,
+                    transparent: true,
+                    opacity: 0.25,
+                    side: THREE.DoubleSide
+                });
+                const glowPlane = new THREE.Mesh(glowGeometry, glowMaterial);
+                glowPlane.position.z = -0.1; // Slightly behind the main plane
+
+                // Add a second glow with green for more neon effect
+                const glowGeometry2 = new THREE.PlaneGeometry(17, 10);
+                const glowMaterial2 = new THREE.MeshBasicMaterial({
+                    color: 0x39ff14,
+                    transparent: true,
+                    opacity: 0.15,
+                    side: THREE.DoubleSide
+                });
+                const glowPlane2 = new THREE.Mesh(glowGeometry2, glowMaterial2);
+                glowPlane2.position.z = -0.2;
+
+                // Add to scene
+                scene.add(glowPlane2);
+                scene.add(glowPlane);
+                scene.add(plane);
+
+                camera.position.z = 22;
+                camera.position.y = 2;
+                camera.lookAt(0, 0, 0);
+
+                // Mouse controls for 360-degree rotation
+                let isDragging = false;
+                let previousMousePosition = { x: 0, y: 0 };
+                let targetRotationY = 0;
+                let targetRotationX = 0;
+
+                renderer.domElement.addEventListener('mousedown', function(e) {
+                    isDragging = true;
+                    previousMousePosition = { x: e.clientX, y: e.clientY };
+                });
+                renderer.domElement.addEventListener('mouseup', function() {
+                    isDragging = false;
+                });
+                renderer.domElement.addEventListener('mouseleave', function() {
+                    isDragging = false;
+                });
+                renderer.domElement.addEventListener('mousemove', function(e) {
+                    if (!isDragging) return;
+                    const deltaMove = {
+                        x: e.clientX - previousMousePosition.x,
+                        y: e.clientY - previousMousePosition.y
+                    };
+                    targetRotationY += deltaMove.x * 0.01;
+                    targetRotationX += deltaMove.y * 0.01;
+                    previousMousePosition = { x: e.clientX, y: e.clientY };
+                });
+
+                function animate() {
+                    // Neon spin effect
+                    plane.rotation.y += 0.005;
+                    plane.rotation.x += 0.002;
+                    glowPlane.rotation.y = plane.rotation.y;
+                    glowPlane.rotation.x = plane.rotation.x;
+                    glowPlane2.rotation.y = plane.rotation.y;
+                    glowPlane2.rotation.x = plane.rotation.x;
+
+                    // Add user drag
+                    plane.rotation.y += (targetRotationY - plane.rotation.y) * 0.1;
+                    plane.rotation.x += (targetRotationX - plane.rotation.x) * 0.1;
+                    glowPlane.rotation.y = plane.rotation.y;
+                    glowPlane.rotation.x = plane.rotation.x;
+                    glowPlane2.rotation.y = plane.rotation.y;
+                    glowPlane2.rotation.x = plane.rotation.x;
+
+                    renderer.render(scene, camera);
+                    requestAnimationFrame(animate);
+                }
+                animate();
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('background-video');
+            if (video && video.readyState < 3) {
+                video.addEventListener('canplay', create3DWebsitePlane);
+            } else {
+                create3DWebsitePlane();
+            }
+        });
+    </script>
     <script src="app.js"></script>
 </body>
 </html>

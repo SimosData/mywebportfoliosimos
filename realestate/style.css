@@ -1,357 +1,179 @@
-/* General Styles */
-body {
+/* Reset and base styles */
+html, body {
     margin: 0;
-    font-family: 'Arial', sans-serif;
-    color: #fff;
-    background: linear-gradient(135deg, #1e1e2f, #2a2a40);
-    overflow-x: hidden;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f8f9fa;
+    color: #222;
+    min-height: 100vh;
+    scroll-behavior: smooth;
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 /* Navbar */
 .navbar {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 2rem;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.8);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    gap: 1.5rem;
+    background: #222;
+    padding: 1rem 0;
 }
 
 .navbar a {
-    text-decoration: none;
     color: #fff;
-    font-weight: bold;
-    transition: color 0.3s ease;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background 0.2s;
 }
 
-.navbar a:hover {
-    color: #00d4ff;
+.navbar a:hover,
+.navbar a:focus {
+    background: #0078d7;
+    color: #fff;
 }
 
 /* Hero Section */
 .hero {
+    background: linear-gradient(120deg, #0078d7 0%, #00c6fb 100%);
+    color: #fff;
     text-align: center;
-    padding: 4rem 2rem;
-    background: linear-gradient(135deg, #2a2a40, #1e1e2f);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    padding: 3rem 1rem 2rem 1rem;
+    border-radius: 0 0 24px 24px;
+    margin-bottom: 2rem;
 }
 
-.hero h1 {
-    font-size: 3rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    margin: 1rem 0;
-    color: #ddd;
-}
-
-/* Listings Section */
-.listings {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
-}
-
-.listing {
-    background: rgba(0, 0, 0, 0.8);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.listing:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
-}
-
-.listing img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.listing h3 {
-    font-size: 1.5rem;
-    margin: 1rem 0 0.5rem;
-    text-align: center;
-    color: #00d4ff;
-}
-
-.listing p {
-    text-align: center;
-    font-size: 1rem;
-    color: #ddd;
+.hero-content h1 {
+    font-size: 2.5rem;
     margin-bottom: 1rem;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    display: inline-block;
+    background: #fff;
+    color: #0078d7;
+    padding: 0.75rem 2rem;
+    border-radius: 24px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: background 0.2s, color 0.2s;
+}
+
+.cta-button:hover,
+.cta-button:focus {
+    background: #0078d7;
+    color: #fff;
 }
 
 /* Features Section */
 .features {
-    padding: 4rem 2rem;
+    margin: 2rem 0;
     text-align: center;
-    background: linear-gradient(135deg, #2a2a40, #1e1e2f);
 }
 
 .features h2 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin-bottom: 2rem;
-    text-shadow: 0 0 10px #00d4ff;
 }
 
 .feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    display: flex;
     gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .feature {
-    background: rgba(0, 0, 0, 0.8);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    padding: 2rem 1.5rem;
+    min-width: 220px;
+    max-width: 320px;
+    flex: 1 1 220px;
+    margin-bottom: 1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .feature:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 6px 24px rgba(0,120,215,0.13);
 }
 
 .feature h3 {
-    font-size: 1.5rem;
+    color: #0078d7;
     margin-bottom: 1rem;
-    color: #00d4ff;
+    font-size: 1.3rem;
 }
 
 .feature p {
+    color: #444;
     font-size: 1rem;
-    color: #ddd;
-}
-
-/* Gallery Section */
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    padding: 2rem;
-}
-
-.gallery-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.gallery-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
-}
-
-.gallery-item img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 0.3s ease;
-}
-
-.gallery-item:hover img {
-    transform: scale(1.1);
-}
-
-/* Contact Information Section */
-.contact-info {
-    text-align: center;
-    padding: 2rem;
-    background: rgba(0, 0, 0, 0.8);
-    border-radius: 10px;
-    margin: 2rem auto;
-    max-width: 600px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-}
-
-/* Form Section */
-.form-section {
-    padding: 2rem;
-    background: rgba(0, 0, 0, 0.8);
-    border-radius: 10px;
-    margin: 2rem auto;
-    max-width: 600px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-}
-
-/* Style for the "Book an Appointment" heading */
-.form-section h2 {
-    font-size: 2rem; /* Increase font size */
-    font-weight: bold; /* Make the text bold */
-    color: #00d4ff; /* Use a bright, futuristic color */
-    text-align: center; /* Center the text */
-    margin-bottom: 1rem; /* Add spacing below the heading */
-    text-shadow: 0 0 10px #00d4ff, 0 0 20px #0078ff; /* Add glowing effect */
-}
-
-.registration-form label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #00d4ff;
-}
-
-.registration-form input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-    background: #2a2a40;
-    color: #fff;
-}
-
-.registration-form button {
-    width: 100%;
-    padding: 10px;
-    background: linear-gradient(90deg, #00d4ff, #0078ff);
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.registration-form button:hover {
-    background: #0056b3;
-    transform: scale(1.05);
 }
 
 /* Footer */
 footer {
     text-align: center;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.9);
-    color: #fff;
-    font-size: 0.9rem;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.5);
-}
-
-nav {
-    background: #232946;
-    padding: 1rem;
-    text-align: center;
-}
-nav a {
-    color: #fff;
-    margin: 0 1.2rem;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s;
-}
-nav a:hover {
-    color: #eebbc3;
-}
-header {
-    text-align: center;
-    padding: 2rem 0 1rem 0;
-}
-header h1 {
-    margin: 0;
-    font-size: 2.2rem;
-    color: #232946;
-}
-header p {
-    color: #b8c1ec;
-    margin-top: 0.5rem;
-}
-main {
-    max-width: 900px;
-    margin: 2rem auto;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(35,41,70,0.07);
-    padding: 2rem;
-}
-.hero-img {
-    width: 100%;
-    max-width: 600px;
-    border-radius: 10px;
-    margin-top: 1.5rem;
-    box-shadow: 0 2px 12px rgba(35,41,70,0.07);
-}
-.gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.2rem;
-    justify-content: center;
-}
-.gallery img {
-    width: 220px;
-    border-radius: 10px;
-    box-shadow: 0 2px 12px rgba(35,41,70,0.07);
-    transition: transform 0.2s;
-}
-.gallery img:hover {
-    transform: scale(1.06);
-}
-.registration-form {
-    max-width: 400px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.registration-form label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-}
-
-.registration-form input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 1.5rem 0 1rem 0;
+    color: #888;
     font-size: 1rem;
+    background: none;
 }
 
-.registration-form button {
-    width: 100%;
-    padding: 10px;
-    background: #2575fc;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.registration-form button:hover {
-    background: #0056b3;
-}
+/* Responsive Design */
 @media (max-width: 900px) {
-    main {
-        padding: 1rem;
-    }
-    .listings, .gallery {
+    .feature-grid {
         flex-direction: column;
         align-items: center;
     }
-    .gallery img, .listing {
-        width: 100%;
-        max-width: 350px;
+    .feature {
+        width: 90%;
+        max-width: 400px;
+    }
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .wrapper {
+        padding: 0 0.5rem;
+    }
+    .navbar {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.5rem 0;
+    }
+    .hero {
+        padding: 2rem 0.5rem 1.5rem 0.5rem;
+    }
+    .hero-content h1 {
+        font-size: 1.5rem;
+    }
+    .features h2 {
+        font-size: 1.3rem;
+    }
+    .feature {
+        padding: 1.2rem 0.7rem;
+        font-size: 0.95rem;
+    }
+    .cta-button {
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
     }
 }

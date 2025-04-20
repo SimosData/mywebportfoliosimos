@@ -42,30 +42,7 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
-        <!-- Social Media Links -->
-        <div class="social-media">
-            <a href="https://www.instagram.com" target="_blank" class="social-icon">
-                <img src="assets/icons/instagram.png" alt="Instagram">
-            </a>
-            <a href="https://www.facebook.com" target="_blank" class="social-icon">
-                <img src="assets/icons/facebook.png" alt="Facebook">
-            </a>
-            <a href="https://www.twitter.com" target="_blank" class="social-icon">
-                <img src="assets/icons/twitter.png" alt="Twitter">
-            </a>
-            <a href="https://www.whatsapp.com" target="_blank" class="social-icon">
-                <img src="assets/icons/whatsapp.png" alt="WhatsApp">
-            </a>
-            <a href="https://www.viber.com" target="_blank" class="social-icon">
-                <img src="assets/icons/viber.png" alt="Viber">
-            </a>
-            <a href="https://telegram.org" target="_blank" class="social-icon">
-                <img src="assets/icons/telegram.png" alt="Telegram">
-            </a>
-            <a href="https://www.tiktok.com" target="_blank" class="social-icon">
-                <img src="assets/icons/tiktok.png" alt="TikTok">
-            </a>
-        </div>
+        <!-- Social Media Links removed from here -->
     </header>
     <main>
         <section class="about-section">
@@ -86,6 +63,69 @@
     </footer>
     <!-- Scroll to Top Button -->
     <button id="scroll-to-top" title="Go to top">↑</button>
+
+    <!-- Social Media Links moved to bottom right -->
+    <div class="social-media-fixed">
+        <a href="https://www.instagram.com" target="_blank" class="social-icon">
+            <img src="assets/icons/instagram.png" alt="Instagram">
+        </a>
+        <a href="https://www.facebook.com" target="_blank" class="social-icon">
+            <img src="assets/icons/facebook.png" alt="Facebook">
+        </a>
+        <a href="https://www.twitter.com" target="_blank" class="social-icon">
+            <img src="assets/icons/twitter.png" alt="Twitter">
+        </a>
+        <a href="https://www.whatsapp.com" target="_blank" class="social-icon">
+            <img src="assets/icons/whatsapp.png" alt="WhatsApp">
+        </a>
+        <a href="https://www.viber.com" target="_blank" class="social-icon">
+            <img src="assets/icons/viber.png" alt="Viber">
+        </a>
+        <a href="https://telegram.org" target="_blank" class="social-icon">
+            <img src="assets/icons/telegram.png" alt="Telegram">
+        </a>
+        <a href="https://www.tiktok.com" target="_blank" class="social-icon">
+            <img src="assets/icons/tiktok.png" alt="TikTok">
+        </a>
+    </div>
+</body>
+</html>
+
+<style>
+    .social-media-fixed {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+        z-index: 1000;
+        background: rgba(255,255,255,0.85);
+        border-radius: 16px;
+        padding: 0.7rem 0.5rem;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    }
+    .social-media-fixed .social-icon img {
+        width: 32px;
+        height: 32px;
+        display: block;
+        transition: transform 0.2s;
+    }
+    .social-media-fixed .social-icon img:hover {
+        transform: scale(1.15);
+    }
+    @media (max-width: 600px) {
+        .social-media-fixed {
+            bottom: 10px;
+            right: 10px;
+            padding: 0.4rem 0.2rem;
+        }
+        .social-media-fixed .social-icon img {
+            width: 26px;
+            height: 26px;
+        }
+    }
+</style>
 
     <script>
         // Get the button
@@ -108,5 +148,3 @@
             });
         });
     </script>
-</body>
-</html>

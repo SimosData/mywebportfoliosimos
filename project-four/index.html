@@ -6,6 +6,7 @@
     <title>Hawaiian To-Do List</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <!-- Photo Sphere Viewer CSS removed -->
 </head>
 <body>
     <header>
@@ -14,13 +15,41 @@
     </header>
     <div class="todo-container">
         <h2>Your Tasks</h2>
-        <input type="text" id="task-input" placeholder="Add a new task...">
-        <button id="add-task-button">Add Task</button>
+        <div style="margin-bottom:1rem;">
+            <input type="date" id="task-date" style="padding:8px;border-radius:8px;border:2px solid #feb47b;">
+            <input type="text" id="task-input" placeholder="Add a new task...">
+            <button id="add-task-button">Add Task</button>
+        </div>
+        <div style="margin-bottom:0.5rem;font-size:1.1em;color:#ff7e5f;">
+            <span id="selected-date-label"></span>
+        </div>
+        <div style="margin-bottom:1rem;">
+            <button id="google-signin-btn">Sign in with Google</button>
+            <button id="save-drive-btn" disabled>Save to Drive</button>
+            <button id="load-drive-btn" disabled>Load from Drive</button>
+            <span id="google-user-info" style="margin-left:1em;color:#555;"></span>
+        </div>
         <ul id="task-list">
-            <li>Buy sunscreen</li>
-            <li>Plan a beach party</li>
+            <!-- Tasks will be dynamically added here -->
         </ul>
-        <a href="#" class="red-button">Clear All Tasks</a>
+        <a href="#" class="red-button" id="clear-tasks">Clear All Tasks</a>
+        <h3>Garbage</h3>
+        <ul id="garbage-list">
+            <!-- Completed/removed tasks will appear here -->
+        </ul>
+    </div>
+
+    <!-- Daily Calendar Section -->
+    <div class="calendar-container">
+        <h2>Daily Calendar</h2>
+        <input type="date" id="daily-calendar">
+    </div>
+
+    <!-- Offline Navigation Map Section -->
+    <div class="offline-map-container">
+        <h2>Offline Navigation Map</h2>
+        <div id="map3d-container" style="width:800px; height:600px; margin:0 auto; border:1px solid #ccc; border-radius:8px;"></div>
+        <p style="font-size:0.9em;color:#555;">This map is available offline. Click and drag to rotate the 3D map.</p>
     </div>
     <div class="netlify-link">
         <h2>Want to try another version?</h2>
@@ -29,5 +58,428 @@
     <footer>
         <p>Mahalo for staying organized!</p>
     </footer>
+    <!-- Photo Sphere Viewer JS removed -->
+    <script src="https://unpkg.com/uevent@2/browser.js"></script>
+    <script src="https://unpkg.com/three@0.150.1/build/three.min.js"></script>
+    <script src="https://unpkg.com/photo-sphere-viewer@5/dist/photo-sphere-viewer.js"></script>
+    <script>
+        const taskInput = document.getElementById('task-input');
+        const addTaskButton = document.getElementById('add-task-button');
+        const taskList = document.getElementById('task-list');
+        const garbageList = document.getElementById('garbage-list');
+        const clearTasksButton = document.getElementById('clear-tasks');
+        const taskDate = document.getElementById('task-date');
+        const selectedDateLabel = document.getElementById('selected-date-label');
+
+        // Store tasks by date: { "YYYY-MM-DD": [ {text, id, date}, ... ] }
+        let tasksByDate = {};
+        let garbageTasks = [];
+        let currentDate = '';
+
+        // --- Load tasks from localStorage if available ---
+        function loadTasksFromStorage() {
+            const tasks = localStorage.getItem('tasksByDate');
+            const garbage = localStorage.getItem('garbageTasks');
+            if (tasks) tasksByDate = JSON.parse(tasks);
+            if (garbage) garbageTasks = JSON.parse(garbage);
+        }
+
+        // --- Save tasks to localStorage ---
+        function saveTasksToStorage() {
+            localStorage.setItem('tasksByDate', JSON.stringify(tasksByDate));
+            localStorage.setItem('garbageTasks', JSON.stringify(garbageTasks));
+        }
+
+        // Set today's date as default
+        function getToday() {
+            const d = new Date();
+            return d.toISOString().slice(0,10);
+        }
+        taskDate.value = getToday();
+        currentDate = taskDate.value;
+
+        function updateSelectedDateLabel() {
+            const d = new Date(currentDate);
+            selectedDateLabel.textContent = "Tasks for: " + d.toLocaleDateString();
+        }
+
+        // Render tasks for the selected date
+        function renderTasks() {
+            taskList.innerHTML = '';
+            const tasks = tasksByDate[currentDate] || [];
+            tasks.forEach(task => {
+                const li = document.createElement('li');
+                li.dataset.id = task.id;
+                li.innerHTML = `
+                    <input type="checkbox" class="task-checkbox">
+                    <span class="task-text">${task.text}</span>
+                    <span class="task-date-label" style="color:#888;font-size:0.95em;margin-left:10px;">[${formatDate(task.date)}]</span>
+                    <button class="edit-date-btn" title="Edit Date" style="margin-left:8px;">✎</button>
+                    <button class="delete-btn" title="Delete Task">&times;</button>
+                `;
+                taskList.appendChild(li);
+            });
+            saveTasksToStorage(); // Save after rendering (in case of changes)
+        }
+
+        // Render garbage tasks
+        function renderGarbage() {
+            garbageList.innerHTML = '';
+            garbageTasks.forEach(task => {
+                const li = document.createElement('li');
+                li.dataset.id = task.id;
+                li.innerHTML = `
+                    <span class="task-text" style="text-decoration:line-through;">${task.text}</span>
+                    <span class="task-date-label" style="color:#888;font-size:0.95em;margin-left:10px;">[${formatDate(task.date)}]</span>
+                    <button class="delete-btn" title="Delete Task">&times;</button>
+                `;
+                garbageList.appendChild(li);
+            });
+            saveTasksToStorage(); // Save after rendering (in case of changes)
+        }
+
+        // Helper to format date as locale string
+        function formatDate(dateStr) {
+            if (!dateStr) return '';
+            const d = new Date(dateStr);
+            if (isNaN(d)) return dateStr;
+            return d.toLocaleDateString();
+        }
+
+        // Add task
+        addTaskButton.addEventListener('click', addTask);
+        taskInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') addTask();
+        });
+
+        function addTask() {
+            const taskText = taskInput.value.trim();
+            if (!taskText) return;
+            const task = { text: taskText, id: Date.now() + Math.random(), date: currentDate };
+            if (!tasksByDate[currentDate]) tasksByDate[currentDate] = [];
+            tasksByDate[currentDate].push(task);
+            taskInput.value = '';
+            renderTasks();
+            saveTasksToStorage();
+        }
+
+        // Handle task actions (check, delete, edit date)
+        taskList.addEventListener('click', function(e) {
+            const li = e.target.closest('li');
+            if (!li) return;
+            const id = li.dataset.id;
+            if (e.target.classList.contains('delete-btn')) {
+                tasksByDate[currentDate] = (tasksByDate[currentDate] || []).filter(task => task.id != id);
+                renderTasks();
+            } else if (e.target.classList.contains('task-checkbox')) {
+                // Move to garbage
+                const taskArr = tasksByDate[currentDate] || [];
+                const idx = taskArr.findIndex(task => task.id == id);
+                if (idx > -1) {
+                    const [removed] = taskArr.splice(idx, 1);
+                    garbageTasks.push(removed);
+                    renderTasks();
+                    renderGarbage();
+                }
+            } else if (e.target.classList.contains('edit-date-btn')) {
+                // Show date picker for editing
+                let taskArr = tasksByDate[currentDate] || [];
+                let idx = taskArr.findIndex(task => task.id == id);
+                if (idx === -1) return;
+                const task = taskArr[idx];
+
+                // Create a date input
+                const dateInput = document.createElement('input');
+                dateInput.type = 'date';
+                dateInput.value = task.date;
+                dateInput.style.marginLeft = '10px';
+                dateInput.style.borderRadius = '6px';
+                dateInput.style.border = '1.5px solid #feb47b';
+                dateInput.style.padding = '2px 6px';
+
+                // Replace the edit button with the date input
+                e.target.replaceWith(dateInput);
+
+                dateInput.focus();
+
+                dateInput.addEventListener('change', function() {
+                    const newDate = dateInput.value;
+                    if (!newDate || newDate === task.date) {
+                        renderTasks();
+                        return;
+                    }
+                    // Remove from current date
+                    taskArr.splice(idx, 1);
+                    // Add to new date
+                    task.date = newDate;
+                    if (!tasksByDate[newDate]) tasksByDate[newDate] = [];
+                    tasksByDate[newDate].push(task);
+                    // If editing a task not on the current date, update currentDate and UI
+                    if (currentDate !== newDate) {
+                        currentDate = newDate;
+                        taskDate.value = newDate;
+                        updateSelectedDateLabel();
+                    }
+                    renderTasks();
+                });
+
+                // If user clicks away, revert
+                dateInput.addEventListener('blur', function() {
+                    renderTasks();
+                });
+            }
+        });
+
+        // Allow deleting from garbage list as well
+        garbageList.addEventListener('click', function(e) {
+            const li = e.target.closest('li');
+            if (!li) return;
+            const id = li.dataset.id;
+            if (e.target.classList.contains('delete-btn')) {
+                garbageTasks = garbageTasks.filter(task => task.id != id);
+                renderGarbage();
+                saveTasksToStorage();
+            }
+        });
+
+        // Clear all tasks and garbage
+        clearTasksButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            tasksByDate = {};
+            garbageTasks = [];
+            renderTasks();
+            renderGarbage();
+            saveTasksToStorage();
+        });
+
+        // Change date
+        taskDate.addEventListener('change', function() {
+            currentDate = taskDate.value;
+            updateSelectedDateLabel();
+            renderTasks();
+        });
+
+        // --- Load tasks from storage on startup ---
+        loadTasksFromStorage();
+
+        // Initial label and starter tasks
+        updateSelectedDateLabel();
+        // Only add starter tasks if there are no tasks loaded
+        if (!tasksByDate[currentDate] || tasksByDate[currentDate].length === 0) {
+            ['Buy sunscreen', 'Plan a beach party'].forEach(text => {
+                const task = { text, id: Date.now() + Math.random(), date: currentDate };
+                if (!tasksByDate[currentDate]) tasksByDate[currentDate] = [];
+                tasksByDate[currentDate].push(task);
+            });
+        }
+        renderTasks();
+        renderGarbage();
+
+        // Photo Sphere Viewer initialization removed
+    </script>
+    <!-- Remove Photo Sphere Viewer JS if present -->
+    <script src="https://unpkg.com/three@0.150.1/build/three.min.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('map3d-container');
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+
+            // Scene, camera, renderer
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(width, height);
+            container.appendChild(renderer.domElement);
+            
+            // Load texture
+            const textureLoader = new THREE.TextureLoader();
+            const texture = textureLoader.load('assets/images/offline-map.png', render);
+
+            // Cube geometry and material
+            const geometry = new THREE.BoxGeometry(2, 2, 2);
+            const materials = [
+                new THREE.MeshBasicMaterial({ map: texture }), // right
+                new THREE.MeshBasicMaterial({ map: texture }), // left
+                new THREE.MeshBasicMaterial({ map: texture }), // top
+                new THREE.MeshBasicMaterial({ map: texture }), // bottom
+                new THREE.MeshBasicMaterial({ map: texture }), // front
+                new THREE.MeshBasicMaterial({ map: texture })  // back
+            ];
+            const cube = new THREE.Mesh(geometry, materials);
+            scene.add(cube);
+
+            camera.position.z = 4;
+
+            // Mouse controls for rotation (drag)
+            let isDragging = false;
+            let previousMousePosition = { x: 0, y: 0 };
+
+            renderer.domElement.addEventListener('mousedown', function(e) {
+                isDragging = true;
+                previousMousePosition = { x: e.clientX, y: e.clientY };
+            });
+            renderer.domElement.addEventListener('mouseup', function() {
+                isDragging = false;
+            });
+            renderer.domElement.addEventListener('mouseleave', function() {
+                isDragging = false;
+            });
+            renderer.domElement.addEventListener('mousemove', function(e) {
+                if (!isDragging) return;
+                const deltaMove = {
+                    x: e.clientX - previousMousePosition.x,
+                    y: e.clientY - previousMousePosition.y
+                };
+                cube.rotation.y += deltaMove.x * 0.01;
+                cube.rotation.x += deltaMove.y * 0.01;
+                previousMousePosition = { x: e.clientX, y: e.clientY };
+                render();
+            });
+
+            // --- Hover-based auto-rotation ---
+            let autoRotate = false;
+            let animationFrameId;
+
+            renderer.domElement.addEventListener('mouseenter', function() {
+                autoRotate = true;
+                animate();
+            });
+
+            renderer.domElement.addEventListener('mouseleave', function() {
+                autoRotate = false;
+            });
+
+            function render() {
+                renderer.render(scene, camera);
+            }
+
+            function animate() {
+                if (autoRotate) {
+                    cube.rotation.y += 0.01;
+                    cube.rotation.x += 0.005;
+                    render();
+                    animationFrameId = requestAnimationFrame(animate);
+                }
+            }
+
+            // Initial render and continuous animation for drag
+            function dragAnimate() {
+                render();
+                requestAnimationFrame(dragAnimate);
+            }
+            dragAnimate();
+        });
+    </script>
 </body>
 </html>
+
+// --- Google Drive Integration ---
+const CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com'; // <-- Replace with your client ID
+const API_KEY = '';
+const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"];
+const SCOPES = 'https://www.googleapis.com/auth/drive.file';
+
+const googleSigninBtn = document.getElementById('google-signin-btn');
+const saveDriveBtn = document.getElementById('save-drive-btn');
+const loadDriveBtn = document.getElementById('load-drive-btn');
+const googleUserInfo = document.getElementById('google-user-info');
+
+let GoogleAuth;
+let currentUser;
+
+function updateSigninStatus(isSignedIn) {
+    if (isSignedIn) {
+        currentUser = GoogleAuth.currentUser.get();
+        const profile = currentUser.getBasicProfile();
+        googleUserInfo.textContent = `Signed in as: ${profile.getEmail()}`;
+        saveDriveBtn.disabled = false;
+        loadDriveBtn.disabled = false;
+        googleSigninBtn.textContent = "Sign out";
+    } else {
+        googleUserInfo.textContent = "";
+        saveDriveBtn.disabled = true;
+        loadDriveBtn.disabled = true;
+        googleSigninBtn.textContent = "Sign in with Google";
+    }
+}
+
+function handleAuthClick() {
+    if (GoogleAuth.isSignedIn.get()) {
+        GoogleAuth.signOut();
+    } else {
+        GoogleAuth.signIn();
+    }
+}
+
+function initClient() {
+    gapi.client.init({
+        apiKey: API_KEY,
+        clientId: CLIENT_ID,
+        discoveryDocs: DISCOVERY_DOCS,
+        scope: SCOPES
+    }).then(function () {
+        GoogleAuth = gapi.auth2.getAuthInstance();
+        updateSigninStatus(GoogleAuth.isSignedIn.get());
+        GoogleAuth.isSignedIn.listen(updateSigninStatus);
+        googleSigninBtn.onclick = handleAuthClick;
+    });
+}
+
+function startGoogleAPI() {
+    gapi.load('client:auth2', initClient);
+}
+
+googleSigninBtn.onclick = startGoogleAPI;
+
+// Save tasks to Google Drive
+saveDriveBtn.onclick = function() {
+    const fileContent = JSON.stringify({ tasksByDate, garbageTasks });
+    const file = new Blob([fileContent], { type: 'application/json' });
+    const metadata = {
+        name: 'hawaiian-todo-tasks.json',
+        mimeType: 'application/json'
+    };
+
+    var accessToken = gapi.auth.getToken().access_token;
+    var form = new FormData();
+    form.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
+    form.append('file', file);
+
+    fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id', {
+        method: 'POST',
+        headers: new Headers({ 'Authorization': 'Bearer ' + accessToken }),
+        body: form,
+    }).then((res) => res.json())
+      .then(function(val) {
+          alert('Tasks saved to Google Drive!');
+      });
+};
+
+// Load tasks from Google Drive
+loadDriveBtn.onclick = function() {
+    gapi.client.drive.files.list({
+        'q': "name='hawaiian-todo-tasks.json' and trashed=false",
+        'fields': "files(id, name)",
+        'spaces': 'drive'
+    }).then(function(response) {
+        const files = response.result.files;
+        if (files && files.length > 0) {
+            const fileId = files[0].id;
+            gapi.client.drive.files.get({
+                fileId: fileId,
+                alt: 'media'
+            }).then(function(file) {
+                const data = JSON.parse(file.body);
+                tasksByDate = data.tasksByDate || {};
+                garbageTasks = data.garbageTasks || [];
+                renderTasks();
+                renderGarbage();
+                saveTasksToStorage();
+                alert('Tasks loaded from Google Drive!');
+            });
+        } else {
+            alert('No saved tasks found in Google Drive.');
+        }
+    });
+};
