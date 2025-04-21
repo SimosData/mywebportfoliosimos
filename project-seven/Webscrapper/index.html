@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Scraper</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Styling for the top GitHub link */
+        .github-link-top {
+            display: block; /* Make it take its own line */
+            text-align: right; /* Position to the right */
+            margin-bottom: 15px; /* Add some space below */
+            font-size: 1.2em; /* Increased font size */
+            color: #1433ff; /* Neon green color */
+            text-decoration: none; /* Remove underline */
+            font-weight: bold; /* Make it bolder */
+            transition: color 0.3s ease; /* Smooth hover effect */
+        }
+
+        /* Optional: Add a hover effect */
+        .github-link-top:hover {
+            color: #8aff7a; /* Lighter green on hover */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Add the GitHub link here -->
+    <a href="https://github.com/SimosData/webscrapper" target="_blank" class="github-link-top">
+        View Project on GitHub
+    </a>
+
+    <h1>Web Scraper Interface</h1>
+
+    <div class="input-area">
+        <label for="urls">Enter URLs (one per line):</label>
+        <textarea id="urls" rows="5" placeholder="https://books.toscrape.com/&#10;https://www.iana.org/domains/reserved"></textarea>
+        <button id="scrapeButton">Scrape Websites</button>
+    </div>
+
+    <div id="loading" class="hidden">Scraping in progress...</div>
+
+    <h2>Results:</h2>
+    <div id="resultsArea">
+        <!-- Results will be displayed here -->
+        <p>Enter URLs above and click "Scrape Websites" to see results.</p>
+    </div>
+
+    <script src="frontend.js"></script>
+</body>
+</html>

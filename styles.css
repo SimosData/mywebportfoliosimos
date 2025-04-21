@@ -1,0 +1,596 @@
+
+
+
+/* --- Skills Section Styling --- */
+#skills {
+    padding: 60px 20px;
+    background-color: var(--background-darker);
+    text-align: center;
+    perspective: 1000px; /* Keep this */
+
+    /* --- Add these lines for overall 3D effect --- */
+    transform-style: preserve-3d; /* Ensures children respect the 3D space */
+    transform: rotateX(3deg) rotateY(-2deg); /* Apply a slight tilt */
+    transition: transform 0.5s ease-out; /* Smooth transition if you add hover later */
+    /* --- End of added lines --- */
+}
+
+/* Optional: Add a hover effect for the whole section */
+/*
+#skills:hover {
+    transform: rotateX(0deg) rotateY(0deg); /* Flatten on hover */
+/* } */
+
+
+/* Keep the rest of your existing #skills styles and its children */
+#skills h2 {
+    margin-bottom: 40px;
+}
+
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 35px;
+    margin-top: 20px;
+    /* Ensure container also preserves 3D for its children */
+    transform-style: preserve-3d;
+}
+
+.skill-category {
+    /* ... existing styles ... */
+    will-change: transform, box-shadow;
+    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+                box-shadow 0.3s ease-out;
+}
+
+.skill-category:hover {
+     /* Keep the existing hover effect for individual cards */
+    transform: translateY(-12px) rotateX(4deg) scale(1.02);
+    box-shadow: var(--card-hover-shadow);
+}
+
+/* ... rest of the skills styles ... */
+
+
+/* --- Skills Section Styling --- */
+#skills {
+    padding: 60px 20px;
+    background-color: var(--background-darker); /* Using variable from your :root */
+    text-align: center;
+    /* --- 3D Perspective --- */
+    perspective: 1000px; /* Sets up the 3D space */
+}
+
+#skills h2 {
+    /* Uses default section h2 styles */
+    margin-bottom: 40px; /* Space below title */
+}
+
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Responsive columns */
+    gap: 35px; /* Consistent gap */
+    margin-top: 20px;
+}
+
+.skill-category {
+    background-color: var(--card-background); /* Using variable */
+    padding: 25px;
+    border-radius: var(--border-radius-medium); /* Using variable */
+    border: 1px solid var(--border-light); /* Using variable */
+    box-shadow: var(--card-shadow); /* Using variable */
+    text-align: left; /* Align content left within the card */
+
+    /* --- Performance Hint & Smooth Transition --- */
+    will-change: transform, box-shadow; /* Hint for browser optimization */
+    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), /* Faster, smooth ease */
+                box-shadow 0.3s ease-out;
+
+    /* Optional: Slight initial tilt back for effect */
+    /* transform: rotateX(2deg); */
+}
+
+/* --- Skill Category Content --- */
+.skill-category h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--secondary-color);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+
+.skill-category ul {
+    list-style: none; /* Remove default bullets */
+    padding-left: 0;
+}
+
+.skill-category li {
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    background-color: var(--card-background); /* Ensure contrast if needed */
+    border-radius: var(--border-radius-small);
+    border-left: 4px solid var(--accent-color);
+    /* Keep simple hover for list items */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+.skill-category li:hover {
+    transform: translateX(5px);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.08);
+}
+
+
+/* --- Responsive Adjustments for Skills Section --- */
+@media (max-width: 768px) {
+    #skills {
+        perspective: none; /* Disable 3D perspective */
+    }
+    .skill-category:hover {
+        /* Simpler hover effect: just lift and shadow */
+        transform: translateY(-8px);
+        box-shadow: var(--card-hover-shadow);
+    }
+}
+
+/* Optional: Further reduce/disable on very small screens */
+@media (max-width: 480px) {
+    .skills-container {
+        gap: 20px; /* Reduce gap */
+    }
+    .skill-category {
+        padding: 20px; /* Reduce padding */
+    }
+    .skill-category:hover {
+        /* Even simpler or no effect */
+        transform: translateY(-4px);
+        box-shadow: var(--card-shadow); /* Or revert to base shadow */
+    }
+}
+
+/* --- Contact Section Styling --- */
+#contact h2 {
+     /* Uses default section h2 styles */
+}
+
+.contact-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 40px auto; /* Center and add bottom margin */
+    font-size: 1.1rem;
+    color: var(--medium-gray);
+}
+
+.contact-methods {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    justify-content: center; /* Center the links */
+    gap: 25px; /* Space between links */
+}
+
+.contact-link {
+    display: inline-flex; /* Align icon and text */
+    align-items: center;
+    gap: 10px; /* Space between icon and text */
+    padding: 12px 25px;
+    border-radius: var(--border-radius-medium);
+    text-decoration: none;
+    font-weight: 500;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    box-shadow: var(--card-shadow);
+    min-width: 180px; /* Give buttons a minimum width */
+    justify-content: center; /* Center content within the button */
+}
+
+.contact-link i { /* Style for icons if you add them */
+    font-size: 1.3em; /* Make icons slightly larger */
+}
+
+/* Specific link styles */
+.email-link {
+    background-color: var(--secondary-color);
+    color: var(--card-background);
+}
+.email-link:hover {
+    background-color: #2980b9; /* Darker blue */
+    transform: translateY(-3px);
+    box-shadow: var(--card-hover-shadow);
+}
+
+.linkedin-link {
+    background-color: #0077b5; /* LinkedIn blue */
+    color: var(--card-background);
+}
+.linkedin-link:hover {
+    background-color: #005582; /* Darker LinkedIn blue */
+    transform: translateY(-3px);
+    box-shadow: var(--card-hover-shadow);
+}
+
+.github-link-contact { /* Different class to avoid conflict with project card link */
+    background-color: #333; /* GitHub dark gray */
+    color: var(--card-background);
+}
+.github-link-contact:hover {
+    background-color: #111; /* Darker GitHub gray */
+    transform: translateY(-3px);
+    box-shadow: var(--card-hover-shadow);
+}
+
+.contact-link:active {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Add media query if needed for contact links layout on very small screens */
+@media (max-width: 480px) {
+    .contact-methods {
+        flex-direction: column; /* Stack links vertically */
+        align-items: center; /* Center stacked links */
+    }
+    .contact-link {
+        width: 80%; /* Make buttons wider */
+        max-width: 300px;
+    }
+}
+/* --- CSS Variables --- */
+:root {
+    --primary-color: #2c3e50; /* Dark blue-gray */
+    --secondary-color: #3498db; /* Bright blue */
+    --background-color: #ecf0f1; /* Light gray */
+    --card-background: #ffffff; /* White */
+    --text-color: #34495e; /* Dark gray-blue */
+    --light-gray: #bdc3c7;
+    --medium-gray: #95a5a6;
+    --dark-gray: #7f8c8d;
+    --accent-color: #27ae60; /* Green */
+    --accent-hover-color: #2ecc71; /* Lighter green */
+    --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --card-hover-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    --border-light: #e0e0e0;
+    --border-radius-small: 4px;
+    --border-radius-medium: 8px;
+}
+
+/* --- Basic Reset & Body Styling --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.7; /* Slightly increased line height */
+    color: var(--text-color);
+    background-color: var(--background-color);
+    padding-top: 20px; /* Add padding only at the top */
+}
+
+/* --- Header Styling --- */
+header {
+    background-color: var(--primary-color);
+    color: var(--card-background);
+    padding: 2rem 1rem;
+    text-align: center;
+    margin-bottom: 50px;
+    border-bottom: 6px solid var(--secondary-color);
+}
+
+header h1 {
+    margin-bottom: 0.75rem;
+    font-size: 2.8rem;
+    font-weight: 600;
+}
+
+header p {
+    font-size: 1.15rem;
+    color: var(--light-gray);
+    max-width: 600px;
+    margin: 0 auto; /* Center the paragraph */
+}
+
+/* --- Main Content Area --- */
+main {
+    max-width: 1200px;
+    margin: 0 auto; /* Center main content */
+    padding: 0 20px; /* Add horizontal padding */
+}
+
+/* --- Section Styling --- */
+section {
+    margin-bottom: 60px;
+    padding: 30px;
+    background-color: var(--card-background);
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--card-shadow);
+}
+
+section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+    font-size: 2.2rem;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+/* Underline effect for section titles */
+section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 4px;
+    background-color: var(--secondary-color);
+    border-radius: 2px;
+}
+
+
+/* --- About Me Section --- */
+#about .about-content {
+    display: flex;
+    align-items: center; /* Vertically center items */
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Make the About Me paragraph bold */
+#about .about-content p {
+  font-weight: bold; /* or font-weight: 700; */
+  /* You can keep other styles like font-size, color, etc. here */
+}
+
+
+/* --- About Me Section --- */
+#about .about-content {
+    display: flex;
+    align-items: center; /* Vertically center items */
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+    perspective: 800px; /* Add perspective here for the 3D effect */
+}
+
+#about .profile-pic {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--light-gray);
+    /* --- Add Red Glow --- */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6), /* Inner red glow */
+                0 0 25px rgba(255, 0, 0, 0.4), /* Middle red glow */
+                0 0 35px rgba(255, 0, 0, 0.2); /* Outer red glow */
+    flex-shrink: 0;
+    /* --- Add Transition --- */
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), /* Smooth ease-out */
+                box-shadow 0.4s ease-in-out;
+}
+
+/* --- Add Hover Effect --- */
+#about .profile-pic:hover {
+    /* Apply 3D transform */
+    transform: rotateY(15deg) scale(1.05); /* Tilt slightly on Y-axis and enlarge */
+    /* Enhance glow on hover */
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.8), /* Brighter inner glow */
+                0 0 35px rgba(255, 0, 0, 0.6), /* Brighter middle glow */
+                0 0 50px rgba(255, 0, 0, 0.4); /* Brighter outer glow */
+}
+
+/* Keep the rest of your existing #about styles */
+#about .about-content p {
+  font-weight: bold;
+}
+
+#about p { /* This targets all <p> in #about, might be too broad */
+    flex-basis: 500px;
+    flex-grow: 1;
+    text-align: left;
+}
+
+/* Adjust about section layout for smaller screens */
+@media (max-width: 700px) {
+    #about .about-content {
+        flex-direction: column;
+        text-align: center;
+        perspective: none; /* Optional: Remove 3D effect on small screens */
+    }
+     #about .about-content p { /* More specific selector */
+        text-align: center;
+        flex-basis: auto; /* Reset basis */
+    }
+    #about .profile-pic:hover {
+        transform: none; /* Optional: Disable hover effect on small screens */
+        /* Keep the base glow from the non-hover state */
+        box-shadow: 0 0 15px rgba(255, 0, 0, 0.6),
+                    0 0 25px rgba(255, 0, 0, 0.4),
+                    0 0 35px rgba(255, 0, 0, 0.2);
+    }
+}
+
+
+#about .profile-pic {
+    width: 180px; /* Larger picture */
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--light-gray);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    flex-shrink: 0;
+}
+
+#about p {
+    flex-basis: 500px; /* Suggest a base width for the text */
+    flex-grow: 1;
+    text-align: left;
+}
+
+/* Adjust about section layout for smaller screens */
+@media (max-width: 700px) {
+    #about .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+     #about p {
+        text-align: center;
+        flex-basis: auto; /* Reset basis */
+    }
+}
+
+
+/* --- Three.js Canvas Container --- */
+#three-showcase {
+    /* Uses default section styles */
+}
+
+#three-container {
+    width: 100%;
+    max-width: 700px; /* Allow it to be a bit wider */
+    height: 450px; /* Slightly taller */
+    margin: 0 auto 25px auto;
+    background-color: #0e0d0d; /* Even darker background */
+    border-radius: var(--border-radius-small);
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--medium-gray); /* Add a subtle border */
+}
+
+#three-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    outline: none; /* Remove potential focus outline */
+}
+
+.three-caption {
+    text-align: center;
+    color: var(--dark-gray);
+    font-style: italic;
+    margin-top: 15px;
+}
+
+
+/* --- Project Grid Layout --- */
+.project-grid {
+    display: grid;
+    /* Responsive columns: 1 on small, 2 on medium, 3 on large screens */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 35px; /* Increased gap */
+    perspective: 1200px; /* Enhance 3D effect */
+}
+
+/* Individual Project Card Styling */
+.project-card {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius-medium);
+    padding: 0; /* Remove padding, apply to inner content if needed */
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Important for border-radius on image */
+
+    /* --- 3D Transform Properties --- */
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), /* Playful transition */
+                box-shadow 0.5s ease-out;
+}
+
+/* The hover effect */
+.project-card:hover {
+    transform: rotateY(10deg) rotateX(4deg) translateZ(20px) scale(1.03);
+    box-shadow: var(--card-hover-shadow);
+}
+
+.project-preview {
+    width: 100%;
+    height: 200px; /* Taller preview */
+    object-fit: cover; /* Cover ensures image fills space */
+    display: block; /* Remove potential bottom space */
+    background-color: var(--light-gray);
+}
+
+/* Container for card text content */
+.project-card .card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Ensure content area fills space */
+}
+
+.project-card h3 {
+    margin-bottom: 12px;
+    color: var(--secondary-color);
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.project-card p {
+    flex-grow: 1; /* Push button to bottom */
+    margin-bottom: 20px;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.github-link {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--card-background);
+    padding: 12px 22px;
+    text-decoration: none;
+    border-radius: var(--border-radius-small);
+    text-align: center;
+    transition: background-color 0.25s ease, transform 0.15s ease;
+    margin-top: auto; /* Stick to bottom */
+    font-weight: 500; /* Medium weight */
+    align-self: flex-start; /* Align button to the left */
+}
+
+.github-link:hover {
+    background-color: var(--accent-hover-color);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.github-link:active {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+/* --- Footer Styling --- */
+footer {
+    text-align: center;
+    margin-top: 70px;
+    padding: 30px 20px;
+    border-top: 1px solid var(--light-gray);
+    color: var(--dark-gray);
+    background-color: #dfe6e9; /* Slightly different light gray */
+}
+
+footer p {
+    margin-bottom: 10px;
+}
+
+footer a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.2s ease;
+}
+
+footer a:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
