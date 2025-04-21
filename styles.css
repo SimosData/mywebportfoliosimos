@@ -1,257 +1,32 @@
-
-
-
-/* --- Skills Section Styling --- */
-#skills {
-    padding: 60px 20px;
-    background-color: var(--background-darker);
-    text-align: center;
-    perspective: 1000px; /* Keep this */
-
-    /* --- Add these lines for overall 3D effect --- */
-    transform-style: preserve-3d; /* Ensures children respect the 3D space */
-    transform: rotateX(3deg) rotateY(-2deg); /* Apply a slight tilt */
-    transition: transform 0.5s ease-out; /* Smooth transition if you add hover later */
-    /* --- End of added lines --- */
-}
-
-/* Optional: Add a hover effect for the whole section */
-/*
-#skills:hover {
-    transform: rotateX(0deg) rotateY(0deg); /* Flatten on hover */
-/* } */
-
-
-/* Keep the rest of your existing #skills styles and its children */
-#skills h2 {
-    margin-bottom: 40px;
-}
-
-.skills-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 35px;
-    margin-top: 20px;
-    /* Ensure container also preserves 3D for its children */
-    transform-style: preserve-3d;
-}
-
-.skill-category {
-    /* ... existing styles ... */
-    will-change: transform, box-shadow;
-    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
-                box-shadow 0.3s ease-out;
-}
-
-.skill-category:hover {
-     /* Keep the existing hover effect for individual cards */
-    transform: translateY(-12px) rotateX(4deg) scale(1.02);
-    box-shadow: var(--card-hover-shadow);
-}
-
-/* ... rest of the skills styles ... */
-
-
-/* --- Skills Section Styling --- */
-#skills {
-    padding: 60px 20px;
-    background-color: var(--background-darker); /* Using variable from your :root */
-    text-align: center;
-    /* --- 3D Perspective --- */
-    perspective: 1000px; /* Sets up the 3D space */
-}
-
-#skills h2 {
-    /* Uses default section h2 styles */
-    margin-bottom: 40px; /* Space below title */
-}
-
-.skills-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Responsive columns */
-    gap: 35px; /* Consistent gap */
-    margin-top: 20px;
-}
-
-.skill-category {
-    background-color: var(--card-background); /* Using variable */
-    padding: 25px;
-    border-radius: var(--border-radius-medium); /* Using variable */
-    border: 1px solid var(--border-light); /* Using variable */
-    box-shadow: var(--card-shadow); /* Using variable */
-    text-align: left; /* Align content left within the card */
-
-    /* --- Performance Hint & Smooth Transition --- */
-    will-change: transform, box-shadow; /* Hint for browser optimization */
-    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), /* Faster, smooth ease */
-                box-shadow 0.3s ease-out;
-
-    /* Optional: Slight initial tilt back for effect */
-    /* transform: rotateX(2deg); */
-}
-
-/* --- Skill Category Content --- */
-.skill-category h3 {
-    color: var(--primary-color);
-    margin-bottom: 15px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid var(--secondary-color);
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-
-
-.skill-category ul {
-    list-style: none; /* Remove default bullets */
-    padding-left: 0;
-}
-
-.skill-category li {
-    margin-bottom: 10px;
-    padding: 8px 12px;
-    background-color: var(--card-background); /* Ensure contrast if needed */
-    border-radius: var(--border-radius-small);
-    border-left: 4px solid var(--accent-color);
-    /* Keep simple hover for list items */
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-
-.skill-category li:hover {
-    transform: translateX(5px);
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.08);
-}
-
-
-/* --- Responsive Adjustments for Skills Section --- */
-@media (max-width: 768px) {
-    #skills {
-        perspective: none; /* Disable 3D perspective */
-    }
-    .skill-category:hover {
-        /* Simpler hover effect: just lift and shadow */
-        transform: translateY(-8px);
-        box-shadow: var(--card-hover-shadow);
-    }
-}
-
-/* Optional: Further reduce/disable on very small screens */
-@media (max-width: 480px) {
-    .skills-container {
-        gap: 20px; /* Reduce gap */
-    }
-    .skill-category {
-        padding: 20px; /* Reduce padding */
-    }
-    .skill-category:hover {
-        /* Even simpler or no effect */
-        transform: translateY(-4px);
-        box-shadow: var(--card-shadow); /* Or revert to base shadow */
-    }
-}
-
-/* --- Contact Section Styling --- */
-#contact h2 {
-     /* Uses default section h2 styles */
-}
-
-.contact-intro {
-    text-align: center;
-    max-width: 700px;
-    margin: 0 auto 40px auto; /* Center and add bottom margin */
-    font-size: 1.1rem;
-    color: var(--medium-gray);
-}
-
-.contact-methods {
-    display: flex;
-    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
-    justify-content: center; /* Center the links */
-    gap: 25px; /* Space between links */
-}
-
-.contact-link {
-    display: inline-flex; /* Align icon and text */
-    align-items: center;
-    gap: 10px; /* Space between icon and text */
-    padding: 12px 25px;
-    border-radius: var(--border-radius-medium);
-    text-decoration: none;
-    font-weight: 500;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
-    box-shadow: var(--card-shadow);
-    min-width: 180px; /* Give buttons a minimum width */
-    justify-content: center; /* Center content within the button */
-}
-
-.contact-link i { /* Style for icons if you add them */
-    font-size: 1.3em; /* Make icons slightly larger */
-}
-
-/* Specific link styles */
-.email-link {
-    background-color: var(--secondary-color);
-    color: var(--card-background);
-}
-.email-link:hover {
-    background-color: #2980b9; /* Darker blue */
-    transform: translateY(-3px);
-    box-shadow: var(--card-hover-shadow);
-}
-
-.linkedin-link {
-    background-color: #0077b5; /* LinkedIn blue */
-    color: var(--card-background);
-}
-.linkedin-link:hover {
-    background-color: #005582; /* Darker LinkedIn blue */
-    transform: translateY(-3px);
-    box-shadow: var(--card-hover-shadow);
-}
-
-.github-link-contact { /* Different class to avoid conflict with project card link */
-    background-color: #333; /* GitHub dark gray */
-    color: var(--card-background);
-}
-.github-link-contact:hover {
-    background-color: #111; /* Darker GitHub gray */
-    transform: translateY(-3px);
-    box-shadow: var(--card-hover-shadow);
-}
-
-.contact-link:active {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Add media query if needed for contact links layout on very small screens */
-@media (max-width: 480px) {
-    .contact-methods {
-        flex-direction: column; /* Stack links vertically */
-        align-items: center; /* Center stacked links */
-    }
-    .contact-link {
-        width: 80%; /* Make buttons wider */
-        max-width: 300px;
-    }
-}
 /* --- CSS Variables --- */
 :root {
-    --primary-color: #2c3e50; /* Dark blue-gray */
-    --secondary-color: #3498db; /* Bright blue */
-    --background-color: #ecf0f1; /* Light gray */
-    --card-background: #ffffff; /* White */
-    --text-color: #34495e; /* Dark gray-blue */
-    --light-gray: #bdc3c7;
-    --medium-gray: #95a5a6;
-    --dark-gray: #7f8c8d;
-    --accent-color: #27ae60; /* Green */
-    --accent-hover-color: #2ecc71; /* Lighter green */
-    --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    --card-hover-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    --border-light: #e0e0e0;
+    /* Core Colors */
+    --background-color: #2c3e50; /* Dark Blue-Grey (Main Background) */
+    --background-darker: #233140; /* Slightly darker shade for depth */
+    --text-color: #ecf0f1;       /* Light Gray/Off-white (Default Text) */
+    --text-secondary: #bdc3c7;   /* Lighter gray for less emphasis */
+    --primary-color: #3498db;    /* Bright Blue (Accents, Links, Headers) */
+    --primary-hover: #5dade2;   /* Lighter blue for hover */
+    --secondary-color: #27ae60;  /* Green (Buttons, Highlights) */
+    --secondary-hover: #2ecc71;  /* Lighter green for hover */
+
+    /* Card & Section Backgrounds (Option: Keep them light for contrast) */
+    --card-background: #ffffff;  /* White */
+    --card-text-color: #34495e;   /* Dark Gray-Blue (Text on light cards) */
+    --card-border: #e0e0e0;      /* Light border for light cards */
+    --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on dark bg */
+    --card-hover-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+
+    /* Borders & Radius */
+    --border-light-on-dark: #4e5d6c; /* Darker border for elements on dark bg */
     --border-radius-small: 4px;
     --border-radius-medium: 8px;
+
+    /* Specific Element Colors */
+    --header-bg: #1f2b38;        /* Very dark blue-grey for header */
+    --header-text: #ffffff;      /* White text for header */
+    --footer-bg: #1f2b38;        /* Very dark blue-grey for footer */
+    --footer-text: var(--text-secondary);
 }
 
 /* --- Basic Reset & Body Styling --- */
@@ -262,62 +37,90 @@
 }
 
 html {
-    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+    scroll-behavior: smooth;
+    font-size: 16px; /* Base font size */
 }
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    line-height: 1.7; /* Slightly increased line height */
-    color: var(--text-color);
-    background-color: var(--background-color);
-    padding-top: 20px; /* Add padding only at the top */
+    line-height: 1.7;
+    color: var(--text-color); /* Default light text */
+    background-color: var(--background-color); /* Dark background */
+    padding-top: 20px;
+    overflow-x: hidden; /* Prevent horizontal scroll often caused by animations */
 }
+
+/* --- General Link Styling --- */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+/* --- Headings --- */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--header-text); /* Default to white/light for headings */
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+h1 { font-size: 2.8rem; font-weight: 600; }
+h2 { font-size: 2.2rem; font-weight: 600; }
+h3 { font-size: 1.5rem; font-weight: 600; } /* Adjusted default h3 size */
+h4 { font-size: 1.2rem; font-weight: 600; }
 
 /* --- Header Styling --- */
 header {
-    background-color: var(--primary-color);
-    color: var(--card-background);
-    padding: 2rem 1rem;
+    background-color: var(--header-bg);
+    color: var(--header-text);
+    padding: 2.5rem 1rem; /* Slightly more padding */
     text-align: center;
     margin-bottom: 50px;
-    border-bottom: 6px solid var(--secondary-color);
+    border-bottom: 6px solid var(--primary-color); /* Use primary blue for border */
 }
 
 header h1 {
     margin-bottom: 0.75rem;
-    font-size: 2.8rem;
-    font-weight: 600;
 }
 
 header p {
     font-size: 1.15rem;
-    color: var(--light-gray);
-    max-width: 600px;
-    margin: 0 auto; /* Center the paragraph */
+    color: var(--text-secondary); /* Use secondary light text color */
+    max-width: 650px; /* Slightly wider */
+    margin: 0 auto;
 }
 
 /* --- Main Content Area --- */
 main {
     max-width: 1200px;
-    margin: 0 auto; /* Center main content */
-    padding: 0 20px; /* Add horizontal padding */
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-/* --- Section Styling --- */
+/* --- Section Base Styling --- */
 section {
-    margin-bottom: 60px;
-    padding: 30px;
-    background-color: var(--card-background);
-    border-radius: var(--border-radius-medium);
-    box-shadow: var(--card-shadow);
+    margin-bottom: 70px; /* Increased spacing */
+    padding: 40px 30px; /* Increased padding */
+    /* Option 1: Transparent background to show body color */
+    background-color: transparent;
+    /* Option 2: Slightly different dark background */
+    /* background-color: var(--background-darker); */
+    /* Option 3: Keep sections light (like cards) */
+    /* background-color: var(--card-background); */
+    /* color: var(--card-text-color); */ /* Required if using light background */
+    /* border-radius: var(--border-radius-medium); */ /* Add if using non-transparent bg */
+    /* box-shadow: var(--card-shadow); */ /* Add if using non-transparent bg */
 }
 
 section h2 {
     text-align: center;
-    margin-bottom: 40px;
-    color: var(--primary-color);
-    font-size: 2.2rem;
-    font-weight: 600;
+    margin-bottom: 50px; /* More space below title */
+    color: var(--header-text); /* Ensure section titles are light */
     position: relative;
     padding-bottom: 15px;
 }
@@ -329,37 +132,20 @@ section h2::after {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 70px;
+    width: 80px; /* Slightly wider */
     height: 4px;
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color); /* Use primary blue */
     border-radius: 2px;
 }
 
-
 /* --- About Me Section --- */
 #about .about-content {
     display: flex;
-    align-items: center; /* Vertically center items */
+    align-items: center;
     gap: 40px;
     flex-wrap: wrap;
     justify-content: center;
-}
-
-/* Make the About Me paragraph bold */
-#about .about-content p {
-  font-weight: bold; /* or font-weight: 700; */
-  /* You can keep other styles like font-size, color, etc. here */
-}
-
-
-/* --- About Me Section --- */
-#about .about-content {
-    display: flex;
-    align-items: center; /* Vertically center items */
-    gap: 40px;
-    flex-wrap: wrap;
-    justify-content: center;
-    perspective: 800px; /* Add perspective here for the 3D effect */
+    perspective: 800px; /* For profile pic 3D effect */
 }
 
 #about .profile-pic {
@@ -367,147 +153,61 @@ section h2::after {
     height: 180px;
     border-radius: 50%;
     object-fit: cover;
-    border: 5px solid var(--light-gray);
-    /* --- Add Red Glow --- */
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6), /* Inner red glow */
-                0 0 25px rgba(255, 0, 0, 0.4), /* Middle red glow */
-                0 0 35px rgba(255, 0, 0, 0.2); /* Outer red glow */
+    border: 5px solid var(--text-secondary); /* Use secondary light text for border */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6), /* Red glow */
+                0 0 25px rgba(255, 0, 0, 0.4),
+                0 0 35px rgba(255, 0, 0, 0.2);
     flex-shrink: 0;
-    /* --- Add Transition --- */
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), /* Smooth ease-out */
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                 box-shadow 0.4s ease-in-out;
 }
 
-/* --- Add Hover Effect --- */
 #about .profile-pic:hover {
-    /* Apply 3D transform */
-    transform: rotateY(15deg) scale(1.05); /* Tilt slightly on Y-axis and enlarge */
-    /* Enhance glow on hover */
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.8), /* Brighter inner glow */
-                0 0 35px rgba(255, 0, 0, 0.6), /* Brighter middle glow */
-                0 0 50px rgba(255, 0, 0, 0.4); /* Brighter outer glow */
+    transform: rotateY(15deg) scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.8), /* Brighter red glow */
+                0 0 35px rgba(255, 0, 0, 0.6),
+                0 0 50px rgba(255, 0, 0, 0.4);
 }
 
-/* Keep the rest of your existing #about styles */
-#about .about-content p {
-  font-weight: bold;
-}
-
-#about p { /* This targets all <p> in #about, might be too broad */
+#about .about-text { /* Use a class for the text container */
     flex-basis: 500px;
     flex-grow: 1;
     text-align: left;
 }
 
-/* Adjust about section layout for smaller screens */
-@media (max-width: 700px) {
-    #about .about-content {
-        flex-direction: column;
-        text-align: center;
-        perspective: none; /* Optional: Remove 3D effect on small screens */
-    }
-     #about .about-content p { /* More specific selector */
-        text-align: center;
-        flex-basis: auto; /* Reset basis */
-    }
-    #about .profile-pic:hover {
-        transform: none; /* Optional: Disable hover effect on small screens */
-        /* Keep the base glow from the non-hover state */
-        box-shadow: 0 0 15px rgba(255, 0, 0, 0.6),
-                    0 0 25px rgba(255, 0, 0, 0.4),
-                    0 0 35px rgba(255, 0, 0, 0.2);
-    }
+#about .about-text p {
+    font-weight: bold; /* Keep the bold style */
+    color: var(--text-color); /* Ensure text is light */
+    margin-bottom: 1rem; /* Add spacing between paragraphs if needed */
 }
 
-
-#about .profile-pic {
-    width: 180px; /* Larger picture */
-    height: 180px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 5px solid var(--light-gray);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    flex-shrink: 0;
+/* --- Projects Section --- */
+#projects {
+    /* Uses base section styles */
 }
 
-#about p {
-    flex-basis: 500px; /* Suggest a base width for the text */
-    flex-grow: 1;
-    text-align: left;
-}
-
-/* Adjust about section layout for smaller screens */
-@media (max-width: 700px) {
-    #about .about-content {
-        flex-direction: column;
-        text-align: center;
-    }
-     #about p {
-        text-align: center;
-        flex-basis: auto; /* Reset basis */
-    }
-}
-
-
-/* --- Three.js Canvas Container --- */
-#three-showcase {
-    /* Uses default section styles */
-}
-
-#three-container {
-    width: 100%;
-    max-width: 700px; /* Allow it to be a bit wider */
-    height: 450px; /* Slightly taller */
-    margin: 0 auto 25px auto;
-    background-color: #0e0d0d; /* Even darker background */
-    border-radius: var(--border-radius-small);
-    overflow: hidden;
-    position: relative;
-    border: 1px solid var(--medium-gray); /* Add a subtle border */
-}
-
-#three-canvas {
-    display: block;
-    width: 100%;
-    height: 100%;
-    outline: none; /* Remove potential focus outline */
-}
-
-.three-caption {
-    text-align: center;
-    color: var(--dark-gray);
-    font-style: italic;
-    margin-top: 15px;
-}
-
-
-/* --- Project Grid Layout --- */
 .project-grid {
     display: grid;
-    /* Responsive columns: 1 on small, 2 on medium, 3 on large screens */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 35px; /* Increased gap */
-    perspective: 1200px; /* Enhance 3D effect */
+    gap: 35px;
+    perspective: 1200px; /* For card 3D effect */
 }
 
-/* Individual Project Card Styling */
 .project-card {
-    background-color: var(--card-background);
-    border: 1px solid var(--border-light);
+    background-color: var(--card-background); /* Light card background */
+    color: var(--card-text-color); /* Dark text for light card */
+    border: 1px solid var(--card-border);
     border-radius: var(--border-radius-medium);
-    padding: 0; /* Remove padding, apply to inner content if needed */
+    padding: 0; /* Padding applied to inner content */
     box-shadow: var(--card-shadow);
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Important for border-radius on image */
-
-    /* --- 3D Transform Properties --- */
+    overflow: hidden;
     transform-style: preserve-3d;
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), /* Playful transition */
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
                 box-shadow 0.5s ease-out;
 }
 
-/* The hover effect */
 .project-card:hover {
     transform: rotateY(10deg) rotateX(4deg) translateZ(20px) scale(1.03);
     box-shadow: var(--card-hover-shadow);
@@ -515,52 +215,53 @@ section h2::after {
 
 .project-preview {
     width: 100%;
-    height: 200px; /* Taller preview */
-    object-fit: cover; /* Cover ensures image fills space */
-    display: block; /* Remove potential bottom space */
-    background-color: var(--light-gray);
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    background-color: var(--text-secondary); /* Placeholder color */
 }
 
-/* Container for card text content */
 .project-card .card-content {
-    padding: 20px;
+    padding: 25px; /* Increased padding */
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Ensure content area fills space */
+    flex-grow: 1;
 }
 
 .project-card h3 {
     margin-bottom: 12px;
-    color: var(--secondary-color);
+    color: var(--primary-color); /* Use primary blue for card titles */
     font-size: 1.3rem;
-    font-weight: 600;
 }
 
 .project-card p {
-    flex-grow: 1; /* Push button to bottom */
+    flex-grow: 1;
     margin-bottom: 20px;
     font-size: 1rem;
     line-height: 1.6;
+    color: var(--card-text-color); /* Ensure paragraph text is dark */
 }
 
-.github-link {
+.github-link { /* Button style for project cards */
     display: inline-block;
-    background-color: var(--accent-color);
-    color: var(--card-background);
+    background-color: var(--secondary-color); /* Use green */
+    color: var(--header-text); /* White text */
     padding: 12px 22px;
     text-decoration: none;
     border-radius: var(--border-radius-small);
     text-align: center;
-    transition: background-color 0.25s ease, transform 0.15s ease;
-    margin-top: auto; /* Stick to bottom */
-    font-weight: 500; /* Medium weight */
-    align-self: flex-start; /* Align button to the left */
+    transition: background-color 0.25s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    margin-top: auto;
+    font-weight: 500;
+    align-self: flex-start;
 }
 
 .github-link:hover {
-    background-color: var(--accent-hover-color);
+    background-color: var(--secondary-hover);
     transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    text-decoration: none; /* Remove underline on button hover */
+    color: var(--header-text);
 }
 
 .github-link:active {
@@ -568,15 +269,189 @@ section h2::after {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* --- Skills Section --- */
+#skills {
+    background-color: var(--background-darker); /* Use darker background for contrast */
+    padding: 60px 20px;
+    text-align: center;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    /* Optional slight tilt for the whole section */
+    /* transform: rotateX(2deg) rotateY(-1deg); */
+    /* transition: transform 0.5s ease-out; */
+    border-radius: var(--border-radius-medium); /* Add radius if using bg color */
+}
+/* #skills:hover { transform: rotateX(0deg) rotateY(0deg); } */
+
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 35px;
+    margin-top: 20px;
+    transform-style: preserve-3d; /* Preserve 3D for children */
+}
+
+.skill-category {
+    background-color: var(--card-background); /* Light background */
+    color: var(--card-text-color); /* Dark text */
+    padding: 25px;
+    border-radius: var(--border-radius-medium);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--card-shadow);
+    text-align: left;
+    will-change: transform, box-shadow;
+    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+                box-shadow 0.3s ease-out;
+    /* transform: rotateX(2deg); */ /* Optional initial tilt */
+}
+
+.skill-category:hover {
+    transform: translateY(-12px) rotateX(4deg) scale(1.02);
+    box-shadow: var(--card-hover-shadow);
+}
+
+.skill-category h3 {
+    color: var(--primary-color); /* Blue title */
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.skill-category ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.skill-category li {
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    background-color: #f8f9fa; /* Slightly off-white for list items */
+    color: var(--card-text-color); /* Ensure dark text */
+    border-radius: var(--border-radius-small);
+    border-left: 4px solid var(--secondary-color); /* Green accent */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.skill-category li:hover {
+    transform: translateX(5px);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.08);
+}
+
+/* --- Three.js Showcase Section --- */
+#three-showcase {
+    /* Uses base section styles */
+}
+
+#three-container {
+    width: 100%;
+    max-width: 700px;
+    height: 450px;
+    margin: 0 auto 25px auto;
+    background-color: #0e0d0d; /* Very dark background for canvas */
+    border-radius: var(--border-radius-small);
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--border-light-on-dark); /* Subtle border */
+}
+
+#three-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    outline: none;
+}
+
+.three-caption {
+    text-align: center;
+    color: var(--text-secondary); /* Use secondary light text */
+    font-style: italic;
+    margin-top: 15px;
+}
+
+/* --- Contact Section --- */
+#contact {
+    /* Uses base section styles */
+}
+
+.contact-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+    font-size: 1.1rem;
+    color: var(--text-secondary); /* Use secondary light text */
+}
+
+.contact-methods {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+}
+
+.contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 25px;
+    border-radius: var(--border-radius-medium);
+    text-decoration: none;
+    font-weight: 500;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    box-shadow: var(--card-shadow);
+    min-width: 180px;
+    justify-content: center;
+    color: var(--header-text); /* Default white text for buttons */
+}
+
+.contact-link i {
+    font-size: 1.3em;
+}
+
+/* Specific link styles */
+.email-link {
+    background-color: var(--primary-color); /* Blue */
+}
+.email-link:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-3px);
+    box-shadow: var(--card-hover-shadow);
+    text-decoration: none; color: var(--header-text);
+}
+
+.linkedin-link {
+    background-color: #0077b5; /* LinkedIn blue */
+}
+.linkedin-link:hover {
+    background-color: #005582;
+    transform: translateY(-3px);
+    box-shadow: var(--card-hover-shadow);
+    text-decoration: none; color: var(--header-text);
+}
+
+.github-link-contact { /* Specific class for contact GitHub button */
+    background-color: #333; /* GitHub dark gray */
+}
+.github-link-contact:hover {
+    background-color: #111;
+    transform: translateY(-3px);
+    box-shadow: var(--card-hover-shadow);
+    text-decoration: none; color: var(--header-text);
+}
+
+.contact-link:active {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
 
 /* --- Footer Styling --- */
 footer {
     text-align: center;
     margin-top: 70px;
     padding: 30px 20px;
-    border-top: 1px solid var(--light-gray);
-    color: var(--dark-gray);
-    background-color: #dfe6e9; /* Slightly different light gray */
+    border-top: 1px solid var(--border-light-on-dark); /* Use darker border */
+    color: var(--footer-text);
+    background-color: var(--footer-bg);
 }
 
 footer p {
@@ -584,13 +459,135 @@ footer p {
 }
 
 footer a {
-    color: var(--secondary-color);
-    text-decoration: none;
+    color: var(--primary-color); /* Blue links */
     margin: 0 10px;
-    transition: color 0.2s ease;
 }
 
 footer a:hover {
-    color: var(--primary-color);
+    color: var(--primary-hover); /* Lighter blue hover */
     text-decoration: underline;
 }
+
+/* --- Responsive Adjustments --- */
+
+@media (max-width: 768px) {
+    h1 { font-size: 2.4rem; }
+    h2 { font-size: 1.9rem; }
+    section { padding: 30px 20px; }
+
+    /* Simplify 3D effects */
+    #about .profile-pic:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 0, 0, 0.8), 0 0 35px rgba(255, 0, 0, 0.6), 0 0 50px rgba(255, 0, 0, 0.4); }
+    .project-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: var(--card-hover-shadow); }
+    #skills { perspective: none; transform: none; }
+    .skill-category:hover { transform: translateY(-8px); box-shadow: var(--card-hover-shadow); }
+
+    #about .about-content {
+        flex-direction: column;
+        text-align: center;
+        perspective: none;
+    }
+     #about .about-text {
+        text-align: center;
+        flex-basis: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    body { padding-top: 10px; }
+    header { padding: 1.5rem 1rem; margin-bottom: 30px; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.6rem; }
+    section { margin-bottom: 40px; padding: 20px 15px; }
+    section h2 { margin-bottom: 30px; }
+    section h2::after { width: 60px; }
+
+    .project-grid { gap: 20px; }
+    .skills-container { gap: 20px; }
+    .skill-category { padding: 20px; }
+
+    .contact-methods {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    .contact-link {
+        width: 90%;
+        max-width: 300px;
+        padding: 10px 20px;
+    }
+
+    footer { margin-top: 40px; padding: 20px 15px; }
+}
+/* --- Skills Section --- */
+#skills {
+    background-color: var(--background-darker); /* Use darker background for contrast */
+    padding: 60px 20px;
+    text-align: center;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    border-radius: var(--border-radius-medium); /* Add radius if using bg color */
+    /* Ensure overflow isn't accidentally hidden (though 'visible' is default) */
+    overflow: visible;
+}
+
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 35px;
+    margin-top: 20px;
+    transform-style: preserve-3d; /* Preserve 3D for children */
+}
+
+.skill-category {
+    background-color: var(--card-background); /* Light background */
+    color: var(--card-text-color); /* Dark text */
+    padding: 25px;
+    border-radius: var(--border-radius-medium);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--card-shadow);
+    text-align: left;
+    will-change: transform, box-shadow;
+    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+                box-shadow 0.3s ease-out;
+    /* Add position relative and base z-index */
+    position: relative;
+    z-index: 1;
+}
+
+.skill-category:hover {
+    /* Add translateZ and increase z-index */
+    transform: translateY(-12px) rotateX(4deg) scale(1.02) translateZ(20px); /* Added translateZ */
+    box-shadow: var(--card-hover-shadow);
+    z-index: 10; /* Higher z-index on hover */
+}
+
+/* Keep the rest of the .skill-category styles */
+.skill-category h3 {
+    color: var(--primary-color); /* Blue title */
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.skill-category ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.skill-category li {
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    background-color: #f8f9fa; /* Slightly off-white for list items */
+    color: var(--card-text-color); /* Ensure dark text */
+    border-radius: var(--border-radius-small);
+    border-left: 4px solid var(--secondary-color); /* Green accent */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.skill-category li:hover {
+    transform: translateX(5px);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.08);
+}
+
+/* --- Rest of your CSS --- */
