@@ -14,6 +14,9 @@ body {
   line-height: 1.6;
   background-color: #1a1a2e; /* Dark background */
   color: #e0e0e0; /* Light text color */
+  /* Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* === Typography === */
@@ -152,6 +155,8 @@ nav#navbar {
   z-index: 1000; /* Ensure it's above other content */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   transition: top 0.3s ease-in-out; /* Smooth transition for the 'top' property */
+  /* Hint for performance */
+  will-change: top;
 }
 
 /* Style for when the navbar is hidden (scrolling down) */
@@ -238,26 +243,32 @@ footer {
   display: flex;
   align-items: center;
   gap: 2rem; /* Space between image and text */
-  perspective: 800px; /* Added for 3D effect */
+  perspective: 800px; /* Keep for 3D effect */
 }
 
 .profile-pic {
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  object-fit: cover;
+  object-fit: cover; /* Ensure image covers the area without distortion */
   border: 3px solid #3498db;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 5px rgba(52, 152, 219, 0.4);
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              box-shadow 0.4s ease-out;
+
+  /* --- Optimization & Smoother Transition --- */
+  will-change: transform, box-shadow; /* Hint browser about animations */
+  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out; /* Faster, smoother transition */
+  backface-visibility: hidden; /* Prevent flickering during transform */
+  /* --- End Optimization --- */
+
   flex-shrink: 0; /* Prevent image from shrinking */
 }
 
 .profile-pic:hover {
-  transform: scale(1.15) rotateY(15deg) translateZ(20px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4),
-              0 0 15px rgba(52, 152, 219, 0.7),
-              0 0 30px rgba(52, 152, 219, 0.5);
+  /* --- Optimized Hover Effect --- */
+  transform: scale(1.1) rotateY(10deg) translateZ(10px); /* Slightly simpler transform */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.35), /* Simpler shadow */
+              0 0 10px rgba(52, 152, 219, 0.6);
+  /* --- End Optimized Hover Effect --- */
   cursor: pointer;
 }
 
@@ -270,9 +281,9 @@ footer {
     max-width: none; /* Allow container inside to set width */
 }
 #three-container {
-    width: 80%; /* Make it narrower */
-    max-width: 700px; /* Max pixel width */
-    height: 300px; /* Reduced height */
+    width: 80%; /* Default width */
+    max-width: 700px; /* Default max pixel width */
+    height: 300px; /* Default height */
     margin: 0 auto; /* Center the container */
     overflow: hidden;
     border-radius: 8px; /* Match section radius */
@@ -280,7 +291,7 @@ footer {
 }
 
 #three-canvas {
-    display: block;
+    display: block; /* Remove extra space below canvas */
     width: 100%;
     height: 100%;
 }
@@ -309,12 +320,14 @@ footer {
 }
 
 .project-preview {
+  display: block; /* Ensure it behaves like a block element */
   width: 100%;
   height: 200px;
-  object-fit: cover;
+  object-fit: cover; /* Cover the area, may crop */
   margin-bottom: 1rem;
   border-radius: 4px;
   border: 1px solid #333;
+  background-color: #333; /* Placeholder background */
 }
 
 .project-card h3 { /* Project Title */
@@ -323,7 +336,7 @@ footer {
 }
 
 .project-card h3 + p { /* Description */
-    flex-grow: 1;
+    flex-grow: 1; /* Allow description to take available space */
     margin-bottom: 1rem;
     color: #b0b0b0;
 }
@@ -397,8 +410,9 @@ footer {
     font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    will-change: transform; /* Hint for button hover */
 }
 
 .button-style:hover,
@@ -479,34 +493,45 @@ footer {
 }
 
 /* Specific hover colors (optional) */
-.email-link:hover { border-color: #e74c3c; color: #e74c3c; }
-.linkedin-link:hover { border-color: #0077b5; color: #0077b5; }
-.github-link-contact:hover { border-color: #ffffff; color: #ffffff; }
+.email-link:hover { border-color: #e74c3c; color: #e74c3c; background-color: rgba(231, 76, 60, 0.1); }
+.linkedin-link:hover { border-color: #0077b5; color: #0077b5; background-color: rgba(0, 119, 181, 0.1); }
+.github-link-contact:hover { border-color: #ffffff; color: #ffffff; background-color: rgba(255, 255, 255, 0.1); }
 
 
 /* ==========================
-   Responsive Design
+   Responsive Design & Performance Optimizations
    ========================== */
+
+/* --- Disable complex hover on touch devices --- */
+@media (hover: none) {
+    .profile-pic:hover {
+        /* Reset hover effects if true touch device detected */
+        transform: none;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 5px rgba(52, 152, 219, 0.4);
+    }
+    .button-style:hover,
+    .resume-download-link:hover {
+        /* Disable transform on touch */
+        transform: none;
+    }
+    .project-card:hover {
+        transform: none; /* Disable card lift */
+    }
+}
 
 /* --- Medium Screens (Tablets, smaller laptops) --- */
 @media (max-width: 768px) {
 
-  /* ... other mobile styles ... */
-
-  #three-container {
-    width: 90%; /* Slightly wider percentage for small screens */
-    max-width: 400px; /* Significantly reduce max-width on mobile */
-    height: 220px; /* Reduce height considerably for mobile */
-    margin-top: 1rem; /* Add some top margin if needed */
-    margin-bottom: 1rem; /* Add some bottom margin if needed */
-}
-
   /* --- General Adjustments --- */
   h1#main-title {
     font-size: 2.2rem;
+    /* Option 1: Disable demanding animation */
+    animation: none;
+    /* Option 2: Use a simpler static shadow */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5), 0 0 5px #4da6ff;
   }
   header {
-    padding: 15px 10px; /* Slightly reduce header padding */
+    padding: 1rem 0.8rem; /* Slightly reduce header padding */
   }
   header p {
     font-size: 1rem; /* Adjust subtitle size */
@@ -526,11 +551,17 @@ footer {
     height: 120px;
     margin-bottom: 1rem;
   }
+  /* Simpler hover for smaller screens (if not touch-only) */
+  .profile-pic:hover {
+     transform: scale(1.05); /* Just a slight scale */
+     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3), 0 0 8px rgba(52, 152, 219, 0.5);
+  }
+
   .project-grid {
     grid-template-columns: 1fr; /* Single column layout */
   }
   .skills-container {
-    grid-template-columns: 1fr; /* Single column layout */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Allow 2 columns if space */
   }
   .contact-methods {
       align-items: stretch; /* Make links full width */
@@ -544,18 +575,17 @@ footer {
   /* --- Navbar Mobile Adjustments (Smaller Navbar) --- */
   nav#navbar {
       padding: 3px 0; /* Significantly reduce top/bottom padding */
-      /* Ensure sticky positioning is reliable */
       position: sticky;
       top: 0;
       z-index: 1000;
   }
   nav#navbar ul {
-      /* Keep items horizontal, but adjust spacing */
       justify-content: center;
-      flex-wrap: wrap; /* Allow wrapping if needed on very narrow views */
+      flex-wrap: wrap; /* Allow wrapping if needed */
+      gap: 0.2rem; /* Add small gap if wrapping */
   }
   nav#navbar ul li {
-      margin: 0 0.8rem; /* Reduce space between items */
+      margin: 0 0.6rem; /* Reduce space between items */
   }
   nav#navbar ul li a {
       font-size: 0.78rem; /* Make link text smaller */
@@ -576,24 +606,24 @@ footer {
        /* Adjust this value based on the new smaller navbar height + desired spacing */
       padding-top: 45px; /* Example: 35px navbar height + 10px space */
   }
+
+  /* --- Smaller Three.js container --- */
+  #three-container {
+      width: 90%; /* Slightly wider percentage */
+      max-width: 400px; /* Reduce max-width */
+      height: 220px; /* Reduce height */
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+  }
 }
 
 /* --- Small Screens (Mobile Phones) --- */
 @media (max-width: 480px) {
 
-
-  /* ... other small screen styles ... */
-
-  #three-container {
-    height: 180px; /* Even smaller height for portrait phones */
-    max-width: 95%; /* Allow it to be almost full width but constrained */
-}
-
- /* ... rest of the small screen styles ... */
-}
   /* --- General Adjustments --- */
   h1#main-title {
       font-size: 1.8rem;
+      /* Ensure simpler shadow from 768px query is applied */
   }
   header p {
       font-size: 0.9rem;
@@ -609,10 +639,13 @@ footer {
   section {
       padding: 1.5rem 0.8rem; /* Further reduce padding */
   }
+  .skills-container {
+    grid-template-columns: 1fr; /* Force single column */
+  }
 
   /* --- Navbar Mobile Adjustments (Even Smaller) --- */
   nav#navbar ul li {
-      margin: 0 0.5rem; /* Even less space */
+      margin: 0 0.4rem; /* Even less space */
   }
   nav#navbar ul li a {
       font-size: 0.7rem; /* Even smaller text */
@@ -628,4 +661,11 @@ footer {
   main {
       padding-top: 40px; /* Example adjustment */
   }
+
+  /* --- Even Smaller Three.js container --- */
+  #three-container {
+      height: 180px; /* Even smaller height */
+      max-width: 95%; /* Allow it to be almost full width */
+  }
 }
+
