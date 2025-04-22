@@ -491,6 +491,16 @@ footer {
 /* --- Medium Screens (Tablets, smaller laptops) --- */
 @media (max-width: 768px) {
 
+  /* ... other mobile styles ... */
+
+  #three-container {
+    width: 90%; /* Slightly wider percentage for small screens */
+    max-width: 400px; /* Significantly reduce max-width on mobile */
+    height: 220px; /* Reduce height considerably for mobile */
+    margin-top: 1rem; /* Add some top margin if needed */
+    margin-bottom: 1rem; /* Add some bottom margin if needed */
+}
+
   /* --- General Adjustments --- */
   h1#main-title {
     font-size: 2.2rem;
@@ -571,6 +581,16 @@ footer {
 /* --- Small Screens (Mobile Phones) --- */
 @media (max-width: 480px) {
 
+
+  /* ... other small screen styles ... */
+
+  #three-container {
+    height: 180px; /* Even smaller height for portrait phones */
+    max-width: 95%; /* Allow it to be almost full width but constrained */
+}
+
+ /* ... rest of the small screen styles ... */
+}
   /* --- General Adjustments --- */
   h1#main-title {
       font-size: 1.8rem;
