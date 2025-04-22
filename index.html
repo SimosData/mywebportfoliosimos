@@ -5,240 +5,233 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Web Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Add Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
-    
-        <header>
-            <h1 id="main-title">Portfolio Brainwaves</h1>
-            <p>Welcome! Check out some of my projects below.</p>
-        </header>
-        
-        <nav id="navbar">
-            <ul>
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#resume">Resume</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul> 
+    <header>
+        <h1 id="main-title">Portfolio Brainwaves</h1>
+        <p>Welcome! Check out some of my projects below.</p>
+    </header>
 
-    <main>
-        <!-- About Me Section -->
-        <section id="about">
-            <h2>About Me</h2>
-            <div class="about-content">
-                <!-- Make sure you have this image in an 'images' folder -->
-                <img src="images/your-photo.jpg" alt="Your Name" class="profile-pic">
-              <center>  <p> 
-<br>Hello! I'm Simos, a passionate FrontEnd Developer / Software Developer based in Limassol.</br>
-  <br> I love building creative and functional web applications. I enjoy coding and creating beautiful, user friendly interfaces.</br>                  <br> <br>I have a strong foundation in HTML, CSS, and JavaScript. I'm always eager to learn new technologies and improve my skills.</br>            <br> When I'm not coding, I enjoy taking a walk by the sea also reading about new technologies.</br>
-                    
-                </p> </center>
-            </div>
+    <nav id="navbar">
+        <ul>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav> <!-- Added missing closing nav tag -->
 
-            
-        </section>
+    <!-- NEW: Wrapper Div for Scrollable Content -->
+    <div id="scrollable-content">
+        <main>
+            <!-- About Me Section -->
+            <section id="about">
+                <h2>About Me</h2>
+                <div class="about-content">
+                    <img src="images/your-photo.jpg" alt="Simos Michail" class="profile-pic"> <!-- Updated alt text -->
+                    <!-- Removed <center>, use CSS for centering if needed -->
+                    <p>
+                        Hello! I'm Simos, a passionate FrontEnd Developer / Software Developer based in Limassol.<br>
+                        I love building creative and functional web applications. I enjoy coding and creating beautiful, user friendly interfaces.<br><br>
+                        I have a strong foundation in HTML, CSS, and JavaScript. I'm always eager to learn new technologies and improve my skills.<br><br>
+                        When I'm not coding, I enjoy taking a walk by the sea also reading about new technologies.
+                    </p>
+                </div>
+            </section>
 
-        <!-- Three.js Canvas Container -->
-        <section id="three-showcase">
-             
-             <div id="three-container">
-                 <!-- This canvas is where the 3D scene will be rendered -->
-                 <canvas id="three-canvas"></canvas>
-             </div>
-             
-        </section>
+            <!-- Three.js Canvas Container -->
+            <section id="three-showcase">
+                 <div id="three-container">
+                     <canvas id="three-canvas"></canvas>
+                 </div>
+            </section>
 
+            <!-- Projects Section -->
+            <section id="projects">
+                <h2>Projects</h2>
+                <div class="project-grid">
 
-        <!-- Projects Section -->
-        <section id="projects">
-            <h2>Projects</h2>
-            <div class="project-grid">
-
-                <!-- Project 1 -->
-                <article class="project-card">
-                    <!-- Make sure you have this image in an 'images' folder -->
-                    <img src="images/realestate-preview.png" alt="RealEstate Preview" class="project-preview">
-                    <h3>REAL ESTATE</h3>
-                    <p> A modern real estate website with listings, gallery, about, and contact pages.
-<ul>
+                    <!-- Project 1 -->
+                    <article class="project-card">
+                        <img src="images/realestate-preview.png" alt="RealEstate Preview" class="project-preview">
+                        <h3>REAL ESTATE</h3>
+                        <p> A modern real estate website with listings, gallery, about, and contact pages.</p>
+                        <!-- Corrected structure: h3 before ul -->
                         <h3>Technologies Used</h3>
-                        
+                        <ul>
                             <li>HTML</li>
                             <li>CSS</li>
                         </ul>
-                    </p> 
-                   <h3> <a href ="https://github.com/SimosData/realestate-website" target="_blank" class="github-link">GitHub Repository</a> </h3>
-                   <h3> <a href="realestate/index.html" target="_blank" class="github-link">Real Estate Website</a></h3>
-                </article>
+                        <!-- Use p or div for links instead of h3 -->
+                        <p><a href ="https://github.com/SimosData/realestate-website" target="_blank" class="github-link"><i class="fab fa-github"></i>&nbsp;GitHub</a></p>
+                        <p><a href="realestate/index.html" target="_blank" class="github-link">Real Estate Website</a></p>
+                    </article>
 
-<!-- Project 2 -->
-                <article class="project-card">
-                    <img src="images/watchstore-preview.png" alt="Watchstore Preview" class="project-preview">
-                    <h3>WATCH STORE</h3>
-                    <p>An elegant watch store that sells high-quality watches for every occasion and provides a wonderful experience of elegance and beauty.</p>
-                <ul> 
-                   <h3>Technologies Used</h3>
-                    
-                   <li>HTML</li> 
-                     <li>CSS</li
-                </ul>
-            </p>
-                
-                <h3> <a href="https://github.com/SimosData/watchstore-website" target="_blank" class="github-link">GitHub Repository</a> </h3>
-                    <h3> <a href="project-two/index.html" target="_blank" class="github-link">watchstore</a></h3>
-                </article>
+                    <!-- Project 2 -->
+                    <article class="project-card">
+                        <img src="images/watchstore-preview.png" alt="Watchstore Preview" class="project-preview">
+                        <h3>WATCH STORE</h3>
+                        <p>An elegant watch store that sells high-quality watches for every occasion and provides a wonderful experience of elegance and beauty.</p>
+                        <!-- Corrected structure: h3 before ul -->
+                        <h3>Technologies Used</h3>
+                        <ul>
+                           <li>HTML</li>
+                           <li>CSS</li> <!-- Fixed closing tag -->
+                        </ul>
+                        <!-- Use p or div for links instead of h3 -->
+                        <p><a href="https://github.com/SimosData/watchstore-website" target="_blank" class="github-link"><i class="fab fa-github"></i>&nbsp;GitHub</a></p>
+                        <p><a href="project-two/index.html" target="_blank" class="github-link">Watchstore</a></p>
+                    </article>
 
-                <!-- Project 3 -->
-                <article class="project-card">
-                    <img src="images/card-game.png" alt="Project 3 Preview" class="project-preview">
-                    <h3>CARD GAME</h3>
-                    <p>A fun memory card game to keep you busy during moments of relaxation or casual fun. A futuristic card memory game with lots of features and a great design.
-                    
-                    <ul> 
+                    <!-- Project 3 -->
+                    <article class="project-card">
+                        <img src="images/card-game.png" alt="Card Game Preview" class="project-preview">
+                        <h3>CARD GAME</h3>
+                        <p>A fun memory card game to keep you busy during moments of relaxation or casual fun. A futuristic card memory game with lots of features and a great design.</p>
+                        <!-- Corrected structure: h3 before ul -->
                         <h3> Technologies Used</h3>
-                        <li>HTML</li>
-                         <li>CSS</li> 
-                         <li>JavaScript</li> 
-                           <li>Tailwind CSS</li>
-                           <li>Vite.js</li>
-                           <li>Typescript</li>
+                        <ul>
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
+                            <li>Tailwind CSS</li>
+                            <li>Vite.js</li>
+                            <li>Typescript</li>
                          </ul>
+                        <!-- Use p or div for links instead of h3 -->
+                        <p><a href="https://github.com/SimosData/justice-league-flip-match" target="_blank" class="github-link"><i class="fab fa-github"></i>&nbsp;GitHub</a></p>
+                        <p><a href="project-three/index.html" target="_blank" class="github-link">Card Game</a></p>
+                    </article>
 
-                    </p>
-                   
-                    <h3> <a href="https://github.com/SimosData/justice-league-flip-match" target="_blank" class="github-link">GitHub Repository</a></h3>
-                    <h3><a href="project-three/index.html" target="_blank" class="github-link">Card Game</a></h3>
-                </article>
-                
-<!-- Project 4 -->
-                <article class="project-card">
-                    <img src="images/to do list.png" alt="Project 4 Preview" class="project-preview">
-                    <h3>TO DO LIST</h3>
-                    <p>An incredible To-Do List to help you stay organized, never forget your tasks or appointments, and always be on top of your busy daily life.</p>
-                    <ul> 
+                    <!-- Project 4 -->
+                    <article class="project-card">
+                        <img src="images/to do list.png" alt="To Do List Preview" class="project-preview">
+                        <h3>TO DO LIST</h3>
+                        <p>An incredible To-Do List to help you stay organized, never forget your tasks or appointments, and always be on top of your busy daily life.</p>
+                        <!-- Corrected structure: h3 before ul -->
                         <h3>Technologies Used</h3>
-                         <li>HTML</li> 
-                         <li>CSS</li> 
-                         <li>JavaScript</li>
+                        <ul>
+                             <li>HTML</li>
+                             <li>CSS</li>
+                             <li>JavaScript</li>
                          </ul>
-                            
-                    <a href="https://github.com/SimosData/To-Do-List-" target="_blank" class="github-link">GitHub Repository</a>
-                    <a href="project-four/index.html" target="_blank" class="github-link">To Do List</a>
-                </article>
+                        <!-- Use p or div for links instead of h3 -->
+                        <p><a href="https://github.com/SimosData/To-Do-List-" target="_blank" class="github-link"><i class="fab fa-github"></i>&nbsp;GitHub</a></p>
+                        <p><a href="project-four/index.html" target="_blank" class="github-link">To Do List</a></p>
+                    </article>
 
-                <!-- Project 5 -->
-                <article class="project-card">
-                    <img src="images/solar system 3d.png" alt="Project 5 Preview" class="project-preview">
-                    <h3>SOLAR SYSTEM 3D</h3>
-                    <p>Come and Enjoy a 3d experience with the 3D solar system in a nice interactive way to get the feel of space!
-                        <ul> 
-                            <h3>Technologies Used</h3>
-                            <li>HTML</li> 
-                              <li>CSS</li> 
-                             <li>JavaScript</li> 
-                             </ul>
-                    </p>
-                    <a href="https://github.com/SimosData/solarsystem3dstyle" target="_blank" class="github-link">GitHub Repository</a>
-                   <h3> <a href="project-five/index.html" target="_blank" class="github-link">Solar System 3D</a></h3>
-                </article>
-
-                <!-- Project 6 -->
-                <article class="project-card">
-                    <img src="images/youtube-clone.png" alt="Project 6 Preview" class="project-preview">
-                    <h3>YOUTUBE</h3>
-                    <p>VideoPlayer with a futuristic style and video playback.
-
-                        <ul> 
-                            <h3> <li>Technologies Used</li> </h3>
-                            <li>HTML</li> 
-                              <li>CSS</li> 
-                              <li>JavaScript</li> 
-                             </ul>
-                        
-    </p>
-                    <a href="https://github.com/SimosData/YouTube-Clone" target="_blank" class="github-link">GitHub Repository</a>
-                    <a href="project-six/Youtube/index.html" target="_blank" class="github-link">YouTube</a>
-                </article>
-
-                <!-- Project 7 -->
-                <article class="project-card">
-                    <img src="images/Web-Scrapper.png" alt="Project 7 Preview" class="project-preview">
-                    <h3>WEBSCRAPPER</h3>
-                    
-                <p>A webscrapper to handle data and read files on websites by writting their address on the command line that allow it and a stealth interface.</p>
-                <ul> 
-                    <h3> Technologies Used </h3>
-                    <li>HTML</li> 
-                      <li>CSS</li> 
-                     <li>JavaScript</li> 
-                        <li> Node.js </li> 
-                        <li>Cherio</li>
-                     </ul>  
-                <a href="https://github.com/SimosData/webscrapper" target="_blank" class="github-link">GitHub Repository</a>
-                    <a href="project-seven/Webscrapper/index.html" target="_blank" class="github-link">WebScrapper</a>
-                </article>
-
-                <!-- Project 8 -->
-                <article class="project-card">
-                    <img src="images/Weather-app.png" alt="Project 8 Preview" class="project-preview">
-                    <h3>WEATHER</h3>
-                    <p>A weather app that you can search about your location based on gps and see the climate conditions and see changes</p>
-                    
-                    <p></p>
-                    
-                    <ul> 
+                    <!-- Project 5 -->
+                    <article class="project-card">
+                        <img src="images/solar system 3d.png" alt="Solar System 3D Preview" class="project-preview">
+                        <h3>SOLAR SYSTEM 3D</h3>
+                        <p>Come and Enjoy a 3d experience with the 3D solar system in a nice interactive way to get the feel of space!</p>
+                        <!-- Corrected structure: h3 before ul -->
                         <h3>Technologies Used</h3>
-                         <li>HTML</li>
-                        <li>CSS</li>
-                         <li>JavaScript</li> 
-                            <li> React </li> 
-                            <li> Node.js </li> 
+                        <ul>
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
                          </ul>
-                    
-                    <a href="https://github.com/SimosData/WeatherAPP/tree/main" target="_blank" class="github-link">GitHub Repository</a>
-                </article>
+                        <!-- Use p or div for links instead of h3 -->
+                        <p><a href="https://github.com/SimosData/solarsystem3dstyle" target="_blank" class="github-link"><i class="fab fa-github"></i>&nbsp;GitHub</a></p>
+                        <p><a href="project-five/index.html" target="_blank" class="github-link">Solar System 3D</a></p>
+                    </article>
 
-                <!-- Project 9 -->
-                <article class="project-card">
-                    <img src="images/Futuristic-3D.png" alt="Project 8 Preview" class="project-preview">
-                    <h3>Futuristic Webportfolio</h3>
-                    <p>A portfolio with 3d effects music player in the background with music controls atmosphereric vibes and projects </p>
-                    
-                    <p></p>
-
-                    <ul> 
+                    <!-- Project 6 -->
+                    <article class="project-card">
+                        <img src="images/youtube-clone.png" alt="YouTube Clone Preview" class="project-preview">
+                        <h3>YOUTUBE</h3>
+                        <p>VideoPlayer with a futuristic style and video playback.</p>
+                        <!-- Corrected structure: h3 before ul -->
                         <h3>Technologies Used</h3>
-                         <li>HTML</li>
-                        <li>CSS</li>
-                         <li>JavaScript</li> 
-                           
+                        <ul>
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
                          </ul>
-                    
+                        <!-- Use p or div for links instead of h3 -->
+                        <p><a href="https://github.com/SimosData/YouTube-Clone" target="_blank" class="github-link"><i class="fab fa-github"></i>&nbsp;GitHub</a></p>
+                        <p><a href="project-six/Youtube/index.html" target="_blank" class="github-link">YouTube</a></p>
+                    </article>
 
+                    <!-- Project 7 -->
+                    <article class="project-card">
+                        <img src="images/Web-Scrapper.png" alt="Web Scrapper Preview" class="project-preview">
+                        <h3>WEBSCRAPPER</h3>
+                        <p>A webscrapper to handle data and read files on websites by writting their address on the command line that allow it and a stealth interface.</p>
+                        <!-- Corrected structure: h3 before ul -->
+                        <h3> Technologies Used </h3>
+                        <ul>
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
+                            <li> Node.js </li>
+                            <li>Cherio</li>
+                         </ul>
+                        <!-- Use p or div for links instead of h3 -->
+                        <p><a href="https://github.com/SimosData/webscrapper" target="_blank" class="github-link"><i class="fab fa-github"></i>&nbsp;GitHub</a></p>
+                        <!-- Fixed invalid closing tag -->
+                        <p><a href="project-seven/Webscrapper/index.html" target="_blank" class="github-link">WebScrapper</a></p>
+                    </article>
 
-                    <a href="https://github.com/SimosData/Futuristic-WEBPORTFOLIO" target="_blank" class="github-link">GitHub Repository</a>
-                    <a href="https://futuristic-webportfolio.netlify.app/" target="_blank" class="github-link">Futuristic-3D-WebPortfolio</a>
-            </div>
-        </section>
+                    <!-- Project 8 -->
+                    <article class="project-card">
+                        <img src="images/Weather-app.png" alt="Weather App Preview" class="project-preview">
+                        <h3>WEATHER</h3>
+                        <p>A weather app that you can search about your location based on gps and see the climate conditions and see changes</p>
+                        <!-- Removed empty <p> tag -->
+                        <!-- Corrected structure: h3 before ul -->
+                        <h3>Technologies Used</h3>
+                        <ul>
+                             <li>HTML</li>
+                            <li>CSS</li>
+                             <li>JavaScript</li>
+                             <li> React </li>
+                             <li> Node.js </li>
+                         </ul>
+                        <!-- Use p or div for links instead of h3 -->
+                        <p><a href="https://github.com/SimosData/WeatherAPP/tree/main" target="_blank" class="github-link"><i class="fab fa-github"></i>&nbsp;GitHub</a></p>
+                    </article>
 
+                    <!-- Project 9 -->
+                    <article class="project-card">
+                        <img src="images/Futuristic-3D.png" alt="Futuristic Webportfolio Preview" class="project-preview"> <!-- Corrected alt text -->
+                        <h3>Futuristic Webportfolio</h3>
+                        <p>A portfolio with 3d effects music player in the background with music controls atmosphereric vibes and projects </p>
+                        <!-- Removed empty <p> tag -->
+                        <!-- Corrected structure: h3 before ul -->
+                        <h3>Technologies Used</h3>
+                        <ul>
+                             <li>HTML</li>
+                            <li>CSS</li>
+                             <li>JavaScript</li>
+                         </ul>
+                        <!-- Use p or div for links instead of h3 -->
+                        <p><a href="https://github.com/SimosData/Futuristic-WEBPORTFOLIO" target="_blank" class="github-link"><i class="fab fa-github"></i>&nbsp;GitHub</a></p>
+                        <p><a href="https://futuristic-webportfolio.netlify.app/" target="_blank" class="github-link">Futuristic-3D-WebPortfolio</a></p>
+                    </article> <!-- Added missing closing tag -->
 
+                </div> <!-- Closing project-grid -->
+            </section> <!-- Closing projects section -->
 
-         <!-- ================== Resume Section ================== -->
-         <section id="resume">
-            <h2>My Resume</h2>
-            <p class="resume-intro">
-               <h4> You can view my key qualifications below</h4>
-            </p>
+            <!-- Resume Section -->
+            <section id="resume">
+                <h2>My Resume</h2>
+                <!-- Removed h4 inside p, use CSS for styling -->
+                <p class="resume-intro">
+                    You can view my key qualifications below or download the full resume.
+                </p>
 
-            <!-- Option 1: Simple Download Link (Recommended) -->
-            <div class="resume-download">
-                <a href="resume/My_Resume.pdf" download="Simos_Michail_Resume.pdf" class="resume-download-link button-style">
-                    <i class="fas fa-download"></i> <!-- Optional: Icon -->
-                    Download My Resume (PDF)
-                </a>
-            </div>
-                <!-- ================== Skills Section ================== -->
+                <div class="resume-download">
+                    <a href="resume/My_Resume.pdf" download="Simos_Michail_Resume.pdf" class="resume-download-link button-style">
+                        <i class="fas fa-download"></i> Download My Resume (PDF)
+                    </a>
+                </div>
+
+                <!-- Skills Section (Nested inside Resume, consider moving it out if preferred) -->
                 <section id="skills">
                     <h2>My Skills</h2>
                     <div class="skills-container">
@@ -248,35 +241,31 @@
                                 <li>HTML5</li>
                                 <li>CSS</li>
                                 <li>JavaScript (ES6+)</li>
-                                <li>Python()</li>
-                                <li>SQL(basic)</li>
-                                <li>Bash</li> </br>
+                                <li>Python</li> <!-- Removed () -->
+                                <li>SQL (basic)</li> <!-- Added space -->
+                                <li>Bash</li> <!-- Removed <br> -->
                             </ul>
                         </div>
                         <div class="skill-category">
                             <h3>Frameworks & Libraries</h3>
                             <ul>
-                                <li>React </li>
-                                <li>Node.js </li>
-                                <li>Express </li>
-                                <li>Three.js </li>
-                                <li>Bootstrap 5 </li>
-                                <!-- Add more frameworks/libs -->
+                                <li>React</li>
+                                <li>Node.js</li>
+                                <li>Express</li>
+                                <li>Three.js</li>
+                                <li>Bootstrap 5</li>
                             </ul>
                         </div>
                         <div class="skill-category">
                             <h3>Tools & Platforms</h3>
                             <ul>
-                                <li>Git & GitHub </li>
-                                   <li>VS Code </li>
-                                <li>Docker </li>
-                                <li>MongoDB </li>
-                                <li>PostgreSQL </li>
-                                <li>Linux </li>
-                                <li>Windows </li>
-
-                            
-                                
+                                <li>Git & GitHub</li>
+                                <li>VS Code</li>
+                                <li>Docker</li>
+                                <li>MongoDB</li>
+                                <li>PostgreSQL</li>
+                                <li>Linux</li>
+                                <li>Windows</li>
                             </ul>
                         </div>
                          <div class="skill-category">
@@ -286,78 +275,41 @@
                                 <li>REST APIs</li>
                                 <li>Object-Oriented Programming (OOP)</li>
                                 <li>Agile Methodologies</li>
-                                <!-- Add more concepts -->
                             </ul>
                         </div>
                     </div>
-                </section>
-        
+                </section> <!-- Closing skills section -->
+                <!-- Optional resume details commented out -->
+            </section> <!-- Closing resume section -->
 
-                       
-                
-                            <!-- Option 2: Add key details here (Optional) -->
-                            <!--
-                            <div class="resume-details">
-                                <h3>Experience</h3>
-                                <div class="resume-entry">
-                                    <h4>Latest Role <span class="company">at Company Name</span></h4>
-                                    <p class="dates">Month Year - Present</p>
-                                    <ul>
-                                        <li>Key achievement or responsibility 1.</li>
-                                        <li>Key achievement or responsibility 2.</li>
-                                    </ul>
-                                </div>
-                                 Add more experience...
-                
-                                <h3>Education</h3>
-                                <div class="resume-entry">
-                                     <h4>Degree Name <span class="company">at University Name</span></h4>
-                                     <p class="dates">Graduated Month Year</p>
-                                </div>
-                                 Add more education...
-                            </div>
-                            -->
-                
-                        </section>
-                
-                        <!-- ================== Contact Section ================== -->
-                        <section id="contact">
-                            
-                            <!-- ... rest of your contact section ... -->
-                
-                <!-- ================== Contact Section ================== -->
-                <section id="contact">
-                    <h2>Contact</h2>
-                    <p class="contact-intro">
-                        I'm always open to discussing new projects, creative ideas, or opportunities!
-                    </p>
-                    <div class="contact-methods">
-                         <a href="mailto:simosmichail176@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-link email-link">
-                            <i class="fas fa-envelope"></i> <!-- Placeholder for icon -->
-                            simosmichail176@gmail.com
-                         </a>
-                         <a href="https://www.linkedin.com/in/simosmichail176/" target="_blank" rel="noopener noreferrer" class="contact-link linkedin-link">
-                             <i class="fab fa-linkedin"></i> <!-- Placeholder for icon -->
-                             LinkedIn Profile
-                         </a>
-                         <a href="https://github.com/SimosData" target="_blank" rel="noopener noreferrer" class="contact-link github-link-contact">
-                             <i class="fab fa-github"></i> <!-- Placeholder for icon -->
-                             GitHub Profile
-                         </a>
-                         <!-- Add other links like Twitter, Portfolio site (if different), etc. -->
-                    </div>
-                    <!-- Optional: Add a simple contact form here later -->
-                </section>
-        
-    </main>
+            <!-- Contact Section -->
+            <!-- Removed duplicate contact section wrapper -->
+            <section id="contact">
+                <h2>Contact</h2>
+                <p class="contact-intro">
+                    I'm always open to discussing new projects, creative ideas, or opportunities!
+                </p>
+                <div class="contact-methods">
+                     <a href="mailto:simosmichail176@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-link email-link">
+                        <i class="fas fa-envelope"></i> simosmichail176@gmail.com
+                     </a>
+                     <a href="https://www.linkedin.com/in/simosmichail176/" target="_blank" rel="noopener noreferrer" class="contact-link linkedin-link">
+                         <i class="fab fa-linkedin"></i> LinkedIn Profile
+                     </a>
+                     <a href="https://github.com/SimosData" target="_blank" rel="noopener noreferrer" class="contact-link github-link-contact">
+                         <i class="fab fa-github"></i> GitHub Profile
+                     </a>
+                </div>
+            </section> <!-- Closing contact section -->
+
+        </main>
+    </div> <!-- END: Wrapper Div #scrollable-content -->
 
     <footer>
-        <p>&copy; 2025 Simos Michail</p> <!-- Updated year -->
-        <!-- Add links to social media or contact info here -->
-        <!-- Example: <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a> -->
+        <p>&copy; 2024 Simos Michail</p> <!-- Updated year -->
     </footer>
 
-    <!-- Three.js Library (Import Map for ES Modules) -->
+    <!-- Scripts -->
     <script type="importmap">
         {
             "imports": {
@@ -366,8 +318,6 @@
             }
         }
     </script>
-
-    <!-- Your Custom JavaScript - MUST be type="module" -->
     <script type="module" src="main.js"></script>
 
 </body>

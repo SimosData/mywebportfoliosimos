@@ -1,642 +1,594 @@
-/* --- CSS Variables --- */
-:root {
-    /* Core Colors */
-    --background-color: #2c3e50; /* Dark Blue-Grey (Main Background) */
-    --background-darker: #233140; /* Slightly darker shade for depth */
-    --text-color: #ecf0f1;       /* Light Gray/Off-white (Default Text) */
-    --text-secondary: #bdc3c7;   /* Lighter gray for less emphasis */
-    --primary-color: #3498db;    /* Bright Blue (Accents, Links, Headers) */
-    --primary-hover: #5dade2;   /* Lighter blue for hover */
-    --secondary-color: #27ae60;  /* Green (Buttons, Highlights) */
-    --secondary-hover: #2ecc71;  /* Lighter green for hover */
-
-    /* Card & Section Backgrounds (Option: Keep them light for contrast) */
-    --card-background: #ffffff;  /* White */
-    --card-text-color: #34495e;   /* Dark Gray-Blue (Text on light cards) */
-    --card-border: #e0e0e0;      /* Light border for light cards */
-    --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on dark bg */
-    --card-hover-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-
-    /* Borders & Radius */
-    --border-light-on-dark: #4e5d6c; /* Darker border for elements on dark bg */
-    --border-radius-small: 4px;
-    --border-radius-medium: 8px;
-
-    /* Specific Element Colors */
-    --header-bg: #1f2b38;        /* Very dark blue-grey for header */
-    --header-text: #ffffff;      /* White text for header */
-    --footer-bg: #1f2b38;        /* Very dark blue-grey for footer */
-    --footer-text: var(--text-secondary);
-}
-
-/* --- Basic Reset & Body Styling --- */
+/* === Reset & Base Styles === */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-    scroll-behavior: smooth;
-    font-size: 16px; /* Base font size */
+  scroll-behavior: smooth; /* Smooth scrolling for anchor links */
 }
-
-
-
-/* Target the h1 using its new ID */
-#main-title {
-    color: red; /* Set the text color to red */
-    text-align: center; /* Keep it centered if desired */
-    font-size: 3em; /* Adjust size as needed */
-
-    /* --- Animation Setup --- */
-    /* Apply the animation: name duration timing-function iteration-count direction */
-    animation: wave-glow 0.7s ease-in-out infinite alternate;
-
-     /* --- Basic Green Glow (fallback or base) --- */
-     /* You can adjust the spread (10px) and color (lime/green) */
-     text-shadow:
-        0 0 5px rgba(0, 255, 0, 0.7), /* Inner sharp glow */
-        0 0 15px rgba(0, 255, 0, 0.5), /* Medium glow */
-        0 0 30px rgba(0, 255, 0, 0.3); /* Outer soft glow */
-}
-
-/* --- Keyframes for the Animation --- */
-@keyframes wave-glow {
-    /* Start state of the animation */
-    0% {
-        /* Less intense glow, slight upward shift */
-        text-shadow:
-            0 0 4px rgba(0, 255, 0, 0.6),
-            0 0 10px rgba(0, 255, 0, 0.4),
-            0 0 20px rgba(0, 255, 0, 0.2);
-        transform: translateY(-2px); /* Move slightly up */
-    }
-
-    /* End state of the animation (will alternate back to 0%) */
-    100% {
-        /* More intense glow, slight downward shift */
-         text-shadow:
-            0 0 8px rgba(0, 255, 0, 0.9), /* Brighter inner glow */
-            0 0 20px rgba(0, 255, 0, 0.7), /* Brighter medium glow */
-            0 0 45px rgba(0, 255, 0, 0.5); /* Brighter outer glow */
-         transform: translateY(2px); /* Move slightly down */
-    }
-}
-
-
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    line-height: 1.7;
-    color: var(--text-color); /* Default light text */
-    background-color: var(--background-color); /* Dark background */
-    padding-top: 20px;
-    overflow-x: hidden; /* Prevent horizontal scroll often caused by animations */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background-color: #1a1a2e; /* Dark background */
+  color: #e0e0e0; /* Light text color */
+  /* Prevent body scrolling if #scrollable-content handles it */
+  /* overflow: hidden; */ /* Uncomment carefully if needed */
 }
 
-/* --- General Link Styling --- */
+/* === Typography === */
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0.75rem;
+  color: #a3daff; /* Lighter blue for headings */
+  font-weight: 600;
+}
+
+h1#main-title {
+    font-size: 3.5rem; /* Keep size for impact */
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #f5f5f5; /* Base color - slightly off-white works well */
+    /* Set initial text-shadow state */
+    text-shadow:
+        /* --- 3D Depth (Dark Neutral/Red) --- */
+        1px 1px 1px #500,
+        2px 2px 1px #300,
+        3px 3px 1px #100,
+
+        /* --- Red Glow --- */
+        0 0 5px #ff4d4d,  /* Lighter red */
+        0 0 15px #ff0000, /* Bright red */
+        0 0 25px #ff0000, /* Intense red */
+
+        /* --- Blue Glow --- */
+        0 0 5px #4da6ff,  /* Lighter blue */
+        0 0 15px #007bff, /* Bright blue */
+        0 0 25px #007bff, /* Intense blue */
+
+        /* --- Sharp Edge --- */
+        0 0 8px #ffffff; /* White edge */
+
+    /* Apply the flickering animation */
+    animation: electric-bicolor-flicker 1.5s infinite alternate ease-in-out;
+}
+
+/* Keyframes for the Blue/Red flicker animation */
+@keyframes electric-bicolor-flicker {
+    0% { /* Start state */
+        text-shadow:
+            /* Depth */ 1px 1px 1px #500, 2px 2px 1px #300, 3px 3px 1px #100,
+            /* Red Glow */ 0 0 5px #ff4d4d, 0 0 15px #ff0000, 0 0 25px #e60000,
+            /* Blue Glow */ 0 0 6px #4da6ff, 0 0 16px #007bff, 0 0 28px #0056b3,
+            /* Edge */ 0 0 7px #ffffff;
+    }
+    50% { /* Mid state - slightly different glow intensities */
+        text-shadow:
+            /* Depth */ 1px 1px 1px #500, 2px 2px 1px #300, 3px 3px 1px #100,
+            /* Red Glow */ 0 0 7px #ff4d4d, 0 0 18px #ff0000, 0 0 30px #e60000,
+            /* Blue Glow */ 0 0 4px #4da6ff, 0 0 13px #007bff, 0 0 22px #0056b3,
+            /* Edge */ 0 0 9px #ffffff;
+    }
+    100% { /* End state - back towards start but slightly different */
+        text-shadow:
+            /* Depth */ 1px 1px 1px #500, 2px 2px 1px #300, 3px 3px 1px #100,
+            /* Red Glow */ 0 0 4px #ff4d4d, 0 0 13px #ff0000, 0 0 22px #e60000,
+            /* Blue Glow */ 0 0 7px #4da6ff, 0 0 18px #007bff, 0 0 30px #0056b3,
+            /* Edge */ 0 0 6px #ffffff;
+    }
+}
+
+
+
+h2 {
+    font-size: 2rem;
+    border-bottom: 2px solid #3498db; /* Blue underline for section titles */
+    padding-bottom: 0.3rem;
+    margin-bottom: 1.5rem;
+    color: #7cc5ff; /* Slightly different blue */
+}
+
+h3 {
+    font-size: 1.4rem;
+    color: #63b3ed; /* Another shade of blue */
+}
+
+p {
+  margin-bottom: 1rem;
+  color: #c0c0c0; /* Slightly dimmer text for paragraphs */
+}
+
 a {
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: color 0.2s ease;
+  color: #63b3ed; /* Link color */
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 a:hover {
-    color: var(--primary-hover);
-    text-decoration: underline;
+  color: #a3daff; /* Lighter link color on hover */
+  text-decoration: underline;
 }
 
-/* --- Headings --- */
-h1, h2, h3, h4, h5, h6 {
-    color: var(--header-text); /* Default to white/light for headings */
+ul {
+    list-style: none; /* Remove default bullets */
+    padding-left: 0; /* Remove default padding */
     margin-bottom: 1rem;
-    line-height: 1.3;
 }
 
-h1 { font-size: 2.8rem; font-weight: 600; }
-h2 { font-size: 2.2rem; font-weight: 600; }
-h3 { font-size: 1.5rem; font-weight: 600; } /* Adjusted default h3 size */
-h4 { font-size: 1.2rem; font-weight: 600; }
+li {
+    margin-bottom: 0.4rem;
+    padding-left: 1.2em; /* Add space for custom bullet/icon */
+    position: relative;
+}
 
-/* --- Header Styling --- */
+/* Optional: Add a custom bullet style */
+li::before {
+    content: '»'; /* Or use Font Awesome icons */
+    position: absolute;
+    left: 0;
+    color: #3498db;
+    font-weight: bold;
+}
+
+/* === Layout === */
 header {
-    background-color: var(--header-bg);
-    color: var(--header-text);
-    padding: 2.5rem 1rem; /* Slightly more padding */
-    text-align: center;
-    margin-bottom: 50px;
-    border-bottom: 6px solid var(--primary-color); /* Use primary blue for border */
-}
-
-header h1 {
-    margin-bottom: 0.75rem;
+  background: linear-gradient(to right, #1a1a2e, #16222a); /* Gradient background */
+  color: #fff;
+  padding: 2rem 1rem 1rem 1rem;
+  text-align: center;
+  border-bottom: 3px solid #3498db;
 }
 
 header p {
-    font-size: 1.15rem;
-    color: var(--text-secondary); /* Use secondary light text color */
-    max-width: 650px; /* Slightly wider */
-    margin: 0 auto;
+    color: #e0e0e0;
+    font-size: 1.1rem;
 }
 
-/* --- Main Content Area --- */
-main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+nav#navbar {
+  background-color: #1f2b38; /* Slightly lighter dark shade */
+  padding: 0.8rem 0;
+  position: sticky; /* Make navbar sticky */
+  top: 0; /* Stick to the top */
+  z-index: 1000; /* Ensure it's above other content */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-
-
-/* --- Section Base Styling --- */
-section {
-    margin-bottom: 70px; /* Increased spacing */
-    padding: 40px 30px; /* Increased padding */
-    /* Option 1: Transparent background to show body color */
-    background-color: transparent;
-    /* Option 2: Slightly different dark background */
-    /* background-color: var(--background-darker); */
-    /* Option 3: Keep sections light (like cards) */
-    /* background-color: var(--card-background); */
-    /* color: var(--card-text-color); */ /* Required if using light background */
-    /* border-radius: var(--border-radius-medium); */ /* Add if using non-transparent bg */
-    /* box-shadow: var(--card-shadow); */ /* Add if using non-transparent bg */
+nav#navbar ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0; /* Remove bottom margin for ul inside nav */
 }
 
-section h2 {
-    text-align: center;
-    margin-bottom: 50px; /* More space below title */
-    color: var(--header-text); /* Ensure section titles are light */
-    position: relative;
-    padding-bottom: 15px;
+nav#navbar ul li {
+  margin: 0 1.5rem;
 }
 
-/* Underline effect for section titles */
-section h2::after {
+nav#navbar ul li::before {
+    content: none; /* Remove default bullet style in nav */
+}
+
+nav#navbar ul li a {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+nav#navbar ul li a::after {
     content: '';
     position: absolute;
+    width: 0;
+    height: 2px;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 80px; /* Slightly wider */
-    height: 4px;
-    background-color: var(--primary-color); /* Use primary blue */
-    border-radius: 2px;
+    background-color: #3498db;
+    transition: width 0.3s ease;
 }
 
-
-
-/* --- About Me Section --- */
-#about .about-content {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    flex-wrap: wrap;
-    justify-content: center;
-    perspective: 800px; /* For profile pic 3D effect */
+nav#navbar ul li a:hover,
+nav#navbar ul li a:focus {
+  color: #ffffff;
 }
 
-#about .profile-pic {
-    width: 180px;
-    height: 220px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 5px solid var(--text-secondary); /* Use secondary light text for border */
-    box-shadow: 0 0 15px rgb(0, 47, 254), /* Red glow */
-                0 0 25px rgba(255, 0, 0, 0.4),
-                0 0 35px rgba(255, 0, 0, 0.2);
-    flex-shrink: 0;
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                box-shadow 0.4s ease-in-out;
-}
-
-#about .profile-pic:hover {
-    transform: rotateY(15deg) scale(1.05);
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.8), /* Brighter red glow */
-                0 0 35px rgba(255, 0, 0, 0.6),
-                0 0 50px rgba(255, 0, 0, 0.4);
-}
-
-#about .about-text { /* Use a class for the text container */
-    flex-basis: 500px;
-    flex-grow: 1;
-    text-align: left;
-}
-
-#about .about-text p {
-    font-weight: bold; /* Keep the bold style */
-    color: var(--text-color); /* Ensure text is light */
-    margin-bottom: 1rem; /* Add spacing between paragraphs if needed */
-}
-
-/* --- Projects Section --- */
-#projects {
-    /* Uses base section styles */
-}
-
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 35px;
-    perspective: 1200px; /* For card 3D effect */
-}
-
-.project-card {
-    background-color: var(--card-background); /* Light card background */
-    color: var(--card-text-color); /* Dark text for light card */
-    border: 1px solid var(--card-border);
-    border-radius: var(--border-radius-medium);
-    padding: 0; /* Padding applied to inner content */
-    box-shadow: var(--card-shadow);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    transform-style: preserve-3d;
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-                box-shadow 0.5s ease-out;
-}
-
-.project-card:hover {
-    transform: rotateY(10deg) rotateX(4deg) translateZ(20px) scale(1.03);
-    box-shadow: var(--card-hover-shadow);
-}
-
-.project-preview {
+nav#navbar ul li a:hover::after,
+nav#navbar ul li a:focus::after {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
-    display: block;
-    background-color: var(--text-secondary); /* Placeholder color */
 }
 
-.project-card .card-content {
-    padding: 25px; /* Increased padding */
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+main {
+  /* Padding will be applied to sections inside */
 }
 
-.project-card h3 {
-    margin-bottom: 12px;
-    color: var(--primary-color); /* Use primary blue for card titles */
-    font-size: 1.3rem;
+section {
+  padding: 2.5rem 2rem; /* Padding around each section */
+  margin-bottom: 1.5rem; /* Space between sections */
+  background-color: rgba(31, 43, 56, 0.5); /* Slightly transparent section background */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.project-card p {
-    flex-grow: 1;
-    margin-bottom: 20px;
-    font-size: 1rem;
-    line-height: 1.6;
-    color: var(--card-text-color); /* Ensure paragraph text is dark */
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 1rem; /* Space above footer */
+  background-color: #1f2b38; /* Match navbar */
+  color: #aaa;
+  font-size: 0.9rem;
+  border-top: 1px solid #333;
 }
 
-.github-link { /* Button style for project cards */
-    display: inline-block;
-    background-color: var(--secondary-color); /* Use green */
-    color: var(--header-text); /* White text */
-    padding: 12px 22px;
-    text-decoration: none;
-    border-radius: var(--border-radius-small);
-    text-align: center;
-    transition: background-color 0.25s ease, transform 0.15s ease, box-shadow 0.2s ease;
-    margin-top: auto;
-    font-weight: 500;
-    align-self: flex-start;
+/* === Scrollable Content Container === */
+#scrollable-content {
+  height: calc(100vh - 150px); /* Adjust height: Viewport height minus approx header/nav/footer height */
+  /* A fixed height like 80vh or 85vh is also fine: */
+  /* height: 85vh; */
+  overflow-y: auto; /* Show scrollbar only when content overflows */
+  padding: 0 1rem; /* Add some horizontal padding inside the scroll area */
 }
 
-.github-link:hover {
-    background-color: var(--secondary-hover);
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    text-decoration: none; /* Remove underline on button hover */
-    color: var(--header-text);
+/* --- Custom Scrollbar Styles for the Inner Container --- */
+#scrollable-content::-webkit-scrollbar {
+    width: 10px;
 }
 
-.github-link:active {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+#scrollable-content::-webkit-scrollbar-track {
+    background: #1a2530; /* Darker track */
+    border-radius: 5px;
+    margin: 5px 0; /* Add margin to top/bottom of track */
 }
 
-/* --- Skills Section --- */
-#skills {
-    background-color: var(--background-darker); /* Use darker background for contrast */
-    padding: 60px 20px;
-    text-align: center;
-    perspective: 1000px;
-    transform-style: preserve-3d;
-    /* Optional slight tilt for the whole section */
-    /* transform: rotateX(2deg) rotateY(-1deg); */
-    /* transition: transform 0.5s ease-out; */
-    border-radius: var(--border-radius-medium); /* Add radius if using bg color */
-}
-/* #skills:hover { transform: rotateX(0deg) rotateY(0deg); } */
-
-.skills-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 35px;
-    margin-top: 20px;
-    transform-style: preserve-3d; /* Preserve 3D for children */
+#scrollable-content::-webkit-scrollbar-thumb {
+    background-color: #4a90e2; /* Brighter blue thumb */
+    border-radius: 5px;
+    border: 2px solid #1a2530; /* Match track color */
 }
 
-.skill-category {
-    background-color: var(--card-background); /* Light background */
-    color: var(--card-text-color); /* Dark text */
-    padding: 25px;
-    border-radius: var(--border-radius-medium);
-    border: 1px solid var(--card-border);
-    box-shadow: var(--card-shadow);
-    text-align: left;
-    will-change: transform, box-shadow;
-    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
-                box-shadow 0.3s ease-out;
-    /* transform: rotateX(2deg); */ /* Optional initial tilt */
+#scrollable-content::-webkit-scrollbar-thumb:hover {
+    background-color: #357abd; /* Darker blue on hover */
 }
 
-.skill-category:hover {
-    transform: translateY(-12px) rotateX(4deg) scale(1.02);
-    box-shadow: var(--card-hover-shadow);
+/* Firefox scrollbar styling for the inner container */
+#scrollable-content {
+  scrollbar-width: thin;
+  scrollbar-color: #4a90e2 #1a2530; /* thumb color track color */
 }
 
-.skill-category h3 {
-    color: var(--primary-color); /* Blue title */
-    margin-bottom: 15px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid var(--primary-color);
-    font-size: 1.2rem;
+/* === About Me Section === */
+.about-content {
+  display: flex;
+  align-items: center;
+  gap: 2rem; /* Space between image and text */
+  perspective: 800px; /* Added for 3D effect */
 }
 
-.skill-category ul {
-    list-style: none;
-    padding-left: 0;
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #3498db;
+  /* Slightly softer base shadow */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 5px rgba(52, 152, 219, 0.4);
+  /* Added transition for smooth hover effect */
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.4s ease-out;
+  /* Ensure transform-style is preserved if needed, though usually not for simple transforms */
+  /* transform-style: preserve-3d; */
 }
 
-.skill-category li {
-    margin-bottom: 10px;
-    padding: 8px 12px;
-    background-color: #f8f9fa; /* Slightly off-white for list items */
-    color: var(--card-text-color); /* Ensure dark text */
-    border-radius: var(--border-radius-small);
-    border-left: 4px solid var(--secondary-color); /* Green accent */
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+.profile-pic:hover {
+  /* 3D Transform: Scale up slightly and rotate subtly */
+  transform: scale(1.15) rotateY(15deg) translateZ(20px);
+  /* Enhanced Glow Effect */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), /* Larger base shadow */
+              0 0 15px rgba(52, 152, 219, 0.7), /* Brighter inner glow */
+              0 0 30px rgba(52, 152, 219, 0.5); /* Wider outer glow */
+  cursor: pointer; /* Indicate interactivity */
 }
 
-.skill-category li:hover {
-    transform: translateX(5px);
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.08);
-}
 
-/* --- Three.js Showcase Section --- */
+
+/* === Three.js Showcase === */
 #three-showcase {
-    /* Uses base section styles */
+    padding: 0; /* Remove padding if canvas should fill */
+    background-color: transparent; /* Or specific background */
+    box-shadow: none;
+    margin-bottom: 1.5rem;
 }
-
 #three-container {
     width: 100%;
-    max-width: 700px;
-    height: 450px;
-    margin: 0 auto 25px auto;
-    background-color: #0e0d0d; /* Very dark background for canvas */
-    border-radius: var(--border-radius-small);
-    overflow: hidden;
-    position: relative;
-    border: 1px solid var(--border-light-on-dark); /* Subtle border */
+    height: 400px; /* Adjust height as needed */
+    margin: 0 auto; /* Center if needed */
+    overflow: hidden; /* Hide potential canvas overflow */
+    border-radius: 8px; /* Match section radius */
 }
 
 #three-canvas {
-    display: block;
+    display: block; /* Remove extra space below canvas */
     width: 100%;
     height: 100%;
-    outline: none;
 }
 
-.three-caption {
-    text-align: center;
-    color: var(--text-secondary); /* Use secondary light text */
-    font-style: italic;
-    margin-top: 15px;
+/* === Projects Section === */
+.project-grid {
+  display: grid;
+  /* Adjust grid columns for responsiveness */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem; /* Space between project cards */
 }
 
-/* --- Contact Section --- */
-#contact {
-    /* Uses base section styles */
+.project-card {
+  background-color: #1f2b38; /* Card background */
+  border-radius: 8px;
+  overflow: hidden; /* Ensure image corners are rounded */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  padding: 1.5rem;
 }
 
-.contact-intro {
-    text-align: center;
-    max-width: 700px;
-    margin: 0 auto 40px auto;
+.project-card:hover {
+  transform: translateY(-5px); /* Slight lift effect */
+  box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3); /* Enhanced shadow on hover */
+}
+
+.project-preview {
+  width: 100%;
+  height: 200px; /* Fixed height for consistency */
+  object-fit: cover; /* Cover the area, might crop */
+  margin-bottom: 1rem;
+  border-radius: 4px; /* Slightly rounded corners for image */
+  border: 1px solid #333;
+}
+
+.project-card h3 { /* Project Title */
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.project-card h3 + p { /* Description */
+    flex-grow: 1; /* Allow description to take up available space */
+    margin-bottom: 1rem;
+    color: #b0b0b0;
+}
+
+.project-card h3:nth-of-type(2) { /* "Technologies Used" heading */
     font-size: 1.1rem;
-    color: var(--text-secondary); /* Use secondary light text */
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: #a3daff;
+    border-top: 1px solid #333;
+    padding-top: 0.8rem;
 }
 
-.contact-methods {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
+.project-card ul {
+    margin-bottom: 1rem;
 }
 
-.contact-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 25px;
-    border-radius: var(--border-radius-medium);
+.project-card ul li {
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+    padding-left: 1em;
+}
+.project-card ul li::before {
+    content: '•'; /* Simple bullet */
+    color: #63b3ed;
+    font-size: 1.2em;
+    line-height: 1;
+}
+
+.project-card p a { /* Links at the bottom */
+    display: inline-block; /* Allow margin/padding */
+    margin-top: 0.5rem;
+    margin-right: 1rem; /* Space between links if on same line */
+    padding: 0.3rem 0.8rem;
+    border: 1px solid #3498db;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.project-card p a:hover {
+    background-color: #3498db;
+    color: #ffffff;
     text-decoration: none;
+}
+
+.project-card p a i { /* Icon inside link */
+    margin-right: 0.4em;
+}
+
+
+/* === Resume & Skills Section === */
+.resume-intro {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.resume-download {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.button-style, /* Generic button style */
+.resume-download-link {
+    display: inline-block;
+    background-color: #3498db;
+    color: #ffffff;
+    padding: 0.8rem 1.8rem;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
     font-weight: 500;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
-    box-shadow: var(--card-shadow);
-    min-width: 180px;
-    justify-content: center;
-    color: var(--header-text); /* Default white text for buttons */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.contact-link i {
-    font-size: 1.3em;
+.button-style:hover,
+.resume-download-link:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+    color: #ffffff;
+    transform: translateY(-2px);
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Specific link styles */
-.email-link {
-    background-color: var(--primary-color); /* Blue */
-}
-.email-link:hover {
-    background-color: var(--primary-hover);
-    transform: translateY(-3px);
-    box-shadow: var(--card-hover-shadow);
-    text-decoration: none; color: var(--header-text);
+.resume-download-link i {
+    margin-right: 0.5rem;
 }
 
-.linkedin-link {
-    background-color: #0077b5; /* LinkedIn blue */
-}
-.linkedin-link:hover {
-    background-color: #005582;
-    transform: translateY(-3px);
-    box-shadow: var(--card-hover-shadow);
-    text-decoration: none; color: var(--header-text);
-}
-
-.github-link-contact { /* Specific class for contact GitHub button */
-    background-color: #333; /* GitHub dark gray */
-}
-.github-link-contact:hover {
-    background-color: #111;
-    transform: translateY(-3px);
-    box-shadow: var(--card-hover-shadow);
-    text-decoration: none; color: var(--header-text);
-}
-
-.contact-link:active {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-}
-
-/* --- Footer Styling --- */
-footer {
-    text-align: center;
-    margin-top: 70px;
-    padding: 30px 20px;
-    border-top: 1px solid var(--border-light-on-dark); /* Use darker border */
-    color: var(--footer-text);
-    background-color: var(--footer-bg);
-}
-
-footer p {
-    margin-bottom: 10px;
-}
-
-footer a {
-    color: var(--primary-color); /* Blue links */
-    margin: 0 10px;
-}
-
-footer a:hover {
-    color: var(--primary-hover); /* Lighter blue hover */
-    text-decoration: underline;
-}
-
-/* --- Responsive Adjustments --- */
-
-@media (max-width: 768px) {
-    h1 { font-size: 2.4rem; }
-    h2 { font-size: 1.9rem; }
-    section { padding: 30px 20px; }
-
-    /* Simplify 3D effects */
-    #about .profile-pic:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 0, 0, 0.8), 0 0 35px rgba(255, 0, 0, 0.6), 0 0 50px rgba(255, 0, 0, 0.4); }
-    .project-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: var(--card-hover-shadow); }
-    #skills { perspective: none; transform: none; }
-    .skill-category:hover { transform: translateY(-8px); box-shadow: var(--card-hover-shadow); }
-
-    #about .about-content {
-        flex-direction: column;
-        text-align: center;
-        perspective: none;
-    }
-     #about .about-text {
-        text-align: center;
-        flex-basis: auto;
-    }
-}
-
-@media (max-width: 480px) {
-    body { padding-top: 10px; }
-    header { padding: 1.5rem 1rem; margin-bottom: 30px; }
-    h1 { font-size: 2rem; }
-    h2 { font-size: 1.6rem; }
-    section { margin-bottom: 40px; padding: 20px 15px; }
-    section h2 { margin-bottom: 30px; }
-    section h2::after { width: 60px; }
-
-    .project-grid { gap: 20px; }
-    .skills-container { gap: 20px; }
-    .skill-category { padding: 20px; }
-
-    .contact-methods {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-    }
-    .contact-link {
-        width: 90%;
-        max-width: 300px;
-        padding: 10px 20px;
-    }
-
-    footer { margin-top: 40px; padding: 20px 15px; }
-}
-/* --- Skills Section --- */
 #skills {
-    background-color: var(--background-darker); /* Use darker background for contrast */
-    padding: 60px 20px;
-    text-align: center;
-    perspective: 1000px;
-    transform-style: preserve-3d;
-    border-radius: var(--border-radius-medium); /* Add radius if using bg color */
-    /* Ensure overflow isn't accidentally hidden (though 'visible' is default) */
-    overflow: visible;
+    margin-top: 2rem; /* Space above skills within resume section */
+    padding-top: 2rem;
+    border-top: 1px solid #333; /* Separator line */
 }
 
 .skills-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 35px;
-    margin-top: 20px;
-    transform-style: preserve-3d; /* Preserve 3D for children */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
 }
 
-.skill-category {
-    background-color: var(--card-background); /* Light background */
-    color: var(--card-text-color); /* Dark text */
-    padding: 25px;
-    border-radius: var(--border-radius-medium);
-    border: 1px solid var(--card-border);
-    box-shadow: var(--card-shadow);
-    text-align: left;
-    will-change: transform, box-shadow;
-    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
-                box-shadow 0.3s ease-out;
-    /* Add position relative and base z-index */
-    position: relative;
-    z-index: 1;
-}
-
-.skill-category:hover {
-    /* Add translateZ and increase z-index */
-    transform: translateY(-12px) rotateX(4deg) scale(1.02) translateZ(20px); /* Added translateZ */
-    box-shadow: var(--card-hover-shadow);
-    z-index: 10; /* Higher z-index on hover */
-}
-
-/* Keep the rest of the .skill-category styles */
 .skill-category h3 {
-    color: var(--primary-color); /* Blue title */
-    margin-bottom: 15px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid var(--primary-color);
-    font-size: 1.2rem;
+  color: #a3daff;
+  margin-bottom: 0.8rem;
+  font-size: 1.2rem;
 }
 
-.skill-category ul {
-    list-style: none;
-    padding-left: 0;
+.skill-category ul li {
+    font-size: 0.95rem;
+    padding-left: 1em;
+}
+.skill-category ul li::before {
+    content: '✓'; /* Checkmark */
+    color: #63b3ed;
 }
 
-.skill-category li {
-    margin-bottom: 10px;
-    padding: 8px 12px;
-    background-color: #f8f9fa; /* Slightly off-white for list items */
-    color: var(--card-text-color); /* Ensure dark text */
-    border-radius: var(--border-radius-small);
-    border-left: 4px solid var(--secondary-color); /* Green accent */
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+/* === Contact Section === */
+.contact-intro {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
 }
 
-.skill-category li:hover {
-    transform: translateX(5px);
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.08);
+.contact-methods {
+  display: flex;
+  flex-direction: column; /* Stack links vertically */
+  align-items: center; /* Center links horizontally */
+  gap: 1rem; /* Space between contact links */
 }
 
-/* --- Rest of your CSS --- */
+.contact-link {
+  display: inline-flex; /* Align icon and text */
+  align-items: center;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid transparent; /* Placeholder for hover effect */
+  border-radius: 5px;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  min-width: 250px; /* Give links a minimum width */
+  justify-content: center; /* Center content within the link */
+}
+
+.contact-link i {
+  margin-right: 0.8rem; /* Space between icon and text */
+  font-size: 1.2em; /* Make icons slightly larger */
+}
+
+.contact-link:hover {
+  background-color: rgba(52, 152, 219, 0.1); /* Subtle background on hover */
+  border-color: #3498db;
+  color: #a3daff;
+  text-decoration: none;
+}
+
+/* Specific hover colors (optional) */
+.email-link:hover { border-color: #e74c3c; color: #e74c3c; }
+.linkedin-link:hover { border-color: #0077b5; color: #0077b5; }
+.github-link-contact:hover { border-color: #ffffff; color: #ffffff; }
+
+
+/* === Responsive Design (Basic Example) === */
+@media (max-width: 768px) {
+  h1#main-title {
+    font-size: 2.2rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  nav#navbar ul {
+    flex-direction: column; /* Stack nav items vertically */
+    align-items: center;
+  }
+
+  nav#navbar ul li {
+    margin: 0.5rem 0; /* Adjust spacing for vertical layout */
+  }
+
+  #scrollable-content {
+      /* Adjust height calculation if header/nav height changes significantly */
+      height: calc(100vh - 200px); /* Example adjustment */
+      padding: 0 0.5rem; /* Reduce padding */
+  }
+
+  .about-content {
+    flex-direction: column; /* Stack image and text */
+    text-align: center;
+  }
+
+  .profile-pic {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 1rem;
+  }
+
+  section {
+    padding: 2rem 1rem; /* Reduce section padding */
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr; /* Single column layout */
+  }
+
+  .skills-container {
+    grid-template-columns: 1fr; /* Single column layout */
+  }
+
+  .contact-methods {
+      align-items: stretch; /* Make links full width */
+  }
+  .contact-link {
+      min-width: unset; /* Remove min-width */
+      justify-content: flex-start; /* Align text left */
+      padding: 0.8rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+    h1#main-title {
+        font-size: 1.8rem;
+    }
+    header p {
+        font-size: 1rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+    .button-style,
+    .resume-download-link {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
+
