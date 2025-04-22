@@ -1,0 +1,76 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: rgb(58, 58, 58);
+  background: linear-gradient(rgb(65, 88, 208) 0%, 
+  rgb(200, 80, 192) 46%, rgb(255, 204, 112) 100%);
+  ;
+}
+
+.weather-app {
+  width: 700px;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.53);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0,0,0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.36);
+}
+
+.weather-app .cards-container {
+  border-top: 1px solid rgb(0,0,0);
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.weather-app .card-container {
+  width: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.weather-app .today-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+}
+
+.weather-app .unit-container {
+  margin: 20px 10px 0 10px;
+}
+
+.weather-app .unit-container button {
+  border: none;
+  background-color: transparent;
+  font-size: 20px;
+  padding: 20px 5px 0 5px;
+}
+
+.weather-app .today-container svg {
+  transform: scale(7);
+  margin: 40px 40px 0 0;
+}
+
+.weather-app .today-container svg path {
+  fill: rgb(253, 245, 131);
+}
+
+
+.weather-app  .icon-container {
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.weather-app p {
+ margin: 10px;
+}
+
+.greyed {
+  color: rgb(255, 255, 255);
+}
