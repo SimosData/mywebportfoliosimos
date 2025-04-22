@@ -304,3 +304,41 @@ onWindowResize(); // Set initial size correctly
 animate(); // Start the animation loop
 
 console.log("Three.js scene initialized with fire particle effect.");
+
+// Wait for the DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', (event) => {
+
+    const navbar = document.getElementById('navbar');
+    if (!navbar) {
+        console.error("Navbar element not found!");
+        return; // Exit if navbar doesn't exist
+    }
+
+    let lastScrollTop = 0;
+    const delta = 5; // Minimum scroll distance to trigger hide/show
+    const navbarHeight = navbar.offsetHeight; // Get the actual height of the navbar
+
+    window.addEventListener('scroll', function() {
+        let currentScroll = window.scrollY || document.documentElement.scrollTop;
+
+        // Make sure user scrolled more than delta
+        if (Math.abs(lastScrollTop - currentScroll) <= delta) {
+            return;
+        }
+
+        // If scrolled down and past the navbar height, add the hidden class.
+        if (currentScroll > lastScrollTop && currentScroll > navbarHeight) {
+            // Scroll Down
+            navbar.classList.add('navbar-hidden');
+        } else {
+            // Scroll Up or at the top
+            // If user scrolls up, remove the hidden class.
+            if (currentScroll + window.innerHeight < document.documentElement.scrollHeight) {
+                 navbar.classList.remove('navbar-hidden');
+            }
+        }
+
+        // Update last scroll position
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
+    }, false);
+});

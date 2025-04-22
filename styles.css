@@ -146,6 +146,30 @@ header p {
     font-size: 1.1rem;
 }
 
+/* Add a transition to the navbar for smooth hiding/showing */
+#navbar {
+    /* Keep your existing styles here */
+    position: sticky; /* Make sure it's sticky or fixed */
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure it's above other content */
+    transition: top 0.3s ease-in-out; /* Smooth transition for the 'top' property */
+    /* Add any other existing #navbar styles */
+    background-color: #333; /* Example background */
+    padding: 10px 0; /* Example padding */
+}
+
+/* Style for when the navbar is hidden */
+#navbar.navbar-hidden {
+    top: -100px; /* Move the navbar completely above the viewport. Adjust '-100px' if your navbar height is different */
+}
+
+/* Optional: Add some padding to the top of the main content
+   to prevent it from jumping up suddenly when the navbar hides */
+main {
+    padding-top: 70px; /* Adjust this value based on your navbar's height + desired spacing */
+}
+
 nav#navbar {
   background-color: #1f2b38; /* Slightly lighter dark shade */
   padding: 0.8rem 0;
@@ -223,41 +247,7 @@ footer {
   border-top: 1px solid #333;
 }
 
-/* === Scrollable Content Container === */
-#scrollable-content {
-  height: calc(100vh - 150px); /* Adjust height: Viewport height minus approx header/nav/footer height */
-  /* A fixed height like 80vh or 85vh is also fine: */
-  /* height: 85vh; */
-  overflow-y: auto; /* Show scrollbar only when content overflows */
-  padding: 0 1rem; /* Add some horizontal padding inside the scroll area */
-}
 
-/* --- Custom Scrollbar Styles for the Inner Container --- */
-#scrollable-content::-webkit-scrollbar {
-    width: 10px;
-}
-
-#scrollable-content::-webkit-scrollbar-track {
-    background: #1a2530; /* Darker track */
-    border-radius: 5px;
-    margin: 5px 0; /* Add margin to top/bottom of track */
-}
-
-#scrollable-content::-webkit-scrollbar-thumb {
-    background-color: #4a90e2; /* Brighter blue thumb */
-    border-radius: 5px;
-    border: 2px solid #1a2530; /* Match track color */
-}
-
-#scrollable-content::-webkit-scrollbar-thumb:hover {
-    background-color: #357abd; /* Darker blue on hover */
-}
-
-/* Firefox scrollbar styling for the inner container */
-#scrollable-content {
-  scrollbar-width: thin;
-  scrollbar-color: #4a90e2 #1a2530; /* thumb color track color */
-}
 
 /* === About Me Section === */
 .about-content {
@@ -302,12 +292,14 @@ footer {
     margin-bottom: 1.5rem;
 }
 #three-container {
-    width: 100%;
-    height: 400px; /* Adjust height as needed */
-    margin: 0 auto; /* Center if needed */
+    width: 80%; /* Make it narrower than the full section width */
+    max-width: 700px; /* Optional: Set a maximum pixel width */
+    height: 300px; /* Reduced height from 400px */
+    margin: 0 auto; /* Center the container horizontally */
     overflow: hidden; /* Hide potential canvas overflow */
     border-radius: 8px; /* Match section radius */
 }
+
 
 #three-canvas {
     display: block; /* Remove extra space below canvas */

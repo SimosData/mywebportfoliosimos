@@ -22,291 +22,265 @@
             <li><a href="#resume">Resume</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-    </nav> <!-- Added missing closing nav tag -->
+    </nav>
 
-    <!-- NEW: Wrapper Div for Scrollable Content -->
-    <div id="scrollable-content">
-        <main>
-            <!-- About Me Section -->
-            <section id="about">
-                <h2>About Me</h2>
-                <div class="about-content">
-                    <img src="images/your-photo.jpg" alt="Simos Michail" class="profile-pic"> <!-- Updated alt text -->
-                    <!-- Removed <center>, use CSS for centering if needed -->
-                    <p>
-                        Hello! I'm Simos, a passionate FrontEnd Developer / Software Developer based in Limassol.<br>
-                        I love building creative and functional web applications. I enjoy coding and creating beautiful, user friendly interfaces.<br><br>
-                        I have a strong foundation in HTML, CSS, and JavaScript. I'm always eager to learn new technologies and improve my skills.<br><br>
-                        When I'm not coding, I enjoy taking a walk by the sea also reading about new technologies.
-                    </p>
-                </div>
-            </section>
-
-            <!-- Three.js Canvas Container -->
-            <section id="three-showcase">
-                 <div id="three-container">
-                     <canvas id="three-canvas"></canvas>
-                 </div>
-            </section>
-
-            <!-- Projects Section -->
-            <section id="projects">
-                <h2>Projects</h2>
-                <div class="project-grid">
-
-                    <!-- Project 1 -->
-                    <article class="project-card">
-                        <img src="images/realestate-preview.png" alt="RealEstate Preview" class="project-preview">
-                        <h3>REAL ESTATE</h3>
-                        <p> A modern real estate website with listings, gallery, about, and contact pages.</p>
-                        <!-- Corrected structure: h3 before ul -->
-                        <h3>Technologies Used</h3>
-                        <ul>
-                            <li>HTML</li>
-                            <li>CSS</li>
-                        </ul>
-                        <!-- Use p or div for links instead of h3 -->
-                        <p><a href ="https://github.com/SimosData/realestate-website" target="_blank" class="github-link"><i class="fab fa-github"></i>&nbsp;GitHub</a></p>
-                        <p><a href="realestate/index.html" target="_blank" class="github-link">Real Estate Website</a></p>
-                    </article>
-
-                    <!-- Project 2 -->
-                    <article class="project-card">
-                        <img src="images/watchstore-preview.png" alt="Watchstore Preview" class="project-preview">
-                        <h3>WATCH STORE</h3>
-                        <p>An elegant watch store that sells high-quality watches for every occasion and provides a wonderful experience of elegance and beauty.</p>
-                        <!-- Corrected structure: h3 before ul -->
-                        <h3>Technologies Used</h3>
-                        <ul>
-                           <li>HTML</li>
-                           <li>CSS</li> <!-- Fixed closing tag -->
-                        </ul>
-                        <!-- Use p or div for links instead of h3 -->
-                        <p><a href="https://github.com/SimosData/watchstore-website" target="_blank" class="github-link"><i class="fab fa-github"></i>&nbsp;GitHub</a></p>
-                        <p><a href="project-two/index.html" target="_blank" class="github-link">Watchstore</a></p>
-                    </article>
-
-                    <!-- Project 3 -->
-                    <article class="project-card">
-                        <img src="images/card-game.png" alt="Card Game Preview" class="project-preview">
-                        <h3>CARD GAME</h3>
-                        <p>A fun memory card game to keep you busy during moments of relaxation or casual fun. A futuristic card memory game with lots of features and a great design.</p>
-                        <!-- Corrected structure: h3 before ul -->
-                        <h3> Technologies Used</h3>
-                        <ul>
-                            <li>HTML</li>
-                            <li>CSS</li>
-                            <li>JavaScript</li>
-                            <li>Tailwind CSS</li>
-                            <li>Vite.js</li>
-                            <li>Typescript</li>
-                         </ul>
-                        <!-- Use p or div for links instead of h3 -->
-                        <p><a href="https://github.com/SimosData/justice-league-flip-match" target="_blank" class="github-link"><i class="fab fa-github"></i>&nbsp;GitHub</a></p>
-                        <p><a href="project-three/index.html" target="_blank" class="github-link">Card Game</a></p>
-                    </article>
-
-                    <!-- Project 4 -->
-                    <article class="project-card">
-                        <img src="images/to do list.png" alt="To Do List Preview" class="project-preview">
-                        <h3>TO DO LIST</h3>
-                        <p>An incredible To-Do List to help you stay organized, never forget your tasks or appointments, and always be on top of your busy daily life.</p>
-                        <!-- Corrected structure: h3 before ul -->
-                        <h3>Technologies Used</h3>
-                        <ul>
-                             <li>HTML</li>
-                             <li>CSS</li>
-                             <li>JavaScript</li>
-                         </ul>
-                        <!-- Use p or div for links instead of h3 -->
-                        <p><a href="https://github.com/SimosData/To-Do-List-" target="_blank" class="github-link"><i class="fab fa-github"></i>&nbsp;GitHub</a></p>
-                        <p><a href="project-four/index.html" target="_blank" class="github-link">To Do List</a></p>
-                    </article>
-
-                    <!-- Project 5 -->
-                    <article class="project-card">
-                        <img src="images/solar system 3d.png" alt="Solar System 3D Preview" class="project-preview">
-                        <h3>SOLAR SYSTEM 3D</h3>
-                        <p>Come and Enjoy a 3d experience with the 3D solar system in a nice interactive way to get the feel of space!</p>
-                        <!-- Corrected structure: h3 before ul -->
-                        <h3>Technologies Used</h3>
-                        <ul>
-                            <li>HTML</li>
-                            <li>CSS</li>
-                            <li>JavaScript</li>
-                         </ul>
-                        <!-- Use p or div for links instead of h3 -->
-                        <p><a href="https://github.com/SimosData/solarsystem3dstyle" target="_blank" class="github-link"><i class="fab fa-github"></i>&nbsp;GitHub</a></p>
-                        <p><a href="project-five/index.html" target="_blank" class="github-link">Solar System 3D</a></p>
-                    </article>
-
-                    <!-- Project 6 -->
-                    <article class="project-card">
-                        <img src="images/youtube-clone.png" alt="YouTube Clone Preview" class="project-preview">
-                        <h3>YOUTUBE</h3>
-                        <p>VideoPlayer with a futuristic style and video playback.</p>
-                        <!-- Corrected structure: h3 before ul -->
-                        <h3>Technologies Used</h3>
-                        <ul>
-                            <li>HTML</li>
-                            <li>CSS</li>
-                            <li>JavaScript</li>
-                         </ul>
-                        <!-- Use p or div for links instead of h3 -->
-                        <p><a href="https://github.com/SimosData/YouTube-Clone" target="_blank" class="github-link"><i class="fab fa-github"></i>&nbsp;GitHub</a></p>
-                        <p><a href="project-six/Youtube/index.html" target="_blank" class="github-link">YouTube</a></p>
-                    </article>
-
-                    <!-- Project 7 -->
-                    <article class="project-card">
-                        <img src="images/Web-Scrapper.png" alt="Web Scrapper Preview" class="project-preview">
-                        <h3>WEBSCRAPPER</h3>
-                        <p>A webscrapper to handle data and read files on websites by writting their address on the command line that allow it and a stealth interface.</p>
-                        <!-- Corrected structure: h3 before ul -->
-                        <h3> Technologies Used </h3>
-                        <ul>
-                            <li>HTML</li>
-                            <li>CSS</li>
-                            <li>JavaScript</li>
-                            <li> Node.js </li>
-                            <li>Cherio</li>
-                         </ul>
-                        <!-- Use p or div for links instead of h3 -->
-                        <p><a href="https://github.com/SimosData/webscrapper" target="_blank" class="github-link"><i class="fab fa-github"></i>&nbsp;GitHub</a></p>
-                        <!-- Fixed invalid closing tag -->
-                        <p><a href="project-seven/Webscrapper/index.html" target="_blank" class="github-link">WebScrapper</a></p>
-                    </article>
-
-                    <!-- Project 8 -->
-                    <article class="project-card">
-                        <img src="images/Weather-app.png" alt="Weather App Preview" class="project-preview">
-                        <h3>WEATHER</h3>
-                        <p>A weather app that you can search about your location based on gps and see the climate conditions and see changes</p>
-                        <!-- Removed empty <p> tag -->
-                        <!-- Corrected structure: h3 before ul -->
-                        <h3>Technologies Used</h3>
-                        <ul>
-                             <li>HTML</li>
-                            <li>CSS</li>
-                             <li>JavaScript</li>
-                             <li> React </li>
-                             <li> Node.js </li>
-                         </ul>
-                        <!-- Use p or div for links instead of h3 -->
-                        <p><a href="https://github.com/SimosData/WeatherAPP/tree/main" target="_blank" class="github-link"><i class="fab fa-github"></i>&nbsp;GitHub</a></p>
-                    </article>
-
-                    <!-- Project 9 -->
-                    <article class="project-card">
-                        <img src="images/Futuristic-3D.png" alt="Futuristic Webportfolio Preview" class="project-preview"> <!-- Corrected alt text -->
-                        <h3>Futuristic Webportfolio</h3>
-                        <p>A portfolio with 3d effects music player in the background with music controls atmosphereric vibes and projects </p>
-                        <!-- Removed empty <p> tag -->
-                        <!-- Corrected structure: h3 before ul -->
-                        <h3>Technologies Used</h3>
-                        <ul>
-                             <li>HTML</li>
-                            <li>CSS</li>
-                             <li>JavaScript</li>
-                         </ul>
-                        <!-- Use p or div for links instead of h3 -->
-                        <p><a href="https://github.com/SimosData/Futuristic-WEBPORTFOLIO" target="_blank" class="github-link"><i class="fab fa-github"></i>&nbsp;GitHub</a></p>
-                        <p><a href="https://futuristic-webportfolio.netlify.app/" target="_blank" class="github-link">Futuristic-3D-WebPortfolio</a></p>
-                    </article> <!-- Added missing closing tag -->
-
-                </div> <!-- Closing project-grid -->
-            </section> <!-- Closing projects section -->
-
-            <!-- Resume Section -->
-            <section id="resume">
-                <h2>My Resume</h2>
-                <!-- Removed h4 inside p, use CSS for styling -->
-                <p class="resume-intro">
-                    You can view my key qualifications below or download the full resume.
+    <!-- Removed the #scrollable-content wrapper div -->
+    <main>
+        <!-- About Me Section -->
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <img src="images/your-photo.jpg" alt="Simos Michail" class="profile-pic">
+                <p>
+                    Hello! I'm Simos, a passionate FrontEnd Developer / Software Developer based in Limassol.<br>
+                    I love building creative and functional web applications. I enjoy coding and creating beautiful, user friendly interfaces.<br><br>
+                    I have a strong foundation in HTML, CSS, and JavaScript. I'm always eager to learn new technologies and improve my skills.<br><br>
+                    When I'm not coding, I enjoy taking a walk by the sea also reading about new technologies.
                 </p>
+            </div>
+        </section>
 
-                <div class="resume-download">
-                    <a href="resume/My_Resume.pdf" download="Simos_Michail_Resume.pdf" class="resume-download-link button-style">
-                        <i class="fas fa-download"></i> Download My Resume (PDF)
-                    </a>
-                </div>
+        <!-- Three.js Canvas Container -->
+        <section id="three-showcase">
+             <div id="three-container">
+                 <canvas id="three-canvas"></canvas>
+             </div>
+        </section>
 
-                <!-- Skills Section (Nested inside Resume, consider moving it out if preferred) -->
-                <section id="skills">
-                    <h2>My Skills</h2>
-                    <div class="skills-container">
-                        <div class="skill-category">
-                            <h3>Languages</h3>
-                            <ul>
-                                <li>HTML5</li>
-                                <li>CSS</li>
-                                <li>JavaScript (ES6+)</li>
-                                <li>Python</li> <!-- Removed () -->
-                                <li>SQL (basic)</li> <!-- Added space -->
-                                <li>Bash</li> <!-- Removed <br> -->
-                            </ul>
-                        </div>
-                        <div class="skill-category">
-                            <h3>Frameworks & Libraries</h3>
-                            <ul>
-                                <li>React</li>
-                                <li>Node.js</li>
-                                <li>Express</li>
-                                <li>Three.js</li>
-                                <li>Bootstrap 5</li>
-                            </ul>
-                        </div>
-                        <div class="skill-category">
-                            <h3>Tools & Platforms</h3>
-                            <ul>
-                                <li>Git & GitHub</li>
-                                <li>VS Code</li>
-                                <li>Docker</li>
-                                <li>MongoDB</li>
-                                <li>PostgreSQL</li>
-                                <li>Linux</li>
-                                <li>Windows</li>
-                            </ul>
-                        </div>
-                         <div class="skill-category">
-                            <h3>Concepts</h3>
-                            <ul>
-                                <li>Responsive Design</li>
-                                <li>REST APIs</li>
-                                <li>Object-Oriented Programming (OOP)</li>
-                                <li>Agile Methodologies</li>
-                            </ul>
-                        </div>
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="project-grid">
+
+                <!-- Project 1 -->
+                <article class="project-card">
+                    <img src="images/realestate-preview.png" alt="RealEstate Preview" class="project-preview">
+                    <h3>REAL ESTATE</h3>
+                    <p> A modern real estate website with listings, gallery, about, and contact pages.</p>
+                    <h3>Technologies Used</h3>
+                    <ul>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                    </ul>
+                    <p><a href ="https://github.com/SimosData/realestate-website" target="_blank" class="github-link"><i class="fab fa-github"></i>&nbsp;GitHub</a></p>
+                    <p><a href="realestate/index.html" target="_blank" class="github-link">Real Estate Website</a></p>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="project-card">
+                    <img src="images/watchstore-preview.png" alt="Watchstore Preview" class="project-preview">
+                    <h3>WATCH STORE</h3>
+                    <p>An elegant watch store that sells high-quality watches for every occasion and provides a wonderful experience of elegance and beauty.</p>
+                    <h3>Technologies Used</h3>
+                    <ul>
+                       <li>HTML</li>
+                       <li>CSS</li>
+                    </ul>
+                    <p><a href="https://github.com/SimosData/watchstore-website" target="_blank" class="github-link"><i class="fab fa-github"></i>&nbsp;GitHub</a></p>
+                    <p><a href="project-two/index.html" target="_blank" class="github-link">Watchstore</a></p>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="project-card">
+                    <img src="images/card-game.png" alt="Card Game Preview" class="project-preview">
+                    <h3>CARD GAME</h3>
+                    <p>A fun memory card game to keep you busy during moments of relaxation or casual fun. A futuristic card memory game with lots of features and a great design.</p>
+                    <h3> Technologies Used</h3>
+                    <ul>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                        <li>Tailwind CSS</li>
+                        <li>Vite.js</li>
+                        <li>Typescript</li>
+                     </ul>
+                    <p><a href="https://github.com/SimosData/justice-league-flip-match" target="_blank" class="github-link"><i class="fab fa-github"></i>&nbsp;GitHub</a></p>
+                    <p><a href="project-three/index.html" target="_blank" class="github-link">Card Game</a></p>
+                </article>
+
+                <!-- Project 4 -->
+                <article class="project-card">
+                    <img src="images/to do list.png" alt="To Do List Preview" class="project-preview">
+                    <h3>TO DO LIST</h3>
+                    <p>An incredible To-Do List to help you stay organized, never forget your tasks or appointments, and always be on top of your busy daily life.</p>
+                    <h3>Technologies Used</h3>
+                    <ul>
+                         <li>HTML</li>
+                         <li>CSS</li>
+                         <li>JavaScript</li>
+                     </ul>
+                    <p><a href="https://github.com/SimosData/To-Do-List-" target="_blank" class="github-link"><i class="fab fa-github"></i>&nbsp;GitHub</a></p>
+                    <p><a href="project-four/index.html" target="_blank" class="github-link">To Do List</a></p>
+                </article>
+
+                <!-- Project 5 -->
+                <article class="project-card">
+                    <img src="images/solar system 3d.png" alt="Solar System 3D Preview" class="project-preview">
+                    <h3>SOLAR SYSTEM 3D</h3>
+                    <p>Come and Enjoy a 3d experience with the 3D solar system in a nice interactive way to get the feel of space!</p>
+                    <h3>Technologies Used</h3>
+                    <ul>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                     </ul>
+                    <p><a href="https://github.com/SimosData/solarsystem3dstyle" target="_blank" class="github-link"><i class="fab fa-github"></i>&nbsp;GitHub</a></p>
+                    <p><a href="project-five/index.html" target="_blank" class="github-link">Solar System 3D</a></p>
+                </article>
+
+                <!-- Project 6 -->
+                <article class="project-card">
+                    <img src="images/youtube-clone.png" alt="YouTube Clone Preview" class="project-preview">
+                    <h3>YOUTUBE</h3>
+                    <p>VideoPlayer with a futuristic style and video playback.</p>
+                    <h3>Technologies Used</h3>
+                    <ul>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                     </ul>
+                    <p><a href="https://github.com/SimosData/YouTube-Clone" target="_blank" class="github-link"><i class="fab fa-github"></i>&nbsp;GitHub</a></p>
+                    <p><a href="project-six/Youtube/index.html" target="_blank" class="github-link">YouTube</a></p>
+                </article>
+
+                <!-- Project 7 -->
+                <article class="project-card">
+                    <img src="images/Web-Scrapper.png" alt="Web Scrapper Preview" class="project-preview">
+                    <h3>WEBSCRAPPER</h3>
+                    <p>A webscrapper to handle data and read files on websites by writting their address on the command line that allow it and a stealth interface.</p>
+                    <h3> Technologies Used </h3>
+                    <ul>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                        <li> Node.js </li>
+                        <li>Cherio</li>
+                     </ul>
+                    <p><a href="https://github.com/SimosData/webscrapper" target="_blank" class="github-link"><i class="fab fa-github"></i>&nbsp;GitHub</a></p>
+                    <p><a href="project-seven/Webscrapper/index.html" target="_blank" class="github-link">WebScrapper</a></p>
+                </article>
+
+                <!-- Project 8 -->
+                <article class="project-card">
+                    <img src="images/Weather-app.png" alt="Weather App Preview" class="project-preview">
+                    <h3>WEATHER</h3>
+                    <p>A weather app that you can search about your location based on gps and see the climate conditions and see changes</p>
+                    <h3>Technologies Used</h3>
+                    <ul>
+                         <li>HTML</li>
+                        <li>CSS</li>
+                         <li>JavaScript</li>
+                         <li> React </li>
+                         <li> Node.js </li>
+                     </ul>
+                    <p><a href="https://github.com/SimosData/WeatherAPP/tree/main" target="_blank" class="github-link"><i class="fab fa-github"></i>&nbsp;GitHub</a></p>
+                </article>
+
+                <!-- Project 9 -->
+                <article class="project-card">
+                    <img src="images/Futuristic-3D.png" alt="Futuristic Webportfolio Preview" class="project-preview">
+                    <h3>Futuristic Webportfolio</h3>
+                    <p>A portfolio with 3d effects music player in the background with music controls atmosphereric vibes and projects </p>
+                    <h3>Technologies Used</h3>
+                    <ul>
+                         <li>HTML</li>
+                        <li>CSS</li>
+                         <li>JavaScript</li>
+                     </ul>
+                    <p><a href="https://github.com/SimosData/Futuristic-WEBPORTFOLIO" target="_blank" class="github-link"><i class="fab fa-github"></i>&nbsp;GitHub</a></p>
+                    <p><a href="https://futuristic-webportfolio.netlify.app/" target="_blank" class="github-link">Futuristic-3D-WebPortfolio</a></p>
+                </article>
+
+            </div> <!-- Closing project-grid -->
+        </section> <!-- Closing projects section -->
+
+        <!-- Resume Section -->
+        <section id="resume">
+            <h2>My Resume</h2>
+            <p class="resume-intro">
+                You can view my key qualifications below or download the full resume.
+            </p>
+
+            <div class="resume-download">
+                <a href="resume/My_Resume.pdf" download="Simos_Michail_Resume.pdf" class="resume-download-link button-style">
+                    <i class="fas fa-download"></i> Download My Resume (PDF)
+                </a>
+            </div>
+
+            <!-- Skills Section -->
+            <section id="skills">
+                <h2>My Skills</h2>
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h3>Languages</h3>
+                        <ul>
+                            <li>HTML5</li>
+                            <li>CSS</li>
+                            <li>JavaScript (ES6+)</li>
+                            <li>Python</li>
+                            <li>SQL (basic)</li>
+                            <li>Bash</li>
+                        </ul>
                     </div>
-                </section> <!-- Closing skills section -->
-                <!-- Optional resume details commented out -->
-            </section> <!-- Closing resume section -->
-
-            <!-- Contact Section -->
-            <!-- Removed duplicate contact section wrapper -->
-            <section id="contact">
-                <h2>Contact</h2>
-                <p class="contact-intro">
-                    I'm always open to discussing new projects, creative ideas, or opportunities!
-                </p>
-                <div class="contact-methods">
-                     <a href="mailto:simosmichail176@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-link email-link">
-                        <i class="fas fa-envelope"></i> simosmichail176@gmail.com
-                     </a>
-                     <a href="https://www.linkedin.com/in/simosmichail176/" target="_blank" rel="noopener noreferrer" class="contact-link linkedin-link">
-                         <i class="fab fa-linkedin"></i> LinkedIn Profile
-                     </a>
-                     <a href="https://github.com/SimosData" target="_blank" rel="noopener noreferrer" class="contact-link github-link-contact">
-                         <i class="fab fa-github"></i> GitHub Profile
-                     </a>
+                    <div class="skill-category">
+                        <h3>Frameworks & Libraries</h3>
+                        <ul>
+                            <li>React</li>
+                            <li>Node.js</li>
+                            <li>Express</li>
+                            <li>Three.js</li>
+                            <li>Bootstrap 5</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Tools & Platforms</h3>
+                        <ul>
+                            <li>Git & GitHub</li>
+                            <li>VS Code</li>
+                            <li>Docker</li>
+                            <li>MongoDB</li>
+                            <li>PostgreSQL</li>
+                            <li>Linux</li>
+                            <li>Windows</li>
+                        </ul>
+                    </div>
+                     <div class="skill-category">
+                        <h3>Concepts</h3>
+                        <ul>
+                            <li>Responsive Design</li>
+                            <li>REST APIs</li>
+                            <li>Object-Oriented Programming (OOP)</li>
+                            <li>Agile Methodologies</li>
+                        </ul>
+                    </div>
                 </div>
-            </section> <!-- Closing contact section -->
+            </section> <!-- Closing skills section -->
+        </section> <!-- Closing resume section -->
 
-        </main>
-    </div> <!-- END: Wrapper Div #scrollable-content -->
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Contact</h2>
+            <p class="contact-intro">
+                I'm always open to discussing new projects, creative ideas, or opportunities!
+            </p>
+            <div class="contact-methods">
+                 <a href="mailto:simosmichail176@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-link email-link">
+                    <i class="fas fa-envelope"></i> simosmichail176@gmail.com
+                 </a>
+                 <a href="https://www.linkedin.com/in/simosmichail176/" target="_blank" rel="noopener noreferrer" class="contact-link linkedin-link">
+                     <i class="fab fa-linkedin"></i> LinkedIn Profile
+                 </a>
+                 <a href="https://github.com/SimosData" target="_blank" rel="noopener noreferrer" class="contact-link github-link-contact">
+                     <i class="fab fa-github"></i> GitHub Profile
+                 </a>
+            </div>
+        </section> <!-- Closing contact section -->
+
+    </main>
+    <!-- Removed the closing tag for #scrollable-content -->
 
     <footer>
-        <p>&copy; 2024 Simos Michail</p> <!-- Updated year -->
+        <p>&copy; 2024 Simos Michail</p>
     </footer>
 
     <!-- Scripts -->
