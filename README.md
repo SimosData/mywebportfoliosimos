@@ -54,17 +54,15 @@ To view the portfolio locally:
 2.  **Open the `index.html` file:**
     Simply double-click the `index.html` file in your file explorer, or open it using your web browser.
 
-## Live Demo
+ Live Demo
 
-*( Optional: https://webportfoliosimos-18-4-2025.netlify.app )*
+https://webportfoliosimos-18-4-2025.netlify.app )*
 Link to Live Site
 
-## Contact
+Contact
 
 *   **Email:** simosmichail176@gmail.com
-*   **LinkedIn:** https://www.linkedin.com/in/simosmichail176/
+*   **LinkedIn:** https://www.linkedin.com/in/simosmichail176/     
 *   **GitHub:** https://github.com/SimosData
-  **render: **  https://simosdata.github.io/mywebportfoliosimos/
----
+   https://simosdata.github.io/mywebportfoliosimos/
 
-&copy; 2024 Simos Michail
